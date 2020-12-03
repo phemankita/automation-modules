@@ -1,6 +1,6 @@
 categories:
   - category: cluster
-    selection: single
+    selection: required
     modules:
       - id: github.com/ibm-garage-cloud/terraform-ibm-container-platform
         name: ibm-container-platform
