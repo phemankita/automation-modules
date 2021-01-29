@@ -5,13 +5,296 @@ categories:
       - id: github.com/ibm-garage-cloud/terraform-ibm-container-platform
         name: ibm-container-platform
         description: Provisions a new or connects to an existing IBM Cloud contaienr platform (Kubernetes or OpenShift)
-        platforms:
-          - kubernetes
-          - ocp3
-          - ocp4
+        alias: cluster
         tags:
           - cluster
+          - ibm cloud
+          - kubernetes
+          - openshift
         versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            variables:
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: The name of the IBM Cloud resource group where the cluster will be created/can be found.
+              - name: cluster_name
+                scope: global
+                type: string
+                description: The name of the cluster that will be created within the resource group
+              - name: cluster_hardware
+                scope: global
+                type: string
+                description: The type of hardware for the cluster (shared, dedicated)
+                default: shared
+                optional: true
+              - name: cluster_worker_count
+                scope: global
+                type: number
+                description: The number of worker nodes that should be provisioned for classic infrastructure
+                default: 3
+                optional: true
+              - name: cluster_machine_type
+                scope: global
+                type: string
+                description: (Deprecated, use VPC) The machine type that will be provisioned for classic infrastructure
+                default: b3c.4x16
+                optional: true
+              - name: flavor
+                scope: module
+                type: string
+                description: (Deprecated, use VPC) The machine type that will be provisioned for classic infrastructure
+                default: b3c.4x16
+                optional: true
+              - name: vlan_datacenter
+                scope: module
+                type: string
+                description: (Deprecated, use VPC) The datacenter that should be used for classic infrastructure provisioning
+              - name: private_vlan_id
+                scope: module
+                type: string
+                description: (Deprecated, use VPC) The private vlan id that should be used for classic infrastructure provisioning
+              - name: public_vlan_id
+                scope: module
+                type: string
+                description: (Deprecated, use VPC) The public vlan id that should be used for classic infrastructure provisioning
+              - name: vpc_zone_count
+                scope: module
+                type: number
+                description: Number of vpc zones
+                default: 0
+                optional: true
+              - name: cluster_region
+                scope: global
+                alias: region
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+              - nane: cluster_type
+                scope: global
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The IBM Cloud api token
+              - name: cluster_exists
+                scope: global
+                type: bool
+                description: Flag indicating if the cluster already exists (true or false)
+              - name: login_user
+                scope: module
+                type: string
+                description: The username to log in to openshift
+                default: apikey
+                optional: true
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+              - name: is_vpc
+                scope: module
+                type: bool
+                description: Flag indicating that the cluster uses vpc infrastructure
+                default: false
+                optional: true
+              - name: opc_entitlement
+                scope: module
+              - name: cos_name
+                scope: module
+                type: string
+                description: (optional) The name of the cos instance that will be used for the OCP 4 vpc instance
+              - name: provision_cos
+                scope: module
+                type: bool
+                description: Flag indicating that the cos instance should be provisioned, if necessary
+                default: true
+                optional: true
+              - name: gitops_dir
+                scope: global
+                type: string
+                description: Directory where the gitops repo content should be written
+              - name: cluster_type
+                type: string
+                description: The type of cluster that should be created (openshift or ocp3 or ocp4 or kubernetes)
+              - name: ocp_entitlement
+                type: string
+                description: Value that is applied to the entitlements for OCP cluster provisioning
+                default: cloud_pak
+                optional: true
+            version: v1.20.2
+            outputs:
+              - name: id
+                description: ID of the cluster.
+              - name: name
+                description: Name of the cluster.
+              - name: resource_group_name
+                description: Name of the resource group containing the cluster.
+              - name: region
+                description: Region containing the cluster.
+              - name: ingress_hostname
+                description: (Deprecated) Ingress hostname of the cluster.
+              - name: server_url
+                description: The url of the control server.
+              - name: config_file_path
+                description: (Deprecated) Path to the config file for the cluster.
+              - name: type
+                description: (Deprecated, use platform.type) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: type_code
+                description: (Deprecated, use platform.type_code) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: platform
+                description: Configuration values for the cluster platform
+              - name: version
+                description: (Deprecated, use platform.version) The point release version number of cluster (3.11 or 4.3 or 1.16)
+              - name: login_user
+                description: (Deprecated) The username used to log into the openshift cli
+              - name: login_password
+                description: (Deprecated) The password used to log into the openshift cli
+              - name: tls_secret_name
+                description: (Deprecated) The name of the secret containin the tls information for the cluster
+              - name: tag
+                description: The tag based on the cluster type
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            variables:
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: The name of the IBM Cloud resource group where the cluster will be created/can be found.
+              - name: cluster_name
+                scope: global
+                type: string
+                description: The name of the cluster that will be created within the resource group
+              - name: cluster_hardware
+                scope: global
+                type: string
+                description: The type of hardware for the cluster (shared, dedicated)
+                optional: true
+              - name: cluster_worker_count
+                scope: global
+                type: number
+                description: The number of worker nodes that should be provisioned for classic infrastructure
+                optional: true
+              - name: cluster_machine_type
+                scope: global
+                type: string
+                description: (Deprecated, use VPC) The machine type that will be provisioned for classic infrastructure
+                optional: true
+              - name: flavor
+                scope: module
+                type: string
+                description: (Deprecated, use VPC) The machine type that will be provisioned for classic infrastructure
+                optional: true
+              - name: vlan_datacenter
+                scope: module
+                type: string
+                description: (Deprecated, use VPC) The datacenter that should be used for classic infrastructure provisioning
+                optional: true
+              - name: private_vlan_id
+                scope: module
+                type: string
+                description: (Deprecated, use VPC) The private vlan id that should be used for classic infrastructure provisioning
+                optional: true
+              - name: public_vlan_id
+                scope: module
+                type: string
+                description: (Deprecated, use VPC) The public vlan id that should be used for classic infrastructure provisioning
+                optional: true
+              - name: vpc_zone_count
+                scope: module
+                type: number
+                description: Number of vpc zones
+                optional: true
+              - name: cluster_region
+                scope: global
+                alias: region
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+              - nane: cluster_type
+                scope: global
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The IBM Cloud api token
+              - name: cluster_exists
+                scope: global
+                type: bool
+                description: Flag indicating if the cluster already exists (true or false)
+              - name: login_user
+                scope: module
+                type: string
+                description: The username to log in to openshift
+                optional: true
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                optional: true
+              - name: is_vpc
+                scope: module
+                type: bool
+                description: Flag indicating that the cluster uses vpc infrastructure
+                optional: true
+              - name: opc_entitlement
+                scope: module
+              - name: cos_name
+                scope: module
+                type: string
+                description: (optional) The name of the cos instance that will be used for the OCP 4 vpc instance
+                optional: true
+              - name: provision_cos
+                scope: module
+                type: bool
+                description: Flag indicating that the cos instance should be provisioned, if necessary
+                optional: true
+              - name: gitops_dir
+                scope: global
+                type: string
+                description: Directory where the gitops repo content should be written
+                optional: true
+              - name: cluster_type
+                type: string
+                description: The type of cluster that should be created (openshift or ocp3 or ocp4 or kubernetes)
+              - name: ocp_entitlement
+                type: string
+                description: Value that is applied to the entitlements for OCP cluster provisioning
+                optional: true
+            version: v1.20.1
+            outputs:
+              - name: id
+                description: ID of the cluster.
+              - name: name
+                description: Name of the cluster.
+              - name: resource_group_name
+                description: Name of the resource group containing the cluster.
+              - name: region
+                description: Region containing the cluster.
+              - name: ingress_hostname
+                description: (Deprecated) Ingress hostname of the cluster.
+              - name: server_url
+                description: The url of the control server.
+              - name: config_file_path
+                description: (Deprecated) Path to the config file for the cluster.
+              - name: type
+                description: (Deprecated, use platform.type) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: type_code
+                description: (Deprecated, use platform.type_code) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: platform
+                description: Configuration values for the cluster platform
+              - name: version
+                description: (Deprecated, use platform.version) The point release version number of cluster (3.11 or 4.3 or 1.16)
+              - name: login_user
+                description: (Deprecated) The username used to log into the openshift cli
+              - name: login_password
+                description: (Deprecated) The password used to log into the openshift cli
+              - name: tls_secret_name
+                description: (Deprecated) The name of the secret containin the tls information for the cluster
+              - name: tag
+                description: The tag based on the cluster type
           - version: v1.20.0
             variables:
               - name: resource_group_name
@@ -348,11 +631,177 @@ categories:
       - id: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
         name: ocp-cluster
         description: Connects to an existing OpenShift cluster
-        platforms:
-          - ocp4
+        alias: cluster
         tags:
           - cluster
+          - openshift
         versions:
+          - platforms:
+              - ocp4
+            dependencies: []
+            variables:
+              - name: cluster_type
+                scope: global
+                type: string
+                description: The type of cluster into which the toolkit will be installed (openshift or ocp3 or ocp4)
+                default: ocp4
+                optional: true
+              - name: login_user
+                scope: module
+                type: string
+                description: The username to log in to openshift
+              - name: login_password
+                scope: module
+                type: string
+                description: The password to log in to openshift
+              - name: login_token
+                scope: module
+                type: string
+                description: The token to log in to openshift
+              - name: server_url
+                scope: module
+                type: string
+                description: The url to the server
+              - name: resource_group_name
+                scope: ignore
+                type: string
+                description: The name of the IBM Cloud resource group where the cluster will be created/can be found.
+                default: N/A
+                optional: true
+              - name: cluster_region
+                scope: ignore
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+                default: N/A
+                optional: true
+              - name: ingress_subdomain
+                scope: ignore
+                type: string
+                description: The ROUTER_CANONICAL_HOSTNAME for the cluster
+              - name: gitops_dir
+                scope: global
+                type: string
+                description: Directory where the gitops repo content should be written
+            version: v2.4.3
+            outputs:
+              - name: id
+                description: ID of the cluster.
+              - name: name
+                description: Name of the cluster.
+              - name: resource_group_name
+                description: Name of the resource group containing the cluster.
+              - name: region
+                description: Region containing the cluster.
+              - name: ingress_hostname
+                description: Ingress hostname of the cluster.
+              - name: server_url
+                description: The url of the control server.
+              - name: config_file_path
+                description: Path to the config file for the cluster.
+              - name: type
+                description: (Deprecated, use platform.type) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: type_code
+                description: (Deprecated, use platform.type_code) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: platform
+                description: Configuration values for the cluster platform
+              - name: version
+                description: (Deprecated, use platform.version) The point release version number of cluster (3.11 or 4.3 or 1.16)
+              - name: login_user
+                description: The username used to log into the openshift cli
+              - name: login_password
+                description: The password used to log into the openshift cli
+              - name: tls_secret_name
+                description: The name of the secret containin the tls information for the cluster
+              - name: tag
+                description: The tag vased on the cluster type
+          - platforms:
+              - ocp4
+            dependencies: []
+            variables:
+              - name: cluster_type
+                scope: global
+                type: string
+                description: The type of cluster into which the toolkit will be installed (openshift or ocp3 or ocp4)
+                default: '"ocp4"'
+                optional: true
+              - name: login_user
+                scope: module
+                type: string
+                description: The username to log in to openshift
+                default: '""'
+                optional: true
+              - name: login_password
+                scope: module
+                type: string
+                description: The password to log in to openshift
+                default: '""'
+                optional: true
+              - name: login_token
+                scope: module
+                type: string
+                description: The token to log in to openshift
+                default: '""'
+                optional: true
+              - name: server_url
+                scope: module
+                type: string
+                description: The url to the server
+              - name: resource_group_name
+                scope: ignore
+                type: string
+                description: The name of the IBM Cloud resource group where the cluster will be created/can be found.
+                default: '"N/A"'
+                optional: true
+              - name: cluster_region
+                scope: ignore
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+                default: '"N/A"'
+                optional: true
+              - name: ingress_subdomain
+                scope: ignore
+                type: string
+                description: The ROUTER_CANONICAL_HOSTNAME for the cluster
+                default: '""'
+                optional: true
+              - name: gitops_dir
+                scope: global
+                type: string
+                description: Directory where the gitops repo content should be written
+                default: '""'
+                optional: true
+            version: v2.4.2
+            outputs:
+              - name: id
+                description: ID of the cluster.
+              - name: name
+                description: Name of the cluster.
+              - name: resource_group_name
+                description: Name of the resource group containing the cluster.
+              - name: region
+                description: Region containing the cluster.
+              - name: ingress_hostname
+                description: Ingress hostname of the cluster.
+              - name: server_url
+                description: The url of the control server.
+              - name: config_file_path
+                description: Path to the config file for the cluster.
+              - name: type
+                description: (Deprecated, use platform.type) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: type_code
+                description: (Deprecated, use platform.type_code) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: platform
+                description: Configuration values for the cluster platform
+              - name: version
+                description: (Deprecated, use platform.version) The point release version number of cluster (3.11 or 4.3 or 1.16)
+              - name: login_user
+                description: The username used to log into the openshift cli
+              - name: login_password
+                description: The password used to log into the openshift cli
+              - name: tls_secret_name
+                description: The name of the secret containin the tls information for the cluster
+              - name: tag
+                description: The tag vased on the cluster type
           - version: v2.4.1
             variables:
               - name: cluster_type
@@ -489,6 +938,353 @@ categories:
                 description: The name of the secret containin the tls information for the cluster
               - name: tag
                 description: The tag vased on the cluster type
+  - category: ibm
+    selection: multiple
+    modules:
+      - id: github.com/ibm-garage-cloud/terraform-ibm-activity-tracker
+        name: ibm-activity-tracker
+        type: terraform
+        description: Provisions the IBM Cloud hosted Activity Tracker service
+        tags:
+          - sre
+          - account
+          - ibm cloud
+          - activity tracker
+        versions:
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: resource_location
+                scope: global
+                alias: region
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that the instance should be provisioned
+                optional: true
+            version: v1.1.4
+            outputs: []
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: resource_location
+                scope: global
+                alias: region
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that the instance should be provisioned
+                optional: true
+            version: v1.1.3
+            outputs: []
+      - id: github.com/ibm-garage-cloud/terraform-ibm-appid
+        name: ibm-appid
+        type: terraform
+        description: Provisions the IBM Cloud AppId service
+        tags:
+          - tools
+          - devops
+        versions:
+          - platforms: []
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_id
+                moduleRef:
+                  id: cluster
+                  output: id
+                type: string
+                description: Id of the cluster
+                optional: true
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: resource_location
+                scope: global
+                alias: region
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: namespaces
+                scope: module
+                type: list(string)
+                description: Namespaces
+                optional: true
+              - name: namespace_count
+                scope: module
+                type: number
+                description: The number of namespaces
+                optional: true
+              - name: tags
+                scope: module
+                type: list(string)
+                description: Tags that should be applied to the service
+                optional: true
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                optional: true
+              - name: plan
+                scope: module
+                type: string
+                description: The type of plan the service instance should run under (lite or graduated-tier)
+                optional: true
+            version: v1.1.1
+      - id: github.com/ibm-garage-cloud/terraform-ibm-logdna
+        name: logdna
+        type: terraform
+        description: Module to set up the Logdna into a cluster
+        tags:
+          - tools
+          - devops
+          - logdna
+          - logging
+        versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_id
+                moduleRef:
+                  id: cluster
+                  output: id
+                type: string
+                description: The identifier for the cluster
+                optional: true
+              - name: cluster_name
+                moduleRef:
+                  id: cluster
+                  output: name
+                type: string
+                description: The name of the cluster
+                optional: true
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The type of cluster referenced by cluster_id (openshift or ocp3 or ocp4 or kubernetes)
+                optional: true
+              - name: cluster_config_file_path
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: The path to the config file for the cluster
+                optional: true
+              - name: tools_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: The namespace where the tools have been deployed (where the configmap should be created)
+                optional: true
+              - name: resource_group_name
+                type: string
+                description: Existing resource group where the IKS cluster will be provisioned.
+              - name: resource_location
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that logdna instance should be provisioned
+              - name: name
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                optional: true
+              - name: service_account_name
+                type: string
+                description: The service account that the logdna agent should run under
+                optional: true
+              - name: namespace
+                type: string
+                description: The namespace where the agent should be deployed
+                optional: true
+              - name: sync
+                type: string
+                description: Semaphore to synchronize activities between modules
+                optional: true
+              - name: private_endpoint
+                type: string
+                description: Flag indicating that the agent should be created with private endpoints
+                optional: true
+            version: v2.4.3
+            outputs:
+              - name: sync
+                description: output "sync" {   value = "logdna"   depends_on = [helm_release.logdna] }
+      - id: github.com/ibm-garage-cloud/terraform-ibm-sysdig
+        name: sysdig
+        type: terraform
+        description: Module to set up the Sysdig into a cluster
+        tags:
+          - tools
+          - devops
+          - monitoring
+        versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_id
+                moduleRef:
+                  id: cluster
+                  output: id
+                type: string
+                description: The id of the cluster into which the sysdig instance should be bound
+                optional: true
+              - name: cluster_name
+                moduleRef:
+                  id: cluster
+                  output: name
+                type: string
+                description: The name of the cluster into which the sysdig instance should be bound
+                optional: true
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The type of cluster that should be created (openshift or ocp3 or ocp4 or kubernetes)
+                optional: true
+              - name: cluster_config_file_path
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: The path to the config file for the cluster
+                optional: true
+              - name: tools_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: The namespace where the tools have been deployed (where the configmap should be created)
+                optional: true
+              - name: resource_group_name
+                type: string
+                description: Existing resource group where the IKS cluster will be provisioned.
+              - name: resource_location
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (trial or graduated-tier)
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that logdna instance should be provisioned
+              - name: name
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                optional: true
+              - name: namespace
+                type: string
+                description: The namespace where the agent should be deployed
+                optional: true
+              - name: sync
+                type: string
+                description: Semaphore value to sync up modules
+                optional: true
+            version: v2.3.3
+            outputs:
+              - name: sync
+                description: output "sync" {   value = "sysdig"   depends_on = [helm_release.sysdig] }
   - category: image-registry
     selection: single
     modules:
@@ -1152,7 +1948,292 @@ categories:
                 description: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
   - category: infrastructure
     selection: indirect
-    modules: {}
+    modules:
+      - id: github.com/ibm-garage-cloud/terraform-k8s-namespace
+        name: namespace
+        description: Creates a namespace in the cluster
+        platforms:
+          - kubernetes
+          - ocp3
+          - ocp4
+        tags:
+          - infrastructure
+          - namespace
+        versions:
+          - dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The type of cluster that should be created (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_config_file_path
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: The path to the config file for the cluster
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: tls_secret_name
+                type: string
+                description: The name of the secret containing the tls certificate for the cluster
+                optional: true
+              - name: name
+                type: string
+                description: The namespace that should be created
+            version: v2.6.0
+            outputs:
+              - name: name
+                description: Namespace name
+          - dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The type of cluster that should be created (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_config_file_path
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: The path to the config file for the cluster
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: tls_secret_name
+                type: string
+                description: The name of the secret containing the tls certificate for the cluster
+                optional: true
+              - name: name
+                type: string
+                description: The namespace that should be created
+            version: v2.5.2
+            outputs:
+              - name: name
+                description: Namespace name
+      - id: github.com/ibm-garage-cloud/terraform-k8s-olm
+        name: olm
+        type: terraform
+        description: Installs Operator Lifecycle Manager in the cluster
+        platforms:
+          - kubernetes
+          - ocp3
+          - ocp4
+        tags:
+          - operators
+        versions:
+          - dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+            variables:
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform
+                  path: type_code
+                type: string
+                description: The type of cluster (openshift or kubernetes)
+              - name: cluster_version
+                moduleRef:
+                  id: cluster
+                  output: platform
+                  path: version
+                type: string
+                description: The version of cluster
+              - name: olm_version
+                type: string
+                description: The version of olm that will be installed
+                optional: true
+            version: v1.2.2
+            outputs:
+              - name: olm_namespace
+                description: Namespace where OLM is running. The value will be different between OCP 4.3 and IKS/OCP 3.11
+              - name: target_namespace
+                description: Namespace where operatoes will be installed
+      - id: github.com/ibm-garage-cloud/terraform-ibm-cp-catalog
+        name: ibm-cp-catalog
+        type: terraform
+        description: Base install of the Cloud Pak for Integration operator catalog and pull secrets
+        tags:
+          - tools
+          - devops
+        versions:
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: release_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: Name of the existing namespace where Pact Broker will be deployed.
+                optional: true
+              - name: cluster_type_code
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The cluster_type of the cluster
+                optional: true
+              - name: entitlement_key
+                scope: module
+                type: string
+                description: The entitlement key used to access the CP4I images in the container registry. Visit https://myibm.ibm.com/products-services/containerlibrary to get the key
+                optional: true
+            version: v1.0.4
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: release_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: Name of the existing namespace where Pact Broker will be deployed.
+                optional: true
+              - name: cluster_type_code
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The cluster_type of the cluster
+                optional: true
+              - name: entitlement_key
+                scope: module
+                type: string
+                description: The entitlement key used to access the CP4I images in the container registry. Visit https://myibm.ibm.com/products-services/containerlibrary to get the key
+                optional: true
+            version: v1.0.3
+  - category: source-control
+    selection: single
+    modules:
+      - id: github.com/ibm-garage-cloud/terraform-k8s-source-control
+        name: source-control
+        type: terraform
+        description: Module to install Source control into a cluster
+        tags:
+          - tools
+          - devops
+          - source control
+          - git
+        versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_type_code
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The cluster_type of the cluster
+                optional: true
+              - name: config_file_path
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: The path to the kube config
+              - name: cluster_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: The namespace in the cluster where the configuration should be created (e.g. tools)
+              - name: gitops_dir
+                type: string
+                description: The directory where the gitops configuration should be stored
+                optional: true
+              - name: type
+                type: string
+                description: The type of source control system (github or gitlab) currently
+              - name: url
+                type: string
+                description: The url to the git host (base git host, org, or repo url)
+            version: v1.2.1
+            outputs:
+              - name: output "my
+                description: output "my
+              - name: 'output" { #  description = "Description of my'
+                description: 'output" { #  description = "Description of my'
+              - name: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
+                description: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
   - category: tool
     selection: multiple
     modules:
