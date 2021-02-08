@@ -5408,7 +5408,55 @@ categories:
         tags:
           - tools
           - devops
+        provider: k8s
         versions:
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: release_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: Name of the existing namespace where Pact Broker will be deployed.
+                default: default
+                optional: true
+              - name: cluster_type_code
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The cluster_type of the cluster
+                default: ocp4
+                optional: true
+              - name: entitlement_key
+                scope: module
+                type: string
+                description: The entitlement key used to access the CP4I images in the container registry. Visit https://myibm.ibm.com/products-services/containerlibrary to get the key
+                default: ""
+                optional: true
+            version: v1.3.1
+            outputs:
+              - name: name
+                description: The name of the catalog that was installed
           - platforms:
               - ocp4
             dependencies:
@@ -5632,7 +5680,6 @@ categories:
                 description: The entitlement key used to access the CP4I images in the container registry. Visit https://myibm.ibm.com/products-services/containerlibrary to get the key
                 optional: true
             version: v1.0.3
-        provider: ibm
       - id: github.com/ibm-garage-cloud/terraform-ibm-cp-platform-navigator
         name: ibm-cp-platform-navigator
         type: terraform
@@ -5640,7 +5687,69 @@ categories:
         tags:
           - tools
           - devops
+        provider: k8s
         versions:
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+              - id: cp-catalog
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-catalog
+                    version: ">= 1.0.0"
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The type of cluster
+                default: ocp4
+                optional: true
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: The location of the kube config
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: cloud-pak
+                type: string
+                description: The namespace where the platform navigator should be installed
+                default: cp4i
+                optional: true
+              - name: catalog_name
+                moduleRef:
+                  id: cp-catalog
+                  output: name
+                type: string
+                description: The name of the Cloud Pak catalog
+                default: ibm-operator-catalog
+                optional: true
+              - name: gitops_dir
+                scope: global
+                type: string
+                description: The directory where the gitops configuration should be stored
+                default: ""
+                optional: true
+            version: v1.2.2
+            outputs:
+              - name: name
+                description: Platform navigator instance name
+              - name: namespace
+                description: Platform navigator instance namespace
           - platforms:
               - ocp4
             dependencies:
@@ -5906,7 +6015,6 @@ categories:
             #          version: ">= 1.6.0"
             variables: []
             version: v0.0.0
-        provider: ibm
   - category: middleware
     categoryName: Middleware
     selection: multiple
@@ -5986,7 +6094,87 @@ categories:
         tags:
           - tools
           - devops
+        provider: k8s
         versions:
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: cp-catalog
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-catalog
+                    version: ">= 1.0.0"
+              - id: platform-navigator
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-platform-navigator
+                    version: ">= 1.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The type of cluster
+                default: ocp4
+                optional: true
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: The location of the kube config
+              - name: catalog_name
+                moduleRef:
+                  id: cp-catalog
+                  output: name
+                type: string
+                description: The name of the Cloud Pak catalog
+                default: ibm-operator-catalog
+                optional: true
+              - name: platform-navigator-name
+                moduleRef:
+                  id: platform-navigator
+                  output: name
+                type: string
+                description: The name of the platform navigator instance
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: app-connect
+                type: string
+                description: The namespace where the platform navigator should be installed
+                default: cp4i
+                optional: true
+              - name: gitops_dir
+                scope: global
+                type: string
+                description: The directory where the gitops configuration should be stored
+                default: ""
+                optional: true
+              - name: storage_class
+                scope: global
+                type: string
+                description: The storage class that should be used for the dashboard and designer
+                default: ""
+                optional: true
+              - name: dashboard
+                type: bool
+                description: Flag to install the dashboard
+                default: true
+                optional: true
+            version: v1.0.1
           - platforms:
               - ocp4
             dependencies:
@@ -6087,7 +6275,6 @@ categories:
             #          version: ">= 1.6.0"
             variables: []
             version: v0.0.0
-        provider: ibm
   - category: source-control
     categoryName: Source Control
     selection: single
