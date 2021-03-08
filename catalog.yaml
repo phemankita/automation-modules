@@ -6,11 +6,21 @@ categories:
       - name: IBM Container Platform
         id: github.com/ibm-garage-cloud/terraform-ibm-container-platform
         metadataUrl: https://ibm-garage-cloud.github.io/terraform-ibm-container-platform/index.yaml
-      - name: OpenShift Cluster
+      - name: Red Hat OpenShift Cluster
         id: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
         aliases:
           - github.com/ibm-garage-cloud/terraform-ocp-cluster
         metadataUrl: https://ibm-garage-cloud.github.io/terraform-k8s-ocp-cluster/index.yaml
+      - name: VPN + VPC + Bastion
+        id: github.com/ibm-garage-cloud/terraform-ibm-vpc-vpn
+        aliases:
+          - https://github.com/ibm-garage-cloud/terraform-ibm-vpc-vpn
+        metadataUrl: https://ibm-garage-cloud.github.io/terraform-ibm-vpc-vpn/index.yaml
+      - name: SCC Collector
+        id: github.com/ibm-garage-cloud/terraform-ibm-scc-collector
+        aliases:
+          - https://github.com/ibm-garage-cloud/terraform-ibm-scc-collector
+        metadataUrl: https://ibm-garage-cloud.github.io/terraform-ibm-scc-collector/index.yaml
   - category: iam
     categoryName: IAM
     selection: multiple
