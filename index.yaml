@@ -23,17 +23,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: olm
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-olm
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-olm
                     version: ">= 1.2.2"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -105,13 +105,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -194,13 +194,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -276,13 +276,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -358,13 +358,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -440,13 +440,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -522,13 +522,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -614,13 +614,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -699,13 +699,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -784,13 +784,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -869,13 +869,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -954,13 +954,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -1039,13 +1039,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -1124,13 +1124,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -1213,13 +1213,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -1305,13 +1305,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -1363,13 +1363,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -1432,13 +1432,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -1540,13 +1540,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -1613,17 +1613,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: olm
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-olm
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-olm
                     version: ">= 1.0.0"
             variables:
               - name: cluster_type
@@ -1712,17 +1712,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: olm
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-olm
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-olm
                     version: ">= 1.0.0"
             variables:
               - name: cluster_type
@@ -1803,13 +1803,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -1878,13 +1878,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -1964,17 +1964,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2027,17 +2027,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2090,17 +2090,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2145,17 +2145,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2200,17 +2200,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2255,17 +2255,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2310,17 +2310,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2365,17 +2365,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2420,17 +2420,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2475,17 +2475,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2530,17 +2530,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2585,17 +2585,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2640,17 +2640,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2695,17 +2695,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: tekton
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-tools-tekton
+                  - source: github.com/cloud-native-toolkit/terraform-tools-tekton
                     version: ">= 2.0.1"
             variables:
               - name: cluster_type
@@ -2824,17 +2824,17 @@ categories:
             dependencies: []
             #    - id: cluster
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
             #          version: ">= 1.7.0"
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
             #          version: ">= 2.0.0"
             #    - id: namespace
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
             #          version: ">= 2.1.0"
             #    - id: dashboard
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-dashboard
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
             #          version: ">= 1.6.0"
             variables: [{name: variable "my, type: variable "my, description: variable "my}, {name: 'variable" { #  type        = string #  description = "A description of my', type: string, description: 'variable" { #  type        = string #  description = "A description of my'}, {name: 'variable" #  default     = "" #}', type: 'variable" #  default     = "" #}', description: 'variable" #  default     = "" #}', optional: true}]
             version: v0.0.0
@@ -2958,17 +2958,17 @@ categories:
             dependencies: []
             #    - id: cluster
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
             #          version: ">= 1.7.0"
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
             #          version: ">= 2.0.0"
             #    - id: namespace
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
             #          version: ">= 2.1.0"
             #    - id: dashboard
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-dashboard
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
             #          version: ">= 1.6.0"
             variables: [{name: resourceGroupNames, type: string, description: Comma-separated list of resource group names that should be created}, {name: region, type: string, description: The region where the container registry should be set up}, {name: createResourceGroups, type: bool, description: Flag indicating that the resource groups should be created, optional: true}]
             version: v0.1.0
@@ -2986,17 +2986,17 @@ categories:
             dependencies: []
             #    - id: cluster
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
             #          version: ">= 1.7.0"
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
             #          version: ">= 2.0.0"
             #    - id: namespace
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
             #          version: ">= 2.1.0"
             #    - id: dashboard
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-dashboard
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
             #          version: ">= 1.6.0"
             variables: [{name: variable "my, type: variable "my, description: variable "my}, {name: 'variable" { #  type        = string #  description = "A description of my', type: string, description: 'variable" { #  type        = string #  description = "A description of my'}, {name: 'variable" #  default     = "" #}', type: 'variable" #  default     = "" #}', description: 'variable" #  default     = "" #}', optional: true}]
             version: v0.0.0
@@ -3052,17 +3052,17 @@ categories:
             dependencies: []
             #    - id: cluster
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
             #          version: ">= 1.7.0"
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
             #          version: ">= 2.0.0"
             #    - id: namespace
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
             #          version: ">= 2.1.0"
             #    - id: dashboard
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-dashboard
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
             #          version: ">= 1.6.0"
             variables: []
             version: v0.0.0
@@ -3089,17 +3089,17 @@ categories:
             dependencies: []
             #    - id: cluster
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
             #          version: ">= 1.7.0"
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
             #          version: ">= 2.0.0"
             #    - id: namespace
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
             #          version: ">= 2.1.0"
             #    - id: dashboard
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-dashboard
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
             #          version: ">= 1.6.0"
             variables: []
             version: v0.0.0
@@ -3123,13 +3123,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3204,13 +3204,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3279,13 +3279,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3354,13 +3354,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3429,13 +3429,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3499,13 +3499,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3569,13 +3569,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3639,13 +3639,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3709,13 +3709,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3790,13 +3790,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3839,13 +3839,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3886,13 +3886,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3933,13 +3933,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -3980,13 +3980,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -4027,13 +4027,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -4074,13 +4074,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -4121,13 +4121,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -4179,13 +4179,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -4247,13 +4247,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -4315,13 +4315,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -4387,13 +4387,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: config_file_path
@@ -4468,9 +4468,9 @@ categories:
           - dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
             variables:
               - name: cluster_type
@@ -4504,9 +4504,9 @@ categories:
           - dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
             variables:
               - name: cluster_type
@@ -4538,9 +4538,9 @@ categories:
           - dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
             variables:
               - name: cluster_type
@@ -4572,9 +4572,9 @@ categories:
           - dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
             variables:
               - name: cluster_type
@@ -4606,9 +4606,9 @@ categories:
           - dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
             variables:
               - name: cluster_type
@@ -4640,9 +4640,9 @@ categories:
           - dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
             variables:
               - name: cluster_type
@@ -4686,9 +4686,9 @@ categories:
           - dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
             variables:
               - name: cluster_config_file
@@ -4726,9 +4726,9 @@ categories:
           - dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
             variables:
               - name: cluster_config_file
@@ -4776,13 +4776,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_config_file
@@ -4823,13 +4823,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_config_file
@@ -4870,13 +4870,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_config_file
@@ -4917,13 +4917,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_config_file
@@ -4964,13 +4964,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_config_file
@@ -5005,13 +5005,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_config_file
@@ -5055,17 +5055,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: cp-catalog
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-catalog
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-cp-catalog
                     version: ">= 1.0.0"
             variables:
               - name: cluster_type
@@ -5116,17 +5116,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: cp-catalog
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-catalog
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-cp-catalog
                     version: ">= 1.0.0"
             variables:
               - name: cluster_type
@@ -5177,17 +5177,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: cp-catalog
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-catalog
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-cp-catalog
                     version: ">= 1.0.0"
             variables:
               - name: cluster_type
@@ -5238,17 +5238,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: cp-catalog
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-catalog
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-cp-catalog
                     version: ">= 1.0.0"
             variables:
               - name: cluster_type
@@ -5299,17 +5299,17 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
               - id: cp-catalog
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-catalog
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-cp-catalog
                     version: ">= 1.0.0"
             variables:
               - name: cluster_type
@@ -5362,17 +5362,17 @@ categories:
             dependencies: []
             #    - id: cluster
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
             #          version: ">= 1.7.0"
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
             #          version: ">= 2.0.0"
             #    - id: namespace
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
             #          version: ">= 2.1.0"
             #    - id: dashboard
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-dashboard
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
             #          version: ">= 1.6.0"
             variables: []
             version: v0.0.0
@@ -5392,13 +5392,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_id
@@ -5445,13 +5445,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_id
@@ -5516,13 +5516,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_name
@@ -5771,21 +5771,21 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: cp-catalog
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-catalog
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-cp-catalog
                     version: ">= 1.0.0"
               - id: platform-navigator
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-platform-navigator
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-cp-platform-navigator
                     version: ">= 1.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -5850,21 +5850,21 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: cp-catalog
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-catalog
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-cp-catalog
                     version: ">= 1.7.0"
               - id: platform-navigator
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-cp-platform-navigator
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-cp-platform-navigator
                     version: ">= 1.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type
@@ -5931,17 +5931,17 @@ categories:
             dependencies: []
             #    - id: cluster
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
             #          version: ">= 1.7.0"
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
             #          version: ">= 2.0.0"
             #    - id: namespace
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
             #          version: ">= 2.1.0"
             #    - id: dashboard
             #      refs:
-            #        - source: github.com/ibm-garage-cloud/terraform-k8s-dashboard
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
             #          version: ">= 1.6.0"
             variables: []
             version: v0.0.0
@@ -5970,13 +5970,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type_code
@@ -6020,13 +6020,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type_code
@@ -6070,13 +6070,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_type_code
@@ -6212,13 +6212,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_id
@@ -6319,13 +6319,13 @@ categories:
             dependencies:
               - id: cluster
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: ">= 1.7.0"
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: ">= 2.0.0"
               - id: namespace
                 refs:
-                  - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
                     version: ">= 2.1.0"
             variables:
               - name: cluster_id
