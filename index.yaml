@@ -1,7 +1,7 @@
 categories:
   - category: cluster
     categoryName: Cluster
-    selection: single
+    selection: required
     modules:
       - id: github.com/cloud-native-toolkit/terraform-ibm-container-platform
         name: ibm-container-platform
