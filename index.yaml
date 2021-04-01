@@ -2013,6 +2013,118 @@ categories:
                 description: Flag indicating that the public endpoint should be disabled
                 default: false
                 optional: true
+            version: v1.1.0
+            outputs:
+              - name: id
+                description: ID of the cluster.
+              - name: name
+                description: Name of the cluster.
+              - name: resource_group_name
+                description: Name of the resource group containing the cluster.
+              - name: region
+                description: Region containing the cluster.
+              - name: config_file_path
+                description: Path to the config file for the cluster.
+              - name: platform
+                description: Configuration values for the cluster platform
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cos
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-object-storage
+                    version: ">= 2.1.0"
+              - id: vpc
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc
+                    version: ">= 1.0.0"
+            variables:
+              - name: vpc_name
+                moduleRef:
+                  id: vpc
+                  output: name
+                type: string
+                description: Name of the VPC instance that will be used
+              - name: vpc_subnet_count
+                moduleRef:
+                  id: vpc
+                  output: subnet_count
+                type: number
+                description: Number of vpc zones
+              - name: cos_id
+                moduleRef:
+                  id: cos
+                  output: id
+                type: string
+                description: The crn of the COS instance that will be used with the OCP instance
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: The name of the IBM Cloud resource group where the cluster will be created/can be found.
+              - name: region
+                scope: global
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The IBM Cloud api token
+              - name: name
+                scope: module
+                type: string
+                description: The name of the cluster that will be created within the resource group
+                default: ""
+                optional: true
+              - name: worker_count
+                scope: global
+                type: number
+                description: The number of worker nodes that should be provisioned for classic infrastructure
+                default: 3
+                optional: true
+              - name: ocp_version
+                scope: global
+                type: string
+                description: The version of the OpenShift cluster that should be provisioned (format 4.x)
+                default: 4.6 validation { condition = ( regex(^4[.], var.ocp_version) == 4. ) error_message = The ocp_version must be formatted as 4.x.
+                optional: true
+              - name: exists
+                scope: module
+                type: bool
+                description: Flag indicating if the cluster already exists (true or false)
+                default: false
+                optional: true
+              - name: ocp_entitlement
+                scope: ignore
+                type: string
+                description: Value that is applied to the entitlements for OCP cluster provisioning
+                default: cloud_pak
+                optional: true
+              - name: gitops_dir
+                scope: global
+                type: string
+                description: Directory where the gitops repo content should be written
+                default: ""
+                optional: true
+              - name: cos_name
+                scope: global
+              - name: provision_cos
+                scope: global
+              - name: flavor
+                type: string
+                description: The machine type that will be provisioned for classic infrastructure
+                default: bx2.4x16
+                optional: true
+              - name: disable_public_endpoint
+                type: bool
+                description: Flag indicating that the public endpoint should be disabled
+                default: false
+                optional: true
             version: v1.0.0
         provider: ibm
   - category: dev-tool
@@ -4777,6 +4889,17 @@ categories:
           - platforms: []
             dependencies: []
             variables: [{name: names, type: list(string), description: List of resource group names that should be created}]
+            version: v2.0.0
+            outputs:
+              - name: names
+                description: List of resource group names
+              - name: ids
+                description: List of ids of generated resource groups
+              - name: groups
+                description: List of group names and ids
+          - platforms: []
+            dependencies: []
+            variables: [{name: names, type: list(string), description: List of resource group names that should be created}]
             version: v1.4.1
             outputs:
               - name: names
@@ -4868,6 +4991,31 @@ categories:
           - ibm cloud
           - access groups
         versions:
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: createResourceGroups
+                scope: global
+                type: bool
+                description: Flag indicating that the resource groups should be created
+                default: false
+                optional: true
+              - name: resourceGroupNames
+                scope: global
+                type: list(string)
+                description: List of resource group names that should be created
+            version: v2.0.0
+            outputs:
+              - name: resourceGroupNames
+                description: List of resource group names
+              - name: adminGroupNames
+                description: List of admin access group names
+              - name: userGroupNames
+                description: List of editor access group names (**Deprecated** use editGroupNames instead
+              - name: editGroupNames
+                description: List of editor access group names
+              - name: viewGroupNames
+                description: List of viewer access group names
           - platforms: []
             dependencies: []
             variables:
@@ -7639,6 +7787,56 @@ categories:
                 scope: global
                 type: string
                 description: The api key for IBM Cloud access
+              - name: private_endpoint
+                scope: global
+                type: string
+                description: Flag indicating that the service should be created with private endpoints
+                default: "true"
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (tiered-pricing)
+                default: tiered-pricing
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that key-protect instance should be provisioned
+            version: v2.0.0
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            variables:
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: region
+                scope: global
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: name
+                scope: ignore
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+                optional: true
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The api key for IBM Cloud access
                 default: ""
                 optional: true
               - name: private_endpoint
@@ -8704,6 +8902,40 @@ categories:
                 scope: global
                 type: string
                 description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)
+                default: 7-day
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that the instance should be provisioned
+                default: false
+                optional: true
+            version: v2.0.0
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: resource_location
+                scope: global
+                alias: region
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
                 optional: true
               - name: tags
                 type: list(string)
@@ -8761,6 +8993,326 @@ categories:
           - logdna
           - logging
         versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+                optional: true
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+                optional: true
+            variables:
+              - name: cluster_id
+                moduleRef:
+                  id: cluster
+                  output: id
+                optional: true
+                type: string
+                description: The identifier for the cluster
+                default: ""
+              - name: cluster_name
+                moduleRef:
+                  id: cluster
+                  output: name
+                optional: true
+                type: string
+                description: The name of the cluster
+                default: ""
+              - name: cluster_config_file_path
+                moduleRef:
+                  id: cluster
+                  output: platform.kubeconfig
+                optional: true
+                type: string
+                description: The path to the config file for the cluster
+                default: ""
+              - name: tools_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                optional: true
+                type: string
+                description: The namespace where the tools have been deployed (where the configmap should be created)
+                default: default
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Existing resource group where the IKS cluster will be provisioned.
+              - name: region
+                scope: global
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: private_endpoint
+                scope: global
+                type: string
+                description: Flag indicating that the agent should be created with private endpoints
+                default: "true"
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)
+                default: 7-day
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that logdna instance should be provisioned
+              - name: name
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+                optional: true
+              - name: service_account_name
+                type: string
+                description: The service account that the logdna agent should run under
+                default: logdna-agent
+                optional: true
+              - name: namespace
+                type: string
+                description: The namespace where the agent should be deployed
+                default: ibm-observe
+                optional: true
+              - name: sync
+                type: string
+                description: Semaphore to synchronize activities between modules
+                default: ""
+                optional: true
+            version: v3.0.1
+            outputs:
+              - name: sync
+                description: output "sync" {   value = "logdna"   depends_on = [helm_release.logdna] }
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_id
+                moduleRef:
+                  id: cluster
+                  output: id
+                optional: true
+                type: string
+                description: The identifier for the cluster
+                default: ""
+              - name: cluster_name
+                moduleRef:
+                  id: cluster
+                  output: name
+                optional: true
+                type: string
+                description: The name of the cluster
+                default: ""
+              - name: cluster_config_file_path
+                moduleRef:
+                  id: cluster
+                  output: platform.kubeconfig
+                optional: true
+                type: string
+                description: The path to the config file for the cluster
+                default: ""
+              - name: tools_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                optional: true
+                type: string
+                description: The namespace where the tools have been deployed (where the configmap should be created)
+                default: default
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Existing resource group where the IKS cluster will be provisioned.
+              - name: region
+                scope: global
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: private_endpoint
+                scope: global
+                type: string
+                description: Flag indicating that the agent should be created with private endpoints
+                default: "true"
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)
+                default: 7-day
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that logdna instance should be provisioned
+              - name: name
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+                optional: true
+              - name: service_account_name
+                type: string
+                description: The service account that the logdna agent should run under
+                default: logdna-agent
+                optional: true
+              - name: namespace
+                type: string
+                description: The namespace where the agent should be deployed
+                default: ibm-observe
+                optional: true
+              - name: sync
+                type: string
+                description: Semaphore to synchronize activities between modules
+                default: ""
+                optional: true
+            version: v3.0.0
+            outputs:
+              - name: sync
+                description: output "sync" {   value = "logdna"   depends_on = [helm_release.logdna] }
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_id
+                moduleRef:
+                  id: cluster
+                  output: id
+                optional: true
+                type: string
+                description: The identifier for the cluster
+                default: ""
+              - name: cluster_name
+                moduleRef:
+                  id: cluster
+                  output: name
+                optional: true
+                type: string
+                description: The name of the cluster
+                default: ""
+              - name: cluster_config_file_path
+                moduleRef:
+                  id: cluster
+                  output: platform.kubeconfig
+                optional: true
+                type: string
+                description: The path to the config file for the cluster
+                default: ""
+              - name: tools_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                optional: true
+                type: string
+                description: The namespace where the tools have been deployed (where the configmap should be created)
+                default: default
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Existing resource group where the IKS cluster will be provisioned.
+              - name: region
+                scope: global
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: private_endpoint
+                scope: global
+                type: string
+                description: Flag indicating that the agent should be created with private endpoints
+                default: "true"
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)
+                default: 7-day
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that logdna instance should be provisioned
+              - name: name
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+                optional: true
+              - name: service_account_name
+                type: string
+                description: The service account that the logdna agent should run under
+                default: logdna-agent
+                optional: true
+              - name: namespace
+                type: string
+                description: The namespace where the agent should be deployed
+                default: ibm-observe
+                optional: true
+              - name: sync
+                type: string
+                description: Semaphore to synchronize activities between modules
+                default: ""
+                optional: true
+            version: v2.7.0
+            outputs:
+              - name: sync
+                description: output "sync" {   value = "logdna"   depends_on = [helm_release.logdna] }
           - platforms:
               - kubernetes
               - ocp3
@@ -9198,6 +9750,311 @@ categories:
           - devops
           - monitoring
         versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+                optional: true
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+                optional: true
+            variables:
+              - name: cluster_id
+                moduleRef:
+                  id: cluster
+                  output: id
+                optional: true
+                type: string
+                description: The id of the cluster into which the sysdig instance should be bound
+                default: ""
+              - name: cluster_name
+                moduleRef:
+                  id: cluster
+                  output: name
+                optional: true
+                type: string
+                description: The name of the cluster into which the sysdig instance should be bound
+                default: ""
+              - name: cluster_config_file_path
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                optional: true
+                type: string
+                description: The path to the config file for the cluster
+                default: ""
+              - name: tools_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                optional: true
+                type: string
+                description: The namespace where the tools have been deployed (where the configmap should be created)
+                default: default
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Existing resource group where the IKS cluster will be provisioned.
+              - name: region
+                scope: global
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: private_endpoint
+                scope: global
+                type: string
+                description: Flag indicating that the agent should be created with private endpoints
+                default: "true"
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (trial or graduated-tier)
+                default: graduated-tier
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that logdna instance should be provisioned
+              - name: name
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+                optional: true
+              - name: namespace
+                type: string
+                description: The namespace where the agent should be deployed
+                default: ibm-observe
+                optional: true
+              - name: sync
+                type: string
+                description: Semaphore value to sync up modules
+                default: ""
+                optional: true
+            version: v3.0.1
+            outputs:
+              - name: sync
+                description: output "sync" {   value = "sysdig"   depends_on = [helm_release.sysdig] }
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_id
+                moduleRef:
+                  id: cluster
+                  output: id
+                optional: true
+                type: string
+                description: The id of the cluster into which the sysdig instance should be bound
+                default: ""
+              - name: cluster_name
+                moduleRef:
+                  id: cluster
+                  output: name
+                optional: true
+                type: string
+                description: The name of the cluster into which the sysdig instance should be bound
+                default: ""
+              - name: cluster_config_file_path
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                optional: true
+                type: string
+                description: The path to the config file for the cluster
+                default: ""
+              - name: tools_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                optional: true
+                type: string
+                description: The namespace where the tools have been deployed (where the configmap should be created)
+                default: default
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Existing resource group where the IKS cluster will be provisioned.
+              - name: region
+                scope: global
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: private_endpoint
+                scope: global
+                type: string
+                description: Flag indicating that the agent should be created with private endpoints
+                default: "true"
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (trial or graduated-tier)
+                default: graduated-tier
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that logdna instance should be provisioned
+              - name: name
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+                optional: true
+              - name: namespace
+                type: string
+                description: The namespace where the agent should be deployed
+                default: ibm-observe
+                optional: true
+              - name: sync
+                type: string
+                description: Semaphore value to sync up modules
+                default: ""
+                optional: true
+            version: v3.0.0
+            outputs:
+              - name: sync
+                description: output "sync" {   value = "sysdig"   depends_on = [helm_release.sysdig] }
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+            variables:
+              - name: cluster_id
+                moduleRef:
+                  id: cluster
+                  output: id
+                optional: true
+                type: string
+                description: The id of the cluster into which the sysdig instance should be bound
+                default: ""
+              - name: cluster_name
+                moduleRef:
+                  id: cluster
+                  output: name
+                optional: true
+                type: string
+                description: The name of the cluster into which the sysdig instance should be bound
+                default: ""
+              - name: cluster_config_file_path
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                optional: true
+                type: string
+                description: The path to the config file for the cluster
+                default: ""
+              - name: tools_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                optional: true
+                type: string
+                description: The namespace where the tools have been deployed (where the configmap should be created)
+                default: default
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Existing resource group where the IKS cluster will be provisioned.
+              - name: region
+                scope: global
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: private_endpoint
+                scope: global
+                type: string
+                description: Flag indicating that the agent should be created with private endpoints
+                default: "true"
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (trial or graduated-tier)
+                default: graduated-tier
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that logdna instance should be provisioned
+              - name: name
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+                optional: true
+              - name: namespace
+                type: string
+                description: The namespace where the agent should be deployed
+                default: ibm-observe
+                optional: true
+              - name: sync
+                type: string
+                description: Semaphore value to sync up modules
+                default: ""
+                optional: true
+            version: v2.7.0
+            outputs:
+              - name: sync
+                description: output "sync" {   value = "sysdig"   depends_on = [helm_release.sysdig] }
           - platforms:
               - kubernetes
               - ocp3
