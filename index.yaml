@@ -4880,12 +4880,32 @@ categories:
       - id: github.com/cloud-native-toolkit/terraform-ibm-resource-group
         name: "ibm-resource-group"
         type: terraform
-        description: "Creates one or more resource groups in the account"
+        description: "Creates a resource groups in the account"
         tags:
           - ibm cloud
           - resource group
           - account
         versions:
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: The name of the resource group
+              - name: provision
+                type: bool
+                description: Flag indicating that the resource group should be created
+                default: true
+                optional: true
+            version: v2.1.0
+            outputs:
+              - name: name
+                description: The name of the resource group
+              - name: id
+                description: The id of the resource group
+              - name: group
+                description: The resource group object
           - platforms: []
             dependencies: []
             variables: [{name: names, type: list(string), description: List of resource group names that should be created}]
@@ -4991,6 +5011,29 @@ categories:
           - ibm cloud
           - access groups
         versions:
+          - platforms: []
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 2.1.0"
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+                description: The name of the resource group for which the access groups will be created
+            version: v2.1.0
+            outputs:
+              - name: resource_group_name
+                description: List of resource group names
+              - name: admin_group_name
+                description: List of admin access group names
+              - name: edit_group_name
+                description: List of editor access group names
+              - name: view_group_name
+                description: List of viewer access group names
           - platforms: []
             dependencies: []
             variables:
@@ -9830,6 +9873,62 @@ categories:
           - devops
           - monitoring
         versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: ">= 1.7.0"
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: ">= 2.0.0"
+                optional: true
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: ">= 2.1.0"
+                optional: true
+            variables:
+              - name: resource_group_name
+                scope: global
+                type: string
+                description: Existing resource group where the IKS cluster will be provisioned.
+              - name: region
+                scope: global
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (trial or graduated-tier)
+                default: graduated-tier
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that logdna instance should be provisioned
+              - name: name
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+                optional: true
+            version: v3.1.0
+            outputs:
+              - name: id
+                description: The id of the provisioned LogDNA instance.
+              - name: name
+                description: The name of the provisioned LogDNA instance.
           - platforms:
               - kubernetes
               - ocp3
