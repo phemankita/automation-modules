@@ -9207,6 +9207,119 @@ categories:
                 optional: true
             version: v1.3.2
         provider: ibm
+      - id: github.com/cloud-native-toolkit/terraform-ibm-hpcs
+        name: hpcs
+        type: terraform
+        description: Module to provision hpcs
+        tags:
+          - tools
+          - vault
+        versions:
+          - platforms: []
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 2.1.0"
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+              - name: region
+                scope: global
+                type: string
+              - name: name_prefix
+                scope: global
+                type: string
+              - name: name
+                scope: ignore
+                type: string
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+              - name: private_endpoint
+                scope: global
+                type: string
+              - name: plan
+                type: string
+              - name: tags
+                type: string
+              - name: number_of_crypto_units
+                type: string
+              - name: provision
+                type: string
+            version: v1.0.0
+          - platforms: []
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 2.1.0"
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+              - name: region
+                scope: global
+                type: string
+              - name: name_prefix
+                scope: global
+                type: string
+              - name: name
+                scope: ignore
+                type: string
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+              - name: private_endpoint
+                scope: global
+                type: string
+              - name: tags
+                type: string
+              - name: plan
+                type: string
+              - name: provision
+                type: string
+            version: v0.0.1
+          - platforms: []
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 2.1.0"
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+              - name: region
+                scope: global
+                type: string
+              - name: name_prefix
+                scope: global
+                type: string
+              - name: name
+                scope: ignore
+                type: string
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+              - name: private_endpoint
+                scope: global
+                type: string
+              - name: tags
+                type: string
+              - name: plan
+                type: string
+              - name: provision
+                type: string
+            version: v0.0.0
+        provider: ibm
       - id: github.com/cloud-native-toolkit/terraform-ibm-mongodb
         name: ibm-mongodb
         type: terraform
@@ -10475,6 +10588,94 @@ categories:
               - name: subnet_ids
                 description: The list of subnet ids
         provider: ibm
+      - id: github.com/cloud-native-toolkit/terraform-ibm-vpc-subnets
+        name: ibm-vpc-subnets
+        type: terraform
+        description: Module to provision a collection of subnets for an existing VPC
+        tags:
+          - network
+          - subnets
+          - vpc
+        versions:
+          - platforms: []
+            dependencies:
+              - id: resource-group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 1.0.0"
+              - id: vpc
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc
+                    version: ">= 1.0.0"
+              - id: gateways
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc-gateways
+                    version: ">= 1.0.0"
+                optional: true
+            variables:
+              - name: resource_group_id
+                moduleRef:
+                  id: resource-group
+                  output: id
+                type: string
+              - name: vpc_id
+                moduleRef:
+                  id: vpc
+                  output: id
+              - name: acl_id
+                moduleRef:
+                  id: vpc
+                  output: acl_id
+                type: string
+              - name: gateway_ids
+                moduleRef:
+                  id: gateways
+                  output: ids
+                optional: true
+              - name: region
+                scope: global
+                type: string
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+              - name: _count
+                scope: module
+                type: string
+              - name: label
+                scope: module
+                type: string
+              - name: vpc_name
+                type: string
+              - name: gateways
+                type: string
+            version: v1.0.0
+            outputs:
+              - name: count
+                description: The number of subnets created
+              - name: subnets
+                description: The subnets that were created
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: ibm
       - id: github.com/cloud-native-toolkit/terraform-ibm-vpc-ssh
         name: ibm-vpc-ssh
         alias: ssh
@@ -10750,11 +10951,74 @@ categories:
         type: terraform
         description: Module to provision Basion in a vsi image
         tags:
-          - infrastructure
           - network
           - vpc
-          - vpn
+          - bastion
         versions:
+          - platforms: []
+            dependencies:
+              - id: resource-group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 1.0.0"
+              - id: vpc
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc
+                    version: ">= 1.0.0"
+              - id: subnets
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc-subnets
+                    version: ">= 1.0.0"
+              - id: vpcssh
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc-ssh
+                    version: ">= 1.0.0"
+            variables:
+              - name: vpc_name
+                moduleRef:
+                  id: vpc
+                  output: name
+                type: string
+              - name: subnet_count
+                moduleRef:
+                  id: subnets
+                  output: count
+                type: string
+              - name: subnets
+                moduleRef:
+                  id: subnets
+                  output: subnets
+                type: string
+              - name: resource_group_name
+                moduleRef:
+                  id: resource-group
+                  output: name
+                type: string
+              - name: ssh_key_id
+                moduleRef:
+                  id: vpcssh
+                  output: id
+                type: string
+              - name: region
+                scope: global
+                type: string
+              - name: name_prefix
+                scope: global
+                type: string
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+              - name: tags
+                scope: module
+                type: string
+            version: v1.1.0
+            outputs:
+              - name: output vpc_name {   value = data.ibm_is_vpc.vpc.name }
+                description: output vpc_name {   value = data.ibm_is_vpc.vpc.name }
+              - name: output bastion_ips {   value = module.bastion[*].bastion_public_ip }
+                description: output bastion_ips {   value = module.bastion[*].bastion_public_ip }
+              - name: output bastion_private_ips {   value = module.bastion[*].bastion_private_ip }
+                description: output bastion_private_ips {   value = module.bastion[*].bastion_private_ip }
           - platforms: []
             dependencies:
               - id: vpc
