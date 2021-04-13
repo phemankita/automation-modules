@@ -12816,10 +12816,10 @@ categories:
                 type: string
                 default: graduated-tier
               - name: tags
-                type: string
+                type: list(string)
                 default: []
               - name: provision
-                type: string
+                type: bool
                 default: true
               - name: name
                 type: string
