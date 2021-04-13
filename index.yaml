@@ -12811,14 +12811,19 @@ categories:
               - name: name_prefix
                 scope: global
                 type: string
+                default: ""
               - name: plan
                 type: string
+                default: graduated-tier
               - name: tags
                 type: string
+                default: []
               - name: provision
                 type: string
+                default: true
               - name: name
                 type: string
+                default: ""
             version: v3.2.1
             outputs:
               - name: id
