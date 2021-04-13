@@ -10588,6 +10588,127 @@ categories:
               - name: subnet_ids
                 description: The list of subnet ids
         provider: ibm
+      - id: github.com/cloud-native-toolkit/terraform-ibm-vpc-gateways
+        name: ibm-vpc-gateways
+        type: terraform
+        description: Terraform module to provision public gateways for an existing VPC instance
+        tags:
+          - network
+          - vpc
+          - public gateway
+        versions:
+          - platforms: []
+            dependencies:
+              - id: resource-group
+                refs:
+                  - soure: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 1.0.0"
+              - id: vpc
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc
+                    version: ">= 1.0.0"
+            variables:
+              - name: resource_group_id
+                moduleRef:
+                  id: resource-group
+                  output: id
+                type: string
+              - name: vpc_name
+                moduleRef:
+                  id: vpc
+                  output: name
+                type: string
+              - name: region
+                scope: global
+                type: string
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+              - name: subnet_count
+                scope: ignore
+                type: string
+            version: v1.2.0
+            outputs:
+              - name: count
+                description: The number of gateways created
+              - name: gateway_ids
+                description: List of ids of the gateways created
+              - name: gateways
+                description: List of ids and zones of gateways created
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: [{name: resource_group_id, type: string}, {name: region, type: string}, {name: ibmcloud_api_key, type: string}, {name: vpc_name, type: string}, {name: subnet_count, type: string}]
+            version: v1.1.0
+            outputs:
+              - name: count
+                description: The number of gateways created
+              - name: ids
+                description: List of ids of gateways created
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: [{name: resource_group_id, type: string}, {name: region, type: string}, {name: ibmcloud_api_key, type: string}, {name: vpc_name, type: string}, {name: subnet_count, type: string}]
+            version: v1.0.0
+            outputs:
+              - name: gateway_count
+                description: The number of gateways created
+              - name: gateway_ids
+                description: List of ids of gateways created
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: ibm
       - id: github.com/cloud-native-toolkit/terraform-ibm-vpc-subnets
         name: ibm-vpc-subnets
         type: terraform
