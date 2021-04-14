@@ -1982,7 +1982,7 @@ categories:
               - name: ocp_version
                 scope: global
                 type: string
-                default: 4.6
+                default: "4.6"
               - name: exists
                 scope: module
                 type: bool
@@ -1990,14 +1990,14 @@ categories:
               - name: ocp_entitlement
                 scope: ignore
                 type: string
-                default: cloud_pak
+                default: "cloud_pak"
               - name: gitops_dir
                 scope: global
                 type: string
                 default: ""
               - name: flavor
                 type: string
-                default: bx2.4x16
+                default: "bx2.4x16"
               - name: disable_public_endpoint
                 type: bool
                 default: false
