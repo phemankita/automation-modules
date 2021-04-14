@@ -10830,7 +10830,7 @@ categories:
             dependencies:
               - id: resource-group
                 refs:
-                  - soure: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
                     version: ">= 1.0.0"
               - id: vpc
                 refs:
@@ -12915,14 +12915,19 @@ categories:
               - name: name_prefix
                 scope: global
                 type: string
+                default: ""
               - name: plan
                 type: string
+                default: graduated-tier
               - name: tags
-                type: string
+                type: list(string)
+                default: []
               - name: provision
-                type: string
+                type: bool
+                default: true
               - name: name
                 type: string
+                default: ""
             version: v3.2.1
             outputs:
               - name: id
