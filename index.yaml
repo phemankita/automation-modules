@@ -10968,10 +10968,6 @@ categories:
                   id: resource-group
                   output: id
                 type: string
-              - name: vpc_id
-                moduleRef:
-                  id: vpc
-                  output: id
               - name: vpc_name
                 moduleRef:
                   id: vpc
