@@ -11407,8 +11407,8 @@ categories:
                 type: string
               - name: tags
                 scope: module
-                type: string
-                default: ""
+                type: list(string)
+                default: []
             version: v1.1.0
             outputs:
               - name: output vpc_name {   value = data.ibm_is_vpc.vpc.name }
