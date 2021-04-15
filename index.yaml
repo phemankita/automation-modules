@@ -9606,7 +9606,7 @@ categories:
                 type: string
                 default: global
               - name: tags
-                type: string
+                type: list(string)
                 default: ""
               - name: plan
                 type: string
@@ -11544,7 +11544,7 @@ categories:
                 type: string
               - name: tags
                 scope: module
-                type: string
+                type: list(string)
                 default: ""
             version: v1.1.1
             outputs:
