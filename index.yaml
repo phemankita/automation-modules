@@ -1982,7 +1982,7 @@ categories:
               - name: ocp_version
                 scope: global
                 type: string
-                default: "4.6"
+                default: 4.6
               - name: exists
                 scope: module
                 type: bool
@@ -1990,14 +1990,14 @@ categories:
               - name: ocp_entitlement
                 scope: ignore
                 type: string
-                default: "cloud_pak"
+                default: cloud_pak
               - name: gitops_dir
                 scope: global
                 type: string
                 default: ""
               - name: flavor
                 type: string
-                default: "bx2.4x16"
+                default: bx2.4x16
               - name: disable_public_endpoint
                 type: bool
                 default: false
@@ -9596,6 +9596,44 @@ categories:
                   id: resource_group
                   output: name
                 type: string
+              - name: name_prefix
+                scope: global
+                type: string
+              - name: name
+                scope: ignore
+                type: string
+              - name: resource_location
+                type: string
+              - name: tags
+                type: string
+              - name: plan
+                type: string
+              - name: provision
+                type: string
+            version: v3.0.3
+            outputs:
+              - name: name
+                description: The Object Storage instance name
+              - name: id
+                description: The Object Storage instance id
+              - name: location
+                description: The Object Storage instance location
+              - name: key_name
+                description: The name of the credential provisioned for the Object Storage instance
+              - name: key_id
+                description: The name of the credential provisioned for the Object Storage instance
+          - platforms: []
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 2.1.0"
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
                 description: Resource group where the cluster has been provisioned.
               - name: name_prefix
                 scope: global
@@ -10846,6 +10884,44 @@ categories:
               - name: subnet_count
                 scope: ignore
                 type: string
+            version: v1.2.1
+            outputs:
+              - name: count
+                description: The number of gateways created
+              - name: gateway_ids
+                description: List of ids of the gateways created
+              - name: gateways
+                description: List of ids and zones of gateways created
+          - platforms: []
+            dependencies:
+              - id: resource-group
+                refs:
+                  - soure: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 1.0.0"
+              - id: vpc
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc
+                    version: ">= 1.0.0"
+            variables:
+              - name: resource_group_id
+                moduleRef:
+                  id: resource-group
+                  output: id
+                type: string
+              - name: vpc_name
+                moduleRef:
+                  id: vpc
+                  output: name
+                type: string
+              - name: region
+                scope: global
+                type: string
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+              - name: subnet_count
+                scope: ignore
+                type: string
             version: v1.2.0
             outputs:
               - name: count
@@ -10958,6 +11034,65 @@ categories:
                   id: resource-group
                   output: id
                 type: string
+              - name: vpc_name
+                moduleRef:
+                  id: vpc
+                  output: name
+                type: string
+              - name: acl_id
+                moduleRef:
+                  id: vpc
+                  output: acl_id
+                type: string
+              - name: gateways
+                moduleRef:
+                  id: gateways
+                  output: gateways
+                optional: true
+                type: string
+              - name: region
+                scope: global
+                type: string
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+              - name: _count
+                scope: module
+                type: string
+              - name: label
+                scope: module
+                type: string
+            version: v1.0.2
+            outputs:
+              - name: count
+                description: The number of subnets created
+              - name: subnets
+                description: The subnets that were created
+          - platforms: []
+            dependencies:
+              - id: resource-group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 1.0.0"
+              - id: vpc
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc
+                    version: ">= 1.0.0"
+              - id: gateways
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc-gateways
+                    version: ">= 1.0.0"
+                optional: true
+            variables:
+              - name: resource_group_id
+                moduleRef:
+                  id: resource-group
+                  output: id
+                type: string
+              - name: vpc_id
+                moduleRef:
+                  id: vpc
+                  output: id
               - name: vpc_name
                 moduleRef:
                   id: vpc
@@ -11406,7 +11541,6 @@ categories:
               - name: tags
                 scope: module
                 type: list(string)
-                default: []
             version: v1.1.0
             outputs:
               - name: output vpc_name {   value = data.ibm_is_vpc.vpc.name }
@@ -12902,19 +13036,14 @@ categories:
               - name: name_prefix
                 scope: global
                 type: string
-                default: ""
               - name: plan
                 type: string
-                default: graduated-tier
               - name: tags
-                type: list(string)
-                default: []
+                type: string
               - name: provision
-                type: bool
-                default: true
+                type: string
               - name: name
                 type: string
-                default: ""
             version: v3.2.1
             outputs:
               - name: id
