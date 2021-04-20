@@ -10945,16 +10945,6 @@ categories:
                 default: ""
                 optional: true
         provider: ibm
-      - id: github.com/cloud-native-toolkit/terraform-ibm-redis
-        name: ibm-redis
-        type: terraform
-        description: Module to provision a managed Redis instance in an IBM Cloud account
-        tags:
-          - service
-          - data
-          - cache
-        versions: {}
-        provider: ibm
       - id: github.com/cloud-native-toolkit/terraform-ibm-cp-app-connect
         name: cp-app-connect
         type: terraform
