@@ -8806,6 +8806,134 @@ categories:
             #          version: ">= 1.6.0"
             variables: []
             version: v0.0.0
+      - id: github.com/cloud-native-toolkit/terraform-ibm-iam-service-authorization
+        name: ibm-iam-service-authorization
+        alias: service-authorization
+        type: terraform
+        description: Module to create an authorization policy that will allow one service to access another.
+        tags:
+          - iam
+          - service
+          - authorization
+          - policy
+        versions:
+          - platforms: []
+            dependencies:
+              - id: source_resource
+                refs: []
+                interface: github.com/cloud-native-toolkit/garage-terraform-modules#ibm-service
+                optional: true
+              - id: source_resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 1.0.0"
+                optional: true
+              - id: target_resource
+                refs: []
+                interface: github.com/cloud-native-toolkit/garage-terraform-modules#ibm-service
+                optional: true
+              - id: target_resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: ">= 1.0.0"
+                optional: true
+            variables:
+              - name: source_service_name
+                moduleRef:
+                  id: source_resource
+                  output: service
+                type: string
+                description: The name of the service that will be authorized to access the target service. This value is the name of the service as it appears in the service catalog.
+              - name: source_resource_instance_id
+                moduleRef:
+                  id: source_resource
+                  output: id
+                optional: true
+                type: string
+                description: The instance id of the source service. This value is required if the authorization will be scoped to a specific service instance. If not provided the authorization will be scoped to the resource group or the account.
+                default: "null"
+              - name: source_resource_type
+                moduleRef:
+                  id: source_resource
+                  output: type
+                optional: true
+                type: string
+                description: The resource type of the source service. This value is used to define sub-types of services in the service catalog (e.g. flow-log-collector).
+                default: "null"
+              - name: source_resource_group_id
+                moduleRef:
+                  id: source_resource_group
+                  output: id
+                optional: true
+                type: string
+                description: The id of the resource group that will be used to scope which source services will be authorized to access the target service. If not provided the authorization will be scoped to the entire account. This value is superseded by the source_resource_instance_id
+                default: "null"
+              - name: target_service_name
+                moduleRef:
+                  id: target_resource
+                  output: service
+                type: string
+                description: The name of the service to which the source service will be authorization to access. This value is the name of the service as it appears in the service catalog.
+              - name: target_resource_instance_id
+                moduleRef:
+                  id: target_resource
+                  output: id
+                optional: true
+                type: string
+                description: The instance id of the target service. This value is required if the authorization will be scoped to a specific service instance. If not provided the authorization will be scoped to the resource group or the account.
+                default: "null"
+              - name: target_resource_type
+                moduleRef:
+                  id: target_resource
+                  output: type
+                optional: true
+                type: string
+                description: The resource type of the target service. This value is used to define sub-types of services in the service catalog (e.g. flow-log-collector).
+                default: "null"
+              - name: target_resource_group_id
+                moduleRef:
+                  id: target_resource_group
+                  output: id
+                optional: true
+                type: string
+                description: The id of the resource group that will be used to scope which services the source services will be authorized to access. If not provided the authorization will be scoped to the entire account. This value is superseded by the target_resource_instance_id
+                default: "null"
+              - name: roles
+                type: list(string)
+                description: A list of roles that should be granted on the target service (e.g. Reader, Writer).
+                default: '[Reader]'
+                optional: true
+              - name: source_service_account
+                type: string
+                description: GUID of the account where the source service is provisioned. This is required to authorize service access across accounts.
+                default: "null"
+                optional: true
+            version: v1.0.0
+            outputs:
+              - name: iam_authorization_policy_id
+                description: The ID of the authorization policy ID
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: ibm
   - category: image-registry
     categoryName: Image Registry
     selection: single
@@ -12882,6 +13010,128 @@ categories:
                 optional: true
             version: v1.1.2
             outputs: []
+        provider: ibm
+      - id: github.com/cloud-native-toolkit/terraform-ibm-kms-key
+        name: ibm-kms-key
+        alias: kms-key
+        type: terraform
+        description: Module to lookup or create a KMS key
+        tags:
+          - kms
+          - key
+        versions:
+          - platforms: []
+            dependencies:
+              - id: kms
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-key-protect
+                    version: ">= 1.0.0"
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-hpcsr
+                    version: ">= 1.0.0"
+            variables:
+              - name: key_id
+                moduleRef:
+                  id: kms
+                  output: guid
+              - name: region
+                moduleRef:
+                  id: kms
+                  output: location
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+              - name: ibmcloud_api_key
+                type: string
+                description: The IBM Cloud api token
+              - name: provision
+                type: bool
+                description: Flag indicating that the key should be provisioned. If false then an existing key will be looked up
+                default: false
+                optional: true
+              - name: kms_id
+                type: string
+                description: The id of the kms instance. Required if kms_enabled is true
+                default: ""
+                optional: true
+              - name: name
+                type: string
+                description: The name of the root key in the kms instance. Required if kms_enabled is true
+                default: ""
+                optional: true
+            version: v1.0.1
+            outputs:
+              - name: id
+                description: The id of the key
+              - name: name
+                description: The crn of the key
+              - name: crn
+                description: The crn of the key
+              - name: kms_id
+                description: The id of the kms instance
+          - platforms: []
+            dependencies:
+              - id: kms
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-key-protect
+                    version: ">= 1.0.0"
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-hpcsr
+                    version: ">= 1.0.0"
+            variables:
+              - name: key_id
+                moduleRef:
+                  id: kms
+                  output: guid
+              - name: region
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+              - name: ibmcloud_api_key
+                type: string
+                description: The IBM Cloud api token
+              - name: provision
+                type: bool
+                description: Flag indicating that the key should be provisioned. If false then an existing key will be looked up
+                default: false
+                optional: true
+              - name: kms_id
+                type: string
+                description: The id of the kms instance. Required if kms_enabled is true
+                default: ""
+                optional: true
+              - name: name
+                type: string
+                description: The name of the root key in the kms instance. Required if kms_enabled is true
+                default: ""
+                optional: true
+            version: v1.0.0
+            outputs:
+              - name: id
+                description: The id of the key
+              - name: name
+                description: The crn of the key
+              - name: crn
+                description: The crn of the key
+              - name: kms_id
+                description: The id of the kms instance
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
         provider: ibm
       - id: github.com/cloud-native-toolkit/terraform-ibm-mongodb
         name: ibm-mongodb
