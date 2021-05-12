@@ -4115,7 +4115,7 @@ categories:
                 scope: global
                 type: string
                 description: The version of the OpenShift cluster that should be provisioned (format 4.x)
-                default: 4.6 validation { condition = ( regex(^4[.], var.ocp_version) == 4. ) error_message = The ocp_version must be formatted as 4.x.
+                default: 4.6
                 optional: true
               - name: exists
                 scope: module
@@ -4227,7 +4227,7 @@ categories:
                 scope: global
                 type: string
                 description: The version of the OpenShift cluster that should be provisioned (format 4.x)
-                default: 4.6 validation { condition = ( regex(^4[.], var.ocp_version) == 4. ) error_message = The ocp_version must be formatted as 4.x.
+                default: 4.6
                 optional: true
               - name: exists
                 scope: module
@@ -17459,7 +17459,7 @@ categories:
                 default: true
                 optional: true
               - name: acl_rules
-                type: string
+                type: list(object({}))
                 description: List of rules to set on the subnet access control list
                 default: []
                 optional: true
