@@ -1,4 +1,4 @@
-# Automation modules
+# [Automation modules](https://github.com/cloud0-native-toolkit/garage-terraform-modules)
 The Cloud-Native Toolkit provides a library of modules that can be used to automate the provisioning of an environment. These modules have been organized into categories for readability. Any of the modules can be added directly in a terraform template to apply the behavior.
 A yaml version of the catalog can be found [here](./index.yaml)
 ## Module catalog
