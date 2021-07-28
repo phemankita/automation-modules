@@ -15501,6 +15501,53 @@ categories:
                 description: The entitlement key used to access the CP4I images in the container registry. Visit https://myibm.ibm.com/products-services/containerlibrary to get the key
                 default: ""
                 optional: true
+            version: v1.3.2
+            outputs:
+              - name: name
+                description: The name of the catalog that was installed
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+            variables:
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: release_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: Name of the existing namespace where Pact Broker will be deployed.
+                default: default
+                optional: true
+              - name: cluster_type_code
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The cluster_type of the cluster
+                default: ocp4
+                optional: true
+              - name: entitlement_key
+                scope: module
+                type: string
+                description: The entitlement key used to access the CP4I images in the container registry. Visit https://myibm.ibm.com/products-services/containerlibrary to get the key
+                default: ""
+                optional: true
             version: v1.3.1
             outputs:
               - name: name
@@ -22656,6 +22703,56 @@ categories:
           - vpc
           - public gateway
         versions:
+          - platforms: []
+            dependencies:
+              - id: resource-group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 1.0.0'
+              - id: vpc
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc
+                    version: '>= 1.0.0'
+            variables:
+              - name: resource_group_id
+                moduleRef:
+                  id: resource-group
+                  output: id
+                type: string
+                description: The id of the IBM Cloud resource group where the VPC gateways will be created.
+              - name: vpc_name
+                moduleRef:
+                  id: vpc
+                  output: name
+                type: string
+                description: The name of the vpc instance
+              - name: region
+                scope: global
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The IBM Cloud api token
+              - name: subnet_count
+                scope: ignore
+                type: number
+                description: The total number of subnets that will be provisioned in the VPC instance. This value will be used to determine how many gateways to create. At most, three gateways can be created (one for each zone) so the default should suffice in most cases. However, it might create more gateways than needed for small deployments in which case a number less than three can be used.
+                default: 3
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that the gateway must be provisioned
+                default: true
+                optional: true
+            version: v1.5.1
+            outputs:
+              - name: count
+                description: The number of gateways created
+              - name: gateway_ids
+                description: List of ids of the gateways created
+              - name: gateways
+                description: List of ids and zones of gateways created
           - platforms: []
             dependencies:
               - id: resource-group
