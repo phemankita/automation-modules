@@ -15465,6 +15465,58 @@ categories:
                 refs:
                   - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
                     version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ocp-login
+                    version: '>= 1.0.0'
+                    default: true
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+            variables:
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: release_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: Name of the existing namespace where Pact Broker will be deployed.
+                default: default
+                optional: true
+              - name: cluster_type_code
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The cluster_type of the cluster
+                default: ocp4
+                optional: true
+              - name: entitlement_key
+                scope: module
+                type: string
+                description: The entitlement key used to access the CP4I images in the container registry. Visit https://myibm.ibm.com/products-services/containerlibrary to get the key
+                default: ""
+                optional: true
+            version: v1.3.3
+            outputs:
+              - name: name
+                description: The name of the catalog that was installed
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
                   - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
                     version: '>= 2.0.0'
               - id: namespace
@@ -15784,6 +15836,72 @@ categories:
           - devops
         provider: ibm
         versions:
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ocp-login
+                    version: '>= 1.0.0'
+                    default: true
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+              - id: cp-catalog
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-cp-catalog
+                    version: '>= 1.0.0'
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: type_code
+                type: string
+                description: The type of cluster
+                default: ocp4
+                optional: true
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: The location of the kube config
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: cloud-pak
+                type: string
+                description: The namespace where the platform navigator should be installed
+                default: cp4i
+                optional: true
+              - name: catalog_name
+                moduleRef:
+                  id: cp-catalog
+                  output: name
+                type: string
+                description: The name of the Cloud Pak catalog
+                default: ibm-operator-catalog
+                optional: true
+              - name: gitops_dir
+                scope: global
+                type: string
+                description: The directory where the gitops configuration should be stored
+                default: ""
+                optional: true
+            version: v1.2.3
+            outputs:
+              - name: name
+                description: Platform navigator instance name
+              - name: namespace
+                description: Platform navigator instance namespace
           - platforms:
               - ocp4
             dependencies:
