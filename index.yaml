@@ -11475,6 +11475,4613 @@ categories:
             variables: []
             version: v0.0.0
         provider: https://cloud-native-toolkit.github.io/template-tools-cluster-config/index.yaml
+  - category: gitops
+    categoryName: GitOps
+    selection: multiple
+    modules:
+      - id: github.com/cloud-native-toolkit/terraform-vsi-argocd-bootstrap
+        name: vsi-argocd-bootstrap
+        type: terraform
+        description: Module to provision ArgoCD and bootstrap an application using the GitOps repo
+        tags:
+          - tools
+          - gitops
+          - bootstrap
+        versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group.git
+                    version: '>= 1.0.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ocp-login
+                    version: '>= 1.0.0'
+              - id: olm
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-olm
+                    version: '>= 1.2.2'
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops
+                    version: '>= 1.2.0'
+              - id: subnets
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc-subnets.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+                description: The name of the IBM Cloud resource group where the VPC has been provisioned.
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The type of cluster (openshift or kubernetes)
+              - name: ingress_subdomain
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: The subdomain for ingresses in the cluster
+                default: ""
+                optional: true
+              - name: server_url
+                moduleRef:
+                  id: cluster
+                  output: platform.server_url
+                type: string
+                description: The url of the OCP cluster where ArgoCd will be deployed
+              - name: olm_namespace
+                moduleRef:
+                  id: olm
+                  output: olm_namespace
+                type: string
+                description: Namespace where olm is installed
+              - name: operator_namespace
+                moduleRef:
+                  id: olm
+                  output: target_namespace
+                type: string
+                description: Namespace where operators will be installed
+              - name: gitops_repo_url
+                moduleRef:
+                  id: gitops
+                  output: config_repo_url
+                type: string
+                description: The GitOps repo url
+              - name: git_username
+                moduleRef:
+                  id: gitops
+                  output: config_username
+                type: string
+                description: The username used to access the GitOps repo
+              - name: git_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: |-
+                  The token used to access the GitOps repo
+                    //  sensitive   = true
+              - name: bootstrap_path
+                moduleRef:
+                  id: gitops
+                  output: bootstrap_path
+                type: string
+                description: The path to the bootstrap config for ArgoCD
+              - name: bootstrap_branch
+                moduleRef:
+                  id: gitops
+                  output: bootstrap_branch
+                type: string
+                default: main
+                optional: true
+              - name: vpc_name
+                moduleRef:
+                  id: subnets
+                  output: vpc_name
+                type: string
+                description: The name of the vpc instance
+              - name: vpc_subnet_count
+                moduleRef:
+                  id: subnets
+                  output: count
+                type: number
+                description: Number of vpc subnets
+              - name: vpc_subnets
+                moduleRef:
+                  id: subnets
+                  output: subnets
+                type: |-
+                  list(object({
+                      label = string
+                      id    = string
+                      zone  = string
+                    }))
+                description: List of subnets with labels
+              - name: region
+                scope: global
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The IBM Cloud api token
+              - name: label
+                type: string
+                description: The label for the server instance
+                default: argocd
+                optional: true
+              - name: image_name
+                type: string
+                description: The name of the image to use for the virtual server
+                default: ibm-ubuntu-18-04-1-minimal-amd64-2
+                optional: true
+              - name: profile_name
+                type: string
+                description: Instance profile to use for the bastion instance
+                default: cx2-2x4
+                optional: true
+              - name: kms_enabled
+                type: bool
+                description: Flag indicating that the volumes should be encrypted using a KMS.
+                default: false
+                optional: true
+              - name: kms_key_crn
+                type: string
+                description: The crn of the root key in the kms instance. Required if kms_enabled is true
+                default: ""
+                optional: true
+              - name: allow_deprecated_image
+                type: bool
+                description: Flag indicating that deprecated images should be allowed for use in the Virtual Server instance. If the value is `false` and the image is deprecated then the module will fail to provision
+                default: true
+                optional: true
+            version: v1.1.0
+            outputs:
+              - name: argocd_namespace
+                description: The namespace where the ArgoCD instance has been provisioned
+              - name: argocd_service_account
+                description: The namespace where the ArgoCD instance has been provisioned
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables:
+              - name: resource_group_name
+                type: string
+                description: The name of the IBM Cloud resource group where the VPC has been provisioned.
+              - name: region
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+              - name: ibmcloud_api_key
+                type: string
+                description: The IBM Cloud api token
+              - name: vpc_name
+                type: string
+                description: The name of the vpc instance
+              - name: label
+                type: string
+                description: The label for the server instance
+                default: server
+                optional: true
+              - name: image_name
+                type: string
+                description: The name of the image to use for the virtual server
+                default: ibm-ubuntu-18-04-1-minimal-amd64-2
+                optional: true
+              - name: vpc_subnet_count
+                type: number
+                description: Number of vpc subnets
+              - name: vpc_subnets
+                type: |-
+                  list(object({
+                      label = string
+                      id    = string
+                      zone  = string
+                    }))
+                description: List of subnets with labels
+              - name: profile_name
+                type: string
+                description: Instance profile to use for the bastion instance
+                default: cx2-2x4
+                optional: true
+              - name: kms_enabled
+                type: bool
+                description: Flag indicating that the volumes should be encrypted using a KMS.
+                default: false
+                optional: true
+              - name: kms_key_crn
+                type: string
+                description: The crn of the root key in the kms instance. Required if kms_enabled is true
+                default: ""
+                optional: true
+              - name: cluster_config_file
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: cluster_type
+                type: string
+                description: The type of cluster (openshift or kubernetes)
+              - name: olm_namespace
+                type: string
+                description: Namespace where olm is installed
+              - name: operator_namespace
+                type: string
+                description: Namespace where operators will be installed
+              - name: ingress_subdomain
+                type: string
+                description: The subdomain for ingresses in the cluster
+                default: ""
+                optional: true
+              - name: gitops_repo_url
+                type: string
+                description: The GitOps repo url
+              - name: git_username
+                type: string
+                description: The username used to access the GitOps repo
+              - name: git_token
+                type: string
+                description: |-
+                  The token used to access the GitOps repo
+                    //  sensitive   = true
+              - name: bootstrap_path
+                type: string
+                description: The path to the bootstrap config for ArgoCD
+              - name: allow_deprecated_image
+                type: bool
+                description: Flag indicating that deprecated images should be allowed for use in the Virtual Server instance. If the value is `false` and the image is deprecated then the module will fail to provision
+                default: true
+                optional: true
+              - name: server_url
+                type: string
+                description: The url of the OCP cluster where ArgoCd will be deployed
+              - name: private_key
+                type: string
+              - name: public_key
+                type: string
+              - name: bootstrap_branch
+                type: string
+                default: main
+                optional: true
+            version: v1.0.0
+            outputs:
+              - name: argocd_namespace
+                description: The namespace where the ArgoCD instance has been provisioned
+              - name: argocd_service_account
+                description: The namespace where the ArgoCD instance has been provisioned
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: vsi
+      - id: github.com/cloud-native-toolkit/terraform-tools-gitops
+        name: gitops-repo
+        type: terraform
+        description: Module to provision and set up a GitOps repository
+        tags:
+          - tools
+          - devops
+          - gitops
+        versions:
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: The short name of the repository (i.e. the part after the org/group name)
+              - name: branch
+                type: string
+                description: The name of the branch that will be used. If the repo already exists (provision=false) then it is assumed this branch already exists as well
+                default: main
+                optional: true
+              - name: provision
+                type: bool
+                description: |-
+                  variable "provision" {
+                    type        = bool
+                    description = "A description of my
+              - name: variable"~  default     = true~}~~
+                type: string
+                default: "true"
+                optional: true
+              - name: username
+                type: string
+                description: The username of the user with access to the repository
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+              - name: banner_label
+                type: string
+                description: The label for the cluster
+                default: cluster
+                optional: true
+              - name: banner_color
+                type: string
+                description: The color for the cluster
+                default: purple
+                optional: true
+            version: v1.7.0
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_repo_url
+                description: The repo that contains the argocd configuration
+              - name: config_username
+                description: The username for the config repo
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: config_projects
+                description: The ArgoCD projects for the different layers of the repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: bootstrap_branch
+                description: The branch in the gitrepo containing the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_repo_url
+                description: The repo that contains the application configuration
+              - name: application_username
+                description: The username for the application repo
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+              - name: gitops_config
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                description: The credentials for the gitops repo(s)
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: |-
+                  variable "repo" {
+                    type        = string
+                    description = "A description of my
+              - name: variable"~}~~
+                type: string
+              - name: provision
+                type: bool
+                description: |-
+                  variable "provision" {
+                    type        = bool
+                    description = "A description of my
+              - name: variable"~  default     = true~}~~
+                type: string
+                default: "true"
+                optional: true
+              - name: username
+                type: string
+                description: The username of the user with access to the repository
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+              - name: banner_label
+                type: string
+                description: The label for the cluster
+                default: cluster
+                optional: true
+              - name: banner_color
+                type: string
+                description: The color for the cluster
+                default: purple
+                optional: true
+            version: v1.6.0
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_repo_url
+                description: The repo that contains the argocd configuration
+              - name: config_username
+                description: The username for the config repo
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: config_projects
+                description: The ArgoCD projects for the different layers of the repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_repo_url
+                description: The repo that contains the application configuration
+              - name: application_username
+                description: The username for the application repo
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+              - name: gitops_config
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                description: The credentials for the gitops repo(s)
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: |-
+                  variable "repo" {
+                    type        = string
+                    description = "A description of my
+              - name: variable"~}~~
+                type: string
+              - name: provision
+                type: bool
+                description: |-
+                  variable "provision" {
+                    type        = bool
+                    description = "A description of my
+              - name: variable"~  default     = true~}~~
+                type: string
+                default: "true"
+                optional: true
+              - name: username
+                type: string
+                description: The username of the user with access to the repository
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+              - name: banner_label
+                type: string
+                description: The label for the cluster
+                default: cluster
+                optional: true
+              - name: banner_color
+                type: string
+                description: The color for the cluster
+                default: purple
+                optional: true
+            version: v1.5.0
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_repo_url
+                description: The repo that contains the argocd configuration
+              - name: config_username
+                description: The username for the config repo
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: config_projects
+                description: The ArgoCD projects for the different layers of the repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_repo_url
+                description: The repo that contains the application configuration
+              - name: application_username
+                description: The username for the application repo
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: |-
+                  variable "repo" {
+                    type        = string
+                    description = "A description of my
+              - name: variable"~}~~
+                type: string
+              - name: provision
+                type: bool
+                description: |-
+                  variable "provision" {
+                    type        = bool
+                    description = "A description of my
+              - name: variable"~  default     = true~}~~
+                type: string
+                default: "true"
+                optional: true
+              - name: username
+                type: string
+                description: The username of the user with access to the repository
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+            version: v1.4.2
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_repo_url
+                description: The repo that contains the argocd configuration
+              - name: config_username
+                description: The username for the config repo
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: config_projects
+                description: The ArgoCD projects for the different layers of the repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_repo_url
+                description: The repo that contains the application configuration
+              - name: application_username
+                description: The username for the application repo
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: |-
+                  variable "repo" {
+                    type        = string
+                    description = "A description of my
+              - name: variable"~}~~
+                type: string
+              - name: provision
+                type: bool
+                description: |-
+                  variable "provision" {
+                    type        = bool
+                    description = "A description of my
+              - name: variable"~  default     = true~}~~
+                type: string
+                default: "true"
+                optional: true
+              - name: username
+                type: string
+                description: The username of the user with access to the repository
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+            version: v1.4.1
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_repo_url
+                description: The repo that contains the argocd configuration
+              - name: config_username
+                description: The username for the config repo
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: config_projects
+                description: The ArgoCD projects for the different layers of the repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_repo_url
+                description: The repo that contains the application configuration
+              - name: application_username
+                description: The username for the application repo
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: |-
+                  variable "repo" {
+                    type        = string
+                    description = "A description of my
+              - name: variable"~}~~
+                type: string
+              - name: provision
+                type: bool
+                description: |-
+                  variable "provision" {
+                    type        = bool
+                    description = "A description of my
+              - name: variable"~  default     = true~}~~
+                type: string
+                default: "true"
+                optional: true
+              - name: username
+                type: string
+                description: The username of the user with access to the repository
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+            version: v1.4.0
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_repo_url
+                description: The repo that contains the argocd configuration
+              - name: config_username
+                description: The username for the config repo
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: config_projects
+                description: The ArgoCD projects for the different layers of the repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_repo_url
+                description: The repo that contains the application configuration
+              - name: application_username
+                description: The username for the application repo
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: |-
+                  variable "repo" {
+                    type        = string
+                    description = "A description of my
+              - name: variable"~}~~
+                type: string
+              - name: provision
+                type: bool
+                description: |-
+                  variable "provision" {
+                    type        = bool
+                    description = "A description of my
+              - name: variable"~  default     = true~}~~
+                type: string
+                default: "true"
+                optional: true
+              - name: username
+                type: string
+                description: The username of the user with access to the repository
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+            version: v1.3.1
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_repo_url
+                description: The repo that contains the argocd configuration
+              - name: config_username
+                description: The username for the config repo
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: config_projects
+                description: The ArgoCD projects for the different layers of the repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_repo_url
+                description: The repo that contains the application configuration
+              - name: application_username
+                description: The username for the application repo
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: |-
+                  variable "repo" {
+                    type        = string
+                    description = "A description of my
+              - name: variable"~}~~
+                type: string
+              - name: provision
+                type: bool
+                description: |-
+                  variable "provision" {
+                    type        = bool
+                    description = "A description of my
+              - name: variable"~  default     = true~}~~
+                type: string
+                default: "true"
+                optional: true
+              - name: username
+                type: string
+                description: The username of the user with access to the repository
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+            version: v1.3.0
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_repo_url
+                description: The repo that contains the argocd configuration
+              - name: config_username
+                description: The username for the config repo
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: config_projects
+                description: The ArgoCD projects for the different layers of the repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_repo_url
+                description: The repo that contains the application configuration
+              - name: application_username
+                description: The username for the application repo
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: |-
+                  variable "repo" {
+                    type        = string
+                    description = "A description of my
+              - name: variable"~}~~
+                type: string
+              - name: provision
+                type: bool
+                description: |-
+                  variable "provision" {
+                    type        = bool
+                    description = "A description of my
+              - name: variable"~  default     = true~}~~
+                type: string
+                default: "true"
+                optional: true
+              - name: username
+                type: string
+                description: The username of the user with access to the repository
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+            version: v1.2.0
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_username
+                description: The username for the config repo
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: config_projects
+                description: The ArgoCD projects for the different layers of the repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_username
+                description: The username for the application repo
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: |-
+                  variable "repo" {
+                    type        = string
+                    description = "A description of my
+              - name: variable"~}~~
+                type: string
+              - name: provision
+                type: bool
+                description: |-
+                  variable "provision" {
+                    type        = bool
+                    description = "A description of my
+              - name: variable"~  default     = true~}~~
+                type: string
+                default: "true"
+                optional: true
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+            version: v1.1.0
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: config_projects
+                description: The ArgoCD projects for the different layers of the repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: |-
+                  variable "repo" {
+                    type        = string
+                    description = "A description of my
+              - name: variable"~}~~
+                type: string
+              - name: provision
+                type: bool
+                description: |-
+                  variable "provision" {
+                    type        = bool
+                    description = "A description of my
+              - name: variable"~  default     = true~}~~
+                type: string
+                default: "true"
+                optional: true
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+            version: v1.0.0
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+        provider: tools
+      - id: github.com/cloud-native-toolkit/terraform-gitops-namespace
+        name: gitops-namespace
+        type: terraform
+        description: Module to configure the provisioning of a namespace in a GitOps repo
+        tags:
+          - tools
+          - gitops
+        versions:
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: argocd
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-openshift-gitops.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd-bootstrap.git
+                    version: '>= 1.0.0'
+                optional: true
+            variables:
+              - name: gitops_config
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+              - name: argocd_namespace
+                moduleRef:
+                  id: argocd
+                  output: argocd_namespace
+                type: string
+                description: The namespace where argocd has been deployed
+              - name: argocd_service_account
+                moduleRef:
+                  id: argocd
+                  output: argocd_service_account
+                type: string
+                description: The service account for argocd
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+              - name: dev
+                type: bool
+                description: Flag indicating that this namespace will be used for development (e.g. configmaps and secrets)
+                default: false
+                optional: true
+            version: v1.5.2
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: argocd
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-openshift-gitops.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd-bootstrap.git
+                    version: '>= 1.0.0'
+                optional: true
+            variables:
+              - name: gitops_config
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+              - name: argocd_namespace
+                moduleRef:
+                  id: argocd
+                  output: argocd_namespace
+                type: string
+                description: The namespace where argocd has been deployed
+              - name: argocd_service_account
+                moduleRef:
+                  id: argocd
+                  output: argocd_service_account
+                type: string
+                description: The service account for argocd
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+              - name: dev
+                type: bool
+                description: Flag indicating that this namespace will be used for development (e.g. configmaps and secrets)
+                default: false
+                optional: true
+            version: v1.5.1
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: argocd
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-openshift-gitops.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd-bootstrap.git
+                    version: '>= 1.0.0'
+                optional: true
+            variables:
+              - name: gitops_config
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+              - name: argocd_namespace
+                moduleRef:
+                  id: argocd
+                  output: argocd_namespace
+                type: string
+                description: The namespace where argocd has been deployed
+              - name: argocd_service_account
+                moduleRef:
+                  id: argocd
+                  output: argocd_service_account
+                type: string
+                description: The service account for argocd
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+              - name: dev
+                type: bool
+                description: Flag indicating that this namespace will be used for development (e.g. configmaps and secrets)
+                default: false
+                optional: true
+            version: v1.5.0
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: argocd
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-openshift-gitops.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd-bootstrap.git
+                    version: '>= 1.0.0'
+                optional: true
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: argocd_namespace
+                moduleRef:
+                  id: argocd
+                  output: argocd_namespace
+                type: string
+                description: The namespace where argocd has been deployed
+              - name: argocd_service_account
+                moduleRef:
+                  id: argocd
+                  output: argocd_service_account
+                type: string
+                description: The service account for argocd
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+              - name: dev
+                type: bool
+                description: Flag indicating that this namespace will be used for development (e.g. configmaps and secrets)
+                default: false
+                optional: true
+            version: v1.4.1
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: argocd
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-openshift-gitops.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd-bootstrap.git
+                    version: '>= 1.0.0'
+                optional: true
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: argocd_namespace
+                moduleRef:
+                  id: argocd
+                  output: argocd_namespace
+                type: string
+                description: The namespace where argocd has been deployed
+              - name: argocd_service_account
+                moduleRef:
+                  id: argocd
+                  output: argocd_service_account
+                type: string
+                description: The service account for argocd
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+              - name: dev
+                type: bool
+                description: Flag indicating that this namespace will be used for development (e.g. configmaps and secrets)
+                default: false
+                optional: true
+            version: v1.4.0
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: argocd
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-openshift-gitops.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd-bootstrap.git
+                    version: '>= 1.0.0'
+                optional: true
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: argocd_namespace
+                moduleRef:
+                  id: argocd
+                  output: argocd_namespace
+                type: string
+                description: The namespace where argocd has been deployed
+              - name: argocd_service_account
+                moduleRef:
+                  id: argocd
+                  output: argocd_service_account
+                type: string
+                description: The service account for argocd
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+            version: v1.3.2
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: argocd
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-openshift-gitops.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd-bootstrap.git
+                    version: '>= 1.0.0'
+                optional: true
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: argocd_namespace
+                moduleRef:
+                  id: argocd
+                  output: argocd_namespace
+                type: string
+                description: The namespace where argocd has been deployed
+              - name: argocd_service_account
+                moduleRef:
+                  id: argocd
+                  output: argocd_service_account
+                type: string
+                description: The service account for argocd
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+            version: v1.3.1
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: argocd
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-openshift-gitops.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd-bootstrap.git
+                    version: '>= 1.0.0'
+                optional: true
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: argocd_namespace
+                moduleRef:
+                  id: argocd
+                  output: argocd_namespace
+                type: string
+                description: The namespace where argocd has been deployed
+              - name: argocd_service_account
+                moduleRef:
+                  id: argocd
+                  output: argocd_service_account
+                type: string
+                description: The service account for argocd
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+            version: v1.3.0
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: argocd
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-openshift-gitops.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd-bootstrap.git
+                    version: '>= 1.0.0'
+                optional: true
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: argocd_namespace
+                moduleRef:
+                  id: argocd
+                  output: argocd_namespace
+                type: string
+                description: The namespace where argocd has been deployed
+              - name: argocd_service_account
+                moduleRef:
+                  id: argocd
+                  output: argocd_service_account
+                type: string
+                description: The service account for argocd
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+            version: v1.2.1
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: argocd
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-openshift-gitops.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd.git
+                    version: '>= 1.0.0'
+                optional: true
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: argocd_namespace
+                moduleRef:
+                  id: argocd
+                  output: argocd_namespace
+                type: string
+                description: The namespace where argocd has been deployed
+              - name: argocd_service_account
+                moduleRef:
+                  id: argocd
+                  output: argocd_service_account
+                type: string
+                description: The service account for argocd
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+            version: v1.2.0
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+            version: v1.1.0
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 0.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: name
+                type: string
+                description: The value that should be used for the namespace
+            version: v1.0.0
+            outputs:
+              - name: name
+                description: Namespace name
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: gitops
+      - id: github.com/cloud-native-toolkit/terraform-gitops-console-link-job
+        name: gitops-console-link-job
+        type: terraform
+        description: Module that populates a gitops repository with the Console Link Cronjob chart from https://charts.cloudnativetoolkit.dev. The chart deploys a cron job into a cluster that runs periodically (every 5 minutes by default) looking for matching resources and creating cron jobs and config maps with the information. The matching resources include routes with the `console-link.cloud-native-toolkit.dev/enabled=true` label and `logdna-agent` and `sysdig-agent` daemonsets.
+        tags:
+          - tools
+          - gitops
+          - consolelink
+          - cronjob
+        versions:
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+            version: v1.2.1
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+            version: v1.2.0
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+            version: v1.1.0
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+            version: v1.0.4
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+            version: v1.0.3
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+            version: v1.0.2
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+            version: v1.0.1
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+            version: v1.0.0
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+              - name: image_tag
+                type: string
+                description: The image version tag to use
+                default: v1.4.4
+                optional: true
+            version: v0.0.0
+        provider: gitops
+      - id: github.com/cloud-native-toolkit/terraform-gitops-artifactory
+        name: gitops-artifactory
+        type: terraform
+        description: ""
+        tags:
+          - tools
+          - gitops
+          - artifactory
+          - artifact management
+        versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: gitops_config
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+              - name: storage_class
+                type: string
+                description: The storage class to use for the persistent volume claim
+                default: ""
+                optional: true
+              - name: persistence
+                type: bool
+                description: Flag to indicate if persistence should be enabled
+                default: true
+                optional: true
+            version: v1.0.1
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: gitops_config
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+              - name: storage_class
+                type: string
+                description: The storage class to use for the persistent volume claim
+                default: ""
+                optional: true
+              - name: persistence
+                type: bool
+                description: Flag to indicate if persistence should be enabled
+                default: true
+                optional: true
+            version: v1.0.0
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: gitops
+      - id: github.com/cloud-native-toolkit/terraform-gitops-dashboard
+        name: gitops-dashboard
+        type: terraform
+        description: Module to configure the provisioning of the Developer Dashboard in a GitOps repo
+        tags:
+          - tools
+          - gitops
+          - dashboard
+        versions:
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+              - name: image_tag
+                type: string
+                description: The image version tag to use
+                default: v1.4.4
+                optional: true
+            version: v1.3.2
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+              - name: image_tag
+                type: string
+                description: The image version tag to use
+                default: v1.4.4
+                optional: true
+            version: v1.3.1
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+              - name: image_tag
+                type: string
+                description: The image version tag to use
+                default: v1.4.4
+                optional: true
+            version: v1.3.0
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+              - name: image_tag
+                type: string
+                description: The image version tag to use
+                default: v1.4.4
+                optional: true
+            version: v1.2.0
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+              - name: image_tag
+                type: string
+                description: The image version tag to use
+                default: v1.4.4
+                optional: true
+            version: v1.1.0
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                type: string
+                description: The namespace where the application should be deployed
+              - name: image_tag
+                type: string
+                description: The image version tag to use
+                default: v1.4.4
+                optional: true
+            version: v1.0.1
+          - platforms: []
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+            variables:
+              - name: config_repo
+                moduleRef:
+                  id: gitops
+                  output: config_repo
+                type: string
+                description: The repo that contains the argocd configuration
+              - name: config_token
+                moduleRef:
+                  id: gitops
+                  output: config_token
+                type: string
+                description: The token for the config repo
+              - name: config_paths
+                moduleRef:
+                  id: gitops
+                  output: config_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the config repo
+              - name: config_projects
+                moduleRef:
+                  id: gitops
+                  output: config_projects
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The ArgoCD projects in the config repo
+              - name: application_repo
+                moduleRef:
+                  id: gitops
+                  output: application_repo
+                type: string
+                description: The repo that contains the application configuration
+              - name: application_token
+                moduleRef:
+                  id: gitops
+                  output: application_token
+                type: string
+                description: The token for the application repo
+              - name: application_paths
+                moduleRef:
+                  id: gitops
+                  output: application_paths
+                type: |-
+                  object({
+                      infrastructure = string
+                      services       = string
+                      applications   = string
+                    })
+                description: The paths in the application repo
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                type: string
+                description: The namespace where the application should be deployed
+              - name: image_tag
+                type: string
+                description: The image version tag to use
+                default: v1.4.4
+                optional: true
+            version: v1.0.0
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: gitops
+      - id: github.com/cloud-native-toolkit/terraform-gitops-pact-broker
+        name: gitops-pact-broker
+        type: terraform
+        description: Module to populate gitops repo to deploy Pact Broker
+        tags:
+          - tools
+          - devops
+          - pact
+          - contract testing
+        versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: gitops_config
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+            version: v0.1.2
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: gitops_config
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+            version: v0.1.1
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: gitops_config
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+            version: v0.1.0
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: gitops
+      - id: github.com/cloud-native-toolkit/terraform-gitops-sonarqube
+        name: gitops-sonarqube
+        type: terraform
+        description: Module to populate gitops repo to deploy SonarQube
+        tags:
+          - tools
+          - devops
+          - sonarqube
+          - gitops
+        versions:
+          - platforms:
+              - kubernetes
+              - ocp4
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+              - id: argocd-bootstrap
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd-bootstrap.git
+                    version: '> 0.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-vsi-argocd-bootstrap.git
+                    version: '> 0.0.0'
+                optional: true
+            variables:
+              - name: gitops_config
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+                default: ocp4
+                optional: true
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+                default: ""
+                optional: true
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+              - name: kubeseal_cert
+                moduleRef:
+                  id: argocd-bootstrap
+                  output: sealed_secrets_cert
+                type: string
+                description: The certificate/public key used to encrypt the sealed secrets
+                default: ""
+                optional: true
+              - name: storage_class
+                type: string
+                description: The storage class to use for the persistent volume claim
+                default: ""
+                optional: true
+              - name: service_account_name
+                type: string
+                description: The name of the service account that should be used for the deployment
+                default: sonarqube-sonarqube
+                optional: true
+              - name: plugins
+                type: list(string)
+                description: The list of plugins that will be installed on SonarQube
+                default: '[ https://github.com/checkstyle/sonar-checkstyle/releases/download/4.33/checkstyle-sonar-plugin-4.33.jar ]'
+                optional: true
+              - name: postgresql
+                type: |-
+                  object({
+                      username      = string
+                      password      = string
+                      hostname      = string
+                      port          = string
+                      database_name = string
+                      external      = bool
+                    })
+                description: Properties for an existing postgresql database
+                default: '{ username = password = hostname = port = database_name = external = false }'
+                optional: true
+              - name: hostname
+                type: string
+                description: The hostname that will be used for the ingress/route
+                default: sonarqube
+                optional: true
+            version: v1.0.0
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: gitops
   - category: iam
     categoryName: IAM
     selection: multiple
