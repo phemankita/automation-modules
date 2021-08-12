@@ -26526,6 +26526,602 @@ categories:
                 default: false
                 optional: true
         provider: ibm
+      - id: github.com/cloud-native-toolkit/terraform-ibm-hpdbaas-postgresql
+        name: ibm-hbdbaas-postgresql
+        type: terraform
+        description: Module to provision Hyper Protect DBaaS for PostgreSQL instance
+        tags:
+          - tools
+          - infrastructure
+          - postgresql
+          - hyper protect
+          - saas
+        versions:
+          - platforms: []
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 2.1.0'
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The api key for IBM Cloud access
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: region
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: provision
+                type: bool
+                description: Flag indicating that the instance should be provisioned. If false then it assumed that an instance already exists.
+                default: true
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: label
+                type: string
+                description: The label used to build the database name, along with the name_prefix
+                default: hpdbaas-postrgesql
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (postgresql-free, postgresql-flexible)
+                default: postgresql-free
+                optional: true
+              - name: private_endpoint
+                type: string
+                description: Flag indicating that the service should be created with private endpoints
+                default: "true"
+                optional: true
+              - name: role
+                type: string
+                description: The role of the generated credential (Viewer, Administrator, Operator, Editor)
+                default: Editor
+                optional: true
+              - name: hpcs_instance_id
+                type: string
+                description: The id of the hpcs instance
+                default: ""
+                optional: true
+              - name: hpcs_key
+                type: string
+                description: The id of the key in the hpcs instance
+                default: ""
+                optional: true
+              - name: cluster_name
+                type: string
+                description: The name of the database cluster
+              - name: admin_name
+                type: string
+                description: The name of the database admin
+              - name: password
+                type: string
+                description: The password of database admin(15 characters minimum, at least one uppercase character, one lowercase character and one number)
+              - name: storage
+                type: string
+                description: The name of the database admin
+                default: 5GiB
+                optional: true
+              - name: memory
+                type: string
+                description: The name of the database admin
+                default: 3GiB
+                optional: true
+              - name: cpu
+                type: string
+                description: The name of the database admin
+                default: "1"
+                optional: true
+              - name: db_version
+                type: string
+                description: The version of postgresql database to provision
+                default: "10"
+                optional: true
+            version: v1.1.0
+          - platforms: []
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 2.1.0'
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The api key for IBM Cloud access
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: region
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: provision
+                type: bool
+                description: Flag indicating that the instance should be provisioned. If false then it assumed that an instance already exists.
+                default: true
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: label
+                type: string
+                description: The label used to build the database name, along with the name_prefix
+                default: hpdbaas-mongodb
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (postgresql-free, postgresql-flexible)
+                default: postgresql-free
+                optional: true
+              - name: private_endpoint
+                type: string
+                description: Flag indicating that the service should be created with private endpoints
+                default: "true"
+                optional: true
+              - name: role
+                type: string
+                description: The role of the generated credential (Viewer, Administrator, Operator, Editor)
+                default: Editor
+                optional: true
+              - name: hpcs_instance_id
+                type: string
+                description: The id of the hpcs instance
+                default: ""
+                optional: true
+              - name: hpcs_key
+                type: string
+                description: The id of the key in the hpcs instance
+                default: ""
+                optional: true
+              - name: cluster_name
+                type: string
+                description: The name of the database cluster
+              - name: admin_name
+                type: string
+                description: The name of the database admin
+              - name: password
+                type: string
+                description: The password of database admin(15 characters minimum, at least one uppercase character, one lowercase character and one number)
+              - name: storage
+                type: string
+                description: The name of the database admin
+                default: 5GiB
+                optional: true
+              - name: memory
+                type: string
+                description: The name of the database admin
+                default: 3GiB
+                optional: true
+              - name: cpu
+                type: string
+                description: The name of the database admin
+                default: "1"
+                optional: true
+              - name: db_version
+                type: string
+                description: The version of postgresql database to provision
+                default: "10"
+                optional: true
+            version: v1.0.0
+          - platforms: []
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 2.1.0'
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The api key for IBM Cloud access
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: region
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: provision
+                type: bool
+                description: Flag indicating that the instance should be provisioned. If false then it assumed that an instance already exists.
+                default: true
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: label
+                type: string
+                description: The label used to build the database name, along with the name_prefix
+                default: hpdbaas-mongodb
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (mongodb-free, mongodb-flexible)
+                default: mongodb-free
+                optional: true
+              - name: private_endpoint
+                type: string
+                description: Flag indicating that the service should be created with private endpoints
+                default: "true"
+                optional: true
+              - name: role
+                type: string
+                description: The role of the generated credential (Viewer, Administrator, Operator, Editor)
+                default: Editor
+                optional: true
+              - name: hpcs_instance_id
+                type: string
+                description: The id of the hpcs instance
+                default: ""
+                optional: true
+              - name: hpcs_key
+                type: string
+                description: The id of the key in the hpcs instance
+                default: ""
+                optional: true
+              - name: cluster_name
+                type: string
+                description: The name of the database cluster
+              - name: admin_name
+                type: string
+                description: The name of the database admin
+              - name: password
+                type: string
+                description: The password of database admin(15 characters minimum, at least one uppercase character, one lowercase character and one number)
+              - name: storage
+                type: string
+                description: The name of the database admin
+                default: 5GiB
+                optional: true
+              - name: memory
+                type: string
+                description: The name of the database admin
+                default: 3GiB
+                optional: true
+              - name: cpu
+                type: string
+                description: The name of the database admin
+                default: "1"
+                optional: true
+            version: v0.0.0
+        provider: ibm
+      - id: github.com/cloud-native-toolkit/terraform-ibm-event-streams
+        name: ibm-event-streams
+        alias: event-streams
+        type: terraform
+        description: |
+          Module to work with an IBM Cloud Event Streams instance. If the `provision` flag is true then an new instance
+          of IBM Cloud Event Streams is provisioned. Otherwise, the module will find an existing instance with the
+          provided name and create a credential. The name and id of the Event Streams instance as well as the name and id
+          of the credential instance are exported from the module for use by other modules.
+        tags:
+          - tools
+          - infrastructure
+          - event streams
+          - saas
+        versions:
+          - platforms: []
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 2.1.0'
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The api key for IBM Cloud access
+              - name: region
+                scope: global
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name
+                scope: ignore
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (lite, standard, or enterprise)
+                default: standard
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that key-protect instance should be provisioned
+                default: true
+                optional: true
+              - name: label
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: event-streams
+                optional: true
+              - name: private_endpoints
+                type: bool
+                description: 'Flag indicating that the service should only use private endpoints. (Note: this option is only available for the enterprise plan)'
+                default: true
+                optional: true
+              - name: private_ip_allowlist
+                type: list(string)
+                description: 'The list of ip address ranges that are allowed to access the service. (Note: this option is only available for the enterprise plan. See https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-restrict_access for more details)'
+                default: null
+                optional: true
+              - name: throughput
+                type: string
+                description: 'For enterprise instance only. Options are: ''150'', ''300'', ''450''. Default is ''150'''
+                default: "null"
+                optional: true
+              - name: storage_size
+                type: string
+                description: 'for enterprise instance only. Options are: ''2048'', ''4096'', ''6144'', ''8192'', ''10240'', ''12288''. Default is ''2048''.'
+                default: "null"
+                optional: true
+            version: v1.1.0
+            outputs:
+              - name: id
+                description: The Event Streams instance id
+              - name: name
+                description: The Event Streams instance name
+              - name: crn
+                description: The crn of the Event Streams instance
+              - name: location
+                description: The Event Streams instance location
+              - name: key_name
+                description: The name of the credential provisioned for the Event Streams instance
+              - name: key_id
+                description: The name of the credential provisioned for the Event Streams instance
+              - name: service
+                description: The name of the key provisioned for the Event Streams instance
+              - name: label
+                description: The label used for the Event Streams instance
+          - platforms: []
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 2.1.0'
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The api key for IBM Cloud access
+              - name: region
+                scope: global
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name
+                scope: ignore
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (lite, standard, or enterprise)
+                default: standard
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that key-protect instance should be provisioned
+                default: true
+                optional: true
+              - name: label
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: event-streams
+                optional: true
+            version: v1.0.0
+            outputs:
+              - name: id
+                description: The Event Streams instance id
+              - name: name
+                description: The Event Streams instance name
+              - name: crn
+                description: The crn of the Event Streams instance
+              - name: location
+                description: The Event Streams instance location
+              - name: key_name
+                description: The name of the credential provisioned for the Event Streams instance
+              - name: key_id
+                description: The name of the credential provisioned for the Event Streams instance
+              - name: service
+                description: The name of the key provisioned for the Event Streams instance
+              - name: label
+                description: The label used for the Event Streams instance
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: ibm
+      - id: github.com/cloud-native-toolkit/terraform-ibm-event-streams-topic
+        name: ibm-event-streams-topic
+        alias: topic
+        type: terraform
+        description: Module to provision a topic in an existing managed IBM Cloud Event Streams instance
+        tags:
+          - tools
+          - kafka
+          - event streams
+          - topic
+        versions:
+          - platforms: []
+            dependencies:
+              - id: event_streams
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-event-streams
+                    version: '>= 1.0.0'
+            variables:
+              - name: event_streams_id
+                moduleRef:
+                  id: event_streams
+                  output: id
+                type: string
+                description: The id of the event streams instance where the topic will be created
+              - name: region
+                moduleRef:
+                  id: event_streams
+                  output: location
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The api key for IBM Cloud access
+              - name: name
+                type: string
+                description: The name of the topic
+              - name: partitions
+                type: number
+                description: The number of partitions of the topic. Default value is 1.
+                default: 1
+                optional: true
+              - name: cleanup_policy
+                type: string
+                description: The cleanup policy for the topic
+                default: "null"
+                optional: true
+              - name: retention_ms
+                type: string
+                default: "null"
+                optional: true
+              - name: retention_bytes
+                type: string
+                default: "null"
+                optional: true
+              - name: segment_bytes
+                type: string
+                default: "null"
+                optional: true
+              - name: segment_ms
+                type: string
+                default: "null"
+                optional: true
+              - name: segment_index_bytes
+                type: string
+                default: "null"
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that the topic should be provisioned. If not then an existing topic will be looked up
+                default: true
+                optional: true
+            version: v1.0.0
+            outputs:
+              - name: id
+                description: output "id" {   value = data.ibm_event_streams_topic.topic.id }
+              - name: kafka_http_url
+                description: output "kafka_http_url" {   value = data.ibm_event_streams_topic.topic.kafka_http_url }
+              - name: kafka_brokers_sasl
+                description: output "kafka_brokers_sasl" {   value = data.ibm_event_streams_topic.topic.kafka_brokers_sasl }
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: ibm
   - category: network
     categoryName: Network
     selection: multiple
