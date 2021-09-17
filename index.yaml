@@ -816,7 +816,7 @@ categories:
                 alias: region
                 type: string
                 description: The IBM Cloud region where the cluster will be/has been installed.
-              - name: cluster_type
+              - nane: cluster_type
                 scope: global
               - name: ibmcloud_api_key
                 scope: global
@@ -959,7 +959,7 @@ categories:
                 alias: region
                 type: string
                 description: The IBM Cloud region where the cluster will be/has been installed.
-              - name: cluster_type
+              - nane: cluster_type
                 scope: global
               - name: ibmcloud_api_key
                 scope: global
@@ -1100,7 +1100,7 @@ categories:
                 alias: region
                 type: string
                 description: The IBM Cloud region where the cluster will be/has been installed.
-              - name: cluster_type
+              - nane: cluster_type
                 scope: global
               - name: ibmcloud_api_key
                 scope: global
@@ -33441,6 +33441,16 @@ categories:
             variables: []
             version: v0.0.0
         provider: ibm
+      - id: github.com/cloud-native-toolkit/terraform-ibm-cert-manager-cert
+        name: ibm-cert-manager-cert
+        type: terraform
+        description: Module to upload and/or retrieve a certificate and private key from IBM Certificate Manager
+        tags:
+          - ibm
+          - certificate manager
+          - certificate
+        versions: {}
+        provider: ibm
   - category: network
     categoryName: Network
     selection: multiple
@@ -36218,7 +36228,7 @@ categories:
             dependencies:
               - id: resource-group
                 refs:
-                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                  - soure: github.com/cloud-native-toolkit/terraform-ibm-resource-group
                     version: '>= 1.0.0'
               - id: vpc
                 refs:
