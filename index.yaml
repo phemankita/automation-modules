@@ -816,7 +816,7 @@ categories:
                 alias: region
                 type: string
                 description: The IBM Cloud region where the cluster will be/has been installed.
-              - nane: cluster_type
+              - name: cluster_type
                 scope: global
               - name: ibmcloud_api_key
                 scope: global
@@ -959,7 +959,7 @@ categories:
                 alias: region
                 type: string
                 description: The IBM Cloud region where the cluster will be/has been installed.
-              - nane: cluster_type
+              - name: cluster_type
                 scope: global
               - name: ibmcloud_api_key
                 scope: global
@@ -1100,7 +1100,7 @@ categories:
                 alias: region
                 type: string
                 description: The IBM Cloud region where the cluster will be/has been installed.
-              - nane: cluster_type
+              - name: cluster_type
                 scope: global
               - name: ibmcloud_api_key
                 scope: global
@@ -33441,7 +33441,6 @@ categories:
             variables: []
             version: v0.0.0
         provider: ibm
-      -
   - category: network
     categoryName: Network
     selection: multiple
@@ -36219,7 +36218,7 @@ categories:
             dependencies:
               - id: resource-group
                 refs:
-                  - soure: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
                     version: '>= 1.0.0'
               - id: vpc
                 refs:
