@@ -1,0 +1,55 @@
+<html>
+<head>
+    <title>Automation module metadata JSON schemas</title>
+</head>
+<body>
+<h1>Automation module metadata JSON schemas</h1>
+<p>
+    There are two major schemas (with a number of sub-types) that define the automation module metadata:
+<p>
+<ul>
+<li>Module</li>
+<li>Catalog</li>
+</ul>
+
+<h2>Schemas</h2>
+
+<h3>Module</h3>
+
+<p>
+    The module schema defines the metadata for an individual module. It contains a <code>name</code> and
+    <code>id</code> to identify the module and a <code>versions</code> array that contains the versioned
+    interface for the module.
+</p>
+<p>
+    <a href="module.json">Module schema</a>
+</p>
+
+<h3>Catalog</h3>
+
+<p>
+    The catalog schema defines the collection of module metadata, organized into categories.
+</p>
+<p>
+    <a href="catalog.json">Catalog schema</a>
+</p>
+
+<h2>Usage</h2>
+
+<p>
+    The schemas are used to validate the module metadata and the catalog metadata during the module and catalog CI/CD process.
+</p>
+
+<h3>Manual validation</h3>
+
+<p>
+The YAML catalog can be manually validated against the schema using the <code>ajv-cli</code>.
+
+```
+npm i ajv-cli
+curl -LsO https://modules.cloudnativetoolkit.dev/schemas/catalog.json
+npx ajv validate -s catalog.json -d index.yaml
+```
+</p>
+</body>
+</html>

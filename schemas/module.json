@@ -1,5 +1,5 @@
 {
-  "$id": "https://modules.cloudnativetoolkit.dev/schemas/module.json",
+  "$id": "https://modules.cloudnativetoolkit.dev/schemas/module",
   "title": "Automation Module",
   "name": "module",
   "author": "",
