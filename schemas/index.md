@@ -1,4 +1,4 @@
-# Automation module metadata JSON schemas</h1>
+# Automation module metadata JSON schemas
 
 There are two major schemas (with a number of sub-types) that define the automation module metadata:
 
