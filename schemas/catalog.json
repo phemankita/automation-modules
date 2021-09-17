@@ -1,0 +1,43 @@
+{
+  "$id": "https://modules.cloudnativetoolkit.dev/schemas/catalog.json",
+  "title": "Automation Catalog",
+  "type": "object",
+  "required": ["categories"],
+  "properties": {
+    "categories": {
+      "type": "array",
+      "description": "List of categories of the modules",
+      "items": {
+        "$ref": "#/$defs/category"
+      }
+    }
+  },
+  "$defs": {
+    "category": {
+      "type": "object",
+      "required": ["category"],
+      "properties": {
+        "category": {
+          "type": "string",
+          "description": "The identifier of the category"
+        },
+        "categoryName": {
+          "type": "string",
+          "description": "The display name of the category"
+        },
+        "selection": {
+          "type": "string",
+          "description": "The selection mode of the category",
+          "enum": ["single", "multiple", "indirect"]
+        },
+        "modules": {
+          "type": "array",
+          "description": "The list of modules contained in the category",
+          "items": {
+            "$ref": "/schemas/module"
+          }
+        }
+      }
+    }
+  }
+}
