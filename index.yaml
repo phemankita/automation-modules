@@ -33717,6 +33717,94 @@ categories:
           - vault
         versions:
           - platforms: []
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 2.1.0'
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: region
+                scope: global
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                optional: true
+              - name: name
+                scope: module
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+                optional: true
+              - name: private_endpoint
+                scope: global
+                type: string
+                description: Flag indicating that the service should be created with private endpoints
+                default: "true"
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (tiered-pricing)
+                default: standard
+                optional: true
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: number_of_crypto_units
+                type: number
+                description: No of crypto units that has to be attached to the instance.
+                default: 2
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that hpcs instance should be provisioned. If 'false' then the instance is expected to already exist.
+                default: false
+                optional: true
+              - name: label
+                type: string
+                description: The label that will be used to generate the name from the name_prefix.
+                default: hpcs
+                optional: true
+              - name: skip
+                type: bool
+                description: Flag indicating that the logic should be skipped (i.e. don't do anything)
+                default: false
+                optional: true
+            version: v1.5.0
+            outputs:
+              - name: id
+                description: The id of the provisioned HPCS instance.
+              - name: guid
+                description: The id of the provisioned HPCS instance.
+              - name: name
+                description: The name of the provisioned HPCS instance.
+              - name: crn
+                description: The id of the provisioned HPCS instance
+              - name: location
+                description: The location of the provisioned HPCS instance
+              - name: service
+                description: The name of the key provisioned for the HPCS instance
+              - name: label
+                description: The label for the redis instance
+              - name: public_url
+                description: The public endpoint for the resource
+              - name: private_url
+                description: The private endpoint for the resource
+          - platforms: []
             dependencies:
               - id: resource_group
                 refs:
@@ -34509,6 +34597,94 @@ categories:
           - kms
           - key
         versions:
+          - platforms: []
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies:
+              - id: kms
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-key-protect
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-hpcs
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-kms
+                    version: '>= 0.0.0'
+            variables:
+              - name: kms_id
+                moduleRef:
+                  id: kms
+                  output: guid
+                type: string
+                description: The id of the kms instance. Required if kms_enabled is true
+                default: ""
+                optional: true
+              - name: kms_public_url
+                moduleRef:
+                  id: kms
+                  output: public_url
+                type: string
+                description: The public url of the kms instance. Required if kms_enabled is true
+                default: ""
+                optional: true
+              - name: kms_private_url
+                moduleRef:
+                  id: kms
+                  output: private_url
+                type: string
+                description: The private url of the kms instance. Required if kms_enabled is true
+                default: ""
+                optional: true
+              - name: name_prefix
+                scope: global
+                type: string
+                description: The name_prefix used to build the name if one is not provided. If used the name will be `{name_prefix}-{label}`
+                default: base
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that the key should be provisioned. If false then an existing key will be looked up
+                default: false
+                optional: true
+              - name: name
+                type: string
+                description: The name of the root key in the kms instance. Required if kms_enabled is true
+                default: ""
+                optional: true
+              - name: label
+                type: string
+                description: The label used to build the name if one is not provided. If used the name will be `{name_prefix}-{label}`
+                default: key
+                optional: true
+              - name: rotation_interval
+                type: number
+                description: The interval in months that a root key needs to be rotated.
+                default: 3 validation { condition = var.rotation_interval >= 1 && var.rotation_interval <= 12 error_message = The rotation interval must be 1 to 12 months. }
+                optional: true
+              - name: dual_auth_delete
+                type: bool
+                description: Flag indicating that the key requires dual authorization to be deleted.
+                default: false
+                optional: true
+              - name: force_delete
+                type: bool
+                description: Flag indicating that 'force' should be applied to key on delete
+                default: true
+                optional: true
+            version: v1.5.0
+            outputs:
+              - name: id
+                description: The id of the key
+              - name: name
+                description: The crn of the key
+              - name: crn
+                description: The crn of the key
+              - name: kms_id
+                description: The id of the kms instance
+              - name: kms_public_url
+                description: The public url of the kms instance
+              - name: kms_private_url
+                description: The private url of the kms instance
           - platforms: []
             dependencies:
               - id: kms
@@ -44575,6 +44751,70 @@ categories:
           - infrastructure
           - security
         versions:
+          - platforms: []
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 2.1.0'
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+                description: 'Name of resource group in which to create the ssh key instance. '
+              - name: name_prefix
+                scope: global
+                type: string
+                description: (Optional) Prefix used to name all resources. If not provided then resource_group_name is used.
+                default: ""
+                optional: true
+              - name: name
+                scope: module
+                type: string
+                description: (Optional) Name given to the ssh key instance. If not provided it will be generated using prefix_name
+                default: ""
+                optional: true
+              - name: label
+                type: string
+                description: (Optional) Label used for the instance. It will be added to the name_prefix to create the name if the name is not provided.
+                default: sshkey
+                optional: true
+              - name: public_key
+                type: string
+                description: The public key provided for the ssh key. If empty string is provided then a new key will be generated.
+              - name: private_key
+                type: string
+                description: The private key provided for the ssh key. If empty string is provided then a new key will be generated.
+                default: ""
+                optional: true
+              - name: public_key_file
+                type: string
+                description: The name of the file containing the public key provided for the ssh key. If empty string is provided then a new key will be generated.
+                default: ""
+                optional: true
+              - name: private_key_file
+                type: string
+                description: The name of the file containing the private key provided for the ssh key. If empty string is provided then a new key will be generated.
+                default: ""
+                optional: true
+              - name: rsa_bits
+                type: number
+                description: The number of bits for the rsa key, if it will be generated
+                default: 3072
+                optional: true
+            version: v1.7.1
+            outputs:
+              - name: id
+                description: The id of the ssh key
+              - name: public_key
+                description: The public key value in openssh format
+              - name: private_key
+                description: The private key value
           - platforms: []
             providers:
               - name: ibm
