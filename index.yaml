@@ -26813,6 +26813,33 @@ categories:
           - account
         versions:
           - platforms: []
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies: []
+            variables:
+              - name: ibmcloud_api_key
+                scope: global
+                type: string
+                description: The api key for IBM Cloud access
+              - name: region
+                scope: global
+                type: string
+                description: The IBM Cloud region.
+              - name: action
+                type: string
+                description: 'USAGE: ibmcloud cr platform-metrics enable | disable'
+              - name: mfa
+                type: string
+                description: Defines the MFA trait for an account. Valid values are NONE No MFA trait set. TOTP For all non-federated IBM ID users TOTP4ALL For all users. LEVEL1 The Email based MFA for all users. LEVEL2 TOTP based MFA for all users. LEVEL3 U2F MFA for all users.
+              - name: restrict_create_service_id
+                type: string
+                description: Defines whether creating a service ID is access controlled. Valid values are RESTRICTED to apply access control. NOT_RESTRICTED to remove access control. NOT_SET to unset a previous set value.
+              - name: restrict_create_platform_apikey
+                type: string
+                description: Defines whether creating a API Key is access controlled. Valid values are RESTRICTED to apply access control. NOT_RESTRICTED to remove access control. NOT_SET to unset a previous set value.
+            version: v1.1.0
+          - platforms: []
             dependencies: []
             variables:
               - name: ibmcloud_api_key
@@ -26913,6 +26940,46 @@ categories:
           - resource group
           - account
         versions:
+          - platforms: []
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies:
+              - id: sync
+                refs: []
+                interface: github.com/cloud-native-toolkit/garage-terraform-modules#sync
+                optional: true
+            variables:
+              - name: resource_group_name
+                alias: name
+                scope: module
+                type: string
+                description: The name of the resource group
+              - name: sync
+                moduleRef:
+                  id: sync
+                  output: sync
+                type: string
+                description: Value used to order the provisioning of the resource group
+                default: ""
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that the resource group should be created
+                default: true
+                optional: true
+            version: v3.0.1
+            outputs:
+              - name: name
+                description: The name of the resource group
+              - name: id
+                description: The id of the resource group
+              - name: group
+                description: The resource group object
+              - name: provision
+                description: Flag indicating whether the resource group was provisioned
+              - name: sync
+                description: Value used to order the provisioning of the resource group
           - platforms: []
             providers:
               - name: ibm
@@ -58837,6 +58904,58 @@ categories:
           - ibm cloud
           - activity tracker
         versions:
+          - platforms: []
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 2.1.0'
+            variables:
+              - name: resource_group_name
+                moduleRef:
+                  id: resource_group
+                  output: name
+                type: string
+                description: Resource group where the cluster has been provisioned.
+              - name: resource_location
+                scope: global
+                alias: region
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+                optional: true
+              - name: plan
+                type: string
+                description: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)
+                default: 7-day
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that the instance should be provisioned
+                default: false
+                optional: true
+            version: v2.4.0
+            outputs:
+              - name: id
+                description: The id of the provisioned instance.
+              - name: guid
+                description: The id of the provisioned instance.
+              - name: name
+                description: The name of the provisioned instance.
+              - name: crn
+                description: The id of the provisioned instance
+              - name: location
+                description: The location of the provisioned instance
+              - name: service
+                description: The service name of the key provisioned for the instance
+              - name: label
+                description: The label for the instance
           - platforms: []
             dependencies:
               - id: resource_group
