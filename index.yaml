@@ -15094,6 +15094,136 @@ categories:
                 optional: true
             version: v1.0.1
         provider: tools
+      - id: github.com/cloud-native-toolkit/terraform-k8s-console-link-job
+        name: console-link-job
+        type: terraform
+        description: Module to install a cronjob to create console links from routes and config maps
+        tags:
+          - cronjob
+          - console-link
+        versions:
+          - platforms:
+              - kubernetes
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ocp-login
+                    version: '>= 1.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+            variables:
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Config file for Kubernetes cluster.
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the console link should be deployed
+            version: v1.0.0
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: k8s
+      - id: github.com/cloud-native-toolkit/terraform-ocp-buildah-unprivileged
+        name: ocp-buildah-unprivileged
+        type: terraform
+        description: Module to configure a Red Hat OpenShift cluster to allow buildah to run unprivileged. (This is primarily necessary for IBM ROKS clusters.)
+        tags:
+          - buildah
+          - userspace
+          - unprivileged
+          - ROKS
+        versions:
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+            variables:
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: |-
+                  variable "namespace" {
+                    type        = string
+                    description = "A description of my
+              - name: variable"~  default     = "default"~}~~
+                type: string
+                default: default
+                optional: true
+            version: v1.0.0
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        provider: ocp
   - category: gitops
     categoryName: GitOps
     selection: multiple
