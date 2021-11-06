@@ -32948,7 +32948,17 @@ categories:
                 optional: true
             version: v1.1.1
         provider: ibm
-      -
+      - id: github.com/cloud-native-toolkit/terraform-ibm-kms
+        name: ibm-kms
+        type: terraform
+        description: Module to provision Key Protect
+        tags:
+          - tools
+          - kms
+          - hpcs
+          - key protect
+        versions: {}
+        provider: ibm
       - id: github.com/cloud-native-toolkit/terraform-ibm-key-protect
         name: key-protect
         type: terraform
