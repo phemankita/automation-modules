@@ -38991,8 +38991,8 @@ categories:
               - name: cross_region_location
                 type: string
                 description: The cross-region location of the bucket. This value is optional. Valid values are (us, eu, and ap). This value takes precedence over others if provided.
-                default: ""
                 optional: true
+                default: ""
               - name: storage_class
                 type: string
                 description: Storage class of the bucket. Supported values are standard, vault, cold, flex, smart.
