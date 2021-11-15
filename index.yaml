@@ -38577,7 +38577,7 @@ categories:
               - name: cross_region_location
                 type: string
                 description: The cross-region location of the bucket. This value is optional. Valid values are (us, eu, and ap). This value takes precedence over others if provided.
-                default: validation { condition = contains([, us, eu, ap], var.cross_region_location) error_message = The cross_region location must be either 'us', 'eu', or 'ap'. }
+                default: ""
                 optional: true
               - name: storage_class
                 type: string
@@ -38718,7 +38718,7 @@ categories:
               - name: cross_region_location
                 type: string
                 description: The cross-region location of the bucket. This value is optional. Valid values are (us, eu, and ap). This value takes precedence over others if provided.
-                default: validation { condition = contains([, us, eu, ap], var.cross_region_location) error_message = The cross_region location must be either 'us', 'eu', or 'ap'. }
+                default: ""
                 optional: true
               - name: storage_class
                 type: string
@@ -38991,7 +38991,7 @@ categories:
               - name: cross_region_location
                 type: string
                 description: The cross-region location of the bucket. This value is optional. Valid values are (us, eu, and ap). This value takes precedence over others if provided.
-                default: validation { condition = contains([, us, eu, ap], var.cross_region_location) error_message = The cross_region location must be either 'us', 'eu', or 'ap'. }
+                default: ""
                 optional: true
               - name: storage_class
                 type: string
