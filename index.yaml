@@ -7919,7 +7919,7 @@ categories:
                     version: '>= 2.1.0'
               - id: console_link_job
                 refs:
-                  - source: https://github.com/cloud-native-toolkit/terraform-k8s-console-link-job
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-console-link-job
                     version: '>= 1.0.0'
             variables:
               - name: cluster_type
@@ -8021,7 +8021,7 @@ categories:
                     version: '>= 2.1.0'
               - id: console_link_job
                 refs:
-                  - source: https://github.com/cloud-native-toolkit/terraform-k8s-console-link-job
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-console-link-job
                     version: '>= 1.0.0'
             variables:
               - name: cluster_type
@@ -8123,7 +8123,7 @@ categories:
                     version: '>= 2.1.0'
               - id: console_link_job
                 refs:
-                  - source: https://github.com/cloud-native-toolkit/terraform-k8s-console-link-job
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-console-link-job
                     version: '>= 1.0.0'
             variables:
               - name: cluster_type
@@ -12456,7 +12456,7 @@ categories:
                     version: '>= 2.1.0'
               - id: console_link_job
                 refs:
-                  - source: https://github.com/cloud-native-toolkit/terraform-k8s-console-link-job
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-console-link-job
                     version: '>= 1.0.0'
             variables:
               - name: cluster_type
@@ -13119,7 +13119,7 @@ categories:
                     version: '>= 2.1.0'
               - id: console_link_job
                 refs:
-                  - source: https://github.com/cloud-native-toolkit/terraform-k8s-console-link-job
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-console-link-job
                     version: '>= 1.0.0'
             variables:
               - name: cluster_type
@@ -61808,7 +61808,7 @@ categories:
                     version: '>= 2.1.0'
               - id: console_link_job
                 refs:
-                  - source: https://github.com/cloud-native-toolkit/terraform-k8s-console-link-job
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-console-link-job
                     version: '>= 1.0.0'
             variables:
               - name: cluster_type_code
