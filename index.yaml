@@ -12796,6 +12796,140 @@ categories:
                     version: '>= 2.1.0'
               - id: console_link_job
                 refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-console-link-job
+                    version: '>= 1.0.0'
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The secret containing the tls certificates
+                default: ""
+                optional: true
+              - name: releases_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: Name of the existing namespace where the Helm Releases will be deployed.
+              - name: mode
+                scope: global
+                type: string
+                description: The mode of operation for the module (setup)
+                default: ""
+                optional: true
+              - name: gitops_dir
+                scope: global
+                type: string
+                description: Directory where the gitops repo content should be written
+                default: ""
+                optional: true
+              - name: postgresql
+                scope: ignore
+                type: |-
+                  object({
+                      username      = string
+                      password      = string
+                      hostname      = string
+                      port          = string
+                      database_name = string
+                      external      = bool
+                    })
+                description: Properties for an existing postgresql database
+                default: '{ username = password = hostname = port = database_name = external = false }'
+                optional: true
+              - name: plugins
+                scope: ignore
+                type: list(string)
+                description: The list of plugins that will be installed on SonarQube
+                default: '[ https://binaries.sonarsource.com/Distribution/sonar-typescript-plugin/sonar-typescript-plugin-2.1.0.4359.jar, https://binaries.sonarsource.com/Distribution/sonar-java-plugin/sonar-java-plugin-6.5.1.22586.jar, https://binaries.sonarsource.com/Distribution/sonar-javascript-plugin/sonar-javascript-plugin-6.2.1.12157.jar, https://binaries.sonarsource.com/Distribution/sonar-python-plugin/sonar-python-plugin-2.9.0.6410.jar, https://binaries.sonarsource.com/Distribution/sonar-go-plugin/sonar-go-plugin-1.7.0.883.jar, https://github.com/checkstyle/sonar-checkstyle/releases/download/4.33/checkstyle-sonar-plugin-4.33.jar ]'
+                optional: true
+              - name: toolkit_namespace
+                moduleRef:
+                  id: console_link_job
+                  output: namespace
+                type: string
+                description: Namespace where the toolkit config jobs run.
+                default: ""
+                optional: true
+              - name: hostname
+                type: string
+                description: The hostname that will be used for the ingress/route
+                default: sonarqube
+                optional: true
+              - name: helm_version
+                type: string
+                description: The version of the helm chart that should be used
+                default: 6.4.1
+                optional: true
+              - name: service_account_name
+                type: string
+                description: The name of the service account that should be used for the deployment
+                default: sonarqube-sa
+                optional: true
+              - name: volume_capacity
+                type: string
+                description: The volume capacity of the persistence volume claim
+                default: 2Gi
+                optional: true
+              - name: storage_class
+                type: string
+                description: The storage class of the persistence volume claim
+                default: ""
+                optional: true
+            version: v1.10.1
+            outputs:
+              - name: ingress_host
+                description: The ingress host for the SonarQube instance
+              - name: ingress_url
+                description: The ingress url for the SonarQube instance
+              - name: config_name
+                description: The name of the configmap created to store the url
+              - name: secret_name
+                description: The name of the secret created to store the credentials
+              - name: service_account
+                description: The service account name that was used
+              - name: namespace
+                description: The namespace where sonarqube has been installed
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+              - id: console_link_job
+                refs:
                   - source: https://github.com/cloud-native-toolkit/terraform-k8s-console-link-job
                     version: '>= 1.0.0'
             variables:
@@ -45711,6 +45845,107 @@ categories:
           - subnets
           - vpc
         versions:
+          - platforms: []
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies:
+              - id: resource-group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 1.0.0'
+              - id: vpc
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc
+                    version: '>= 1.0.0'
+              - id: gateways
+                refs: []
+                optional: true
+            variables:
+              - name: resource_group_id
+                moduleRef:
+                  id: resource-group
+                  output: id
+                type: string
+                description: The id of the IBM Cloud resource group where the VPC has been provisioned.
+              - name: vpc_name
+                moduleRef:
+                  id: vpc
+                  output: name
+                type: string
+                description: The name of the vpc instance
+              - name: gateways
+                moduleRef:
+                  id: gateways
+                  output: gateways
+                optional: true
+                type: list(object({id = string, zone = string}))
+                description: List of gateway ids and zones
+                default: []
+              - name: region
+                scope: global
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+              - name: _count
+                scope: module
+                important: true
+                type: number
+                description: The number of subnets that should be provisioned
+                default: 3
+                optional: true
+              - name: label
+                scope: module
+                type: string
+                description: Label for the subnets created
+                default: default
+                optional: true
+              - name: zone_offset
+                type: number
+                description: The offset for the zone where the subnet should be created. The default offset is 0 which means the first subnet should be created in zone xxx-1
+                default: 0
+                optional: true
+              - name: ipv4_cidr_blocks
+                type: list(string)
+                description: List of ipv4 cidr blocks for the subnets that will be created (e.g. ['10.10.10.0/24']). If you are providing cidr blocks then a value must be provided for each of the subnets. If you don't provide cidr blocks for each of the subnets then values will be generated using the {ipv4_address_count} value.
+                default: []
+                optional: true
+              - name: ipv4_address_count
+                type: number
+                description: The size of the ipv4 cidr block that should be allocated to the subnet. If {ipv4_cidr_blocks} are provided then this value is ignored.
+                default: 256
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that the subnet should be provisioned. If 'false' then the subnet will be looked up.
+                default: true
+                optional: true
+              - name: acl_rules
+                type: list(object({}))
+                description: List of rules to set on the subnet access control list
+                default: []
+                optional: true
+            version: v1.9.2
+            outputs:
+              - name: count
+                description: The number of subnets created
+              - name: ids
+                description: The ids of the created subnets
+              - name: output[*].id }
+                description: output[*].id }
+              - name: names
+                description: The ids of the created subnets
+              - name: output[*].name }
+                description: output[*].name }
+              - name: subnets
+                description: The subnets that were created
+              - name: 'output: {id = subnet.id, zone = subnet.zone, label = var.label} ] }'
+                description: 'output: {id = subnet.id, zone = subnet.zone, label = var.label} ] }'
+              - name: acl_id
+                description: The id of the network acl for the subnets
+              - name: vpc_name
+                description: The name of the VPC where the subnets were provisioned
+              - name: vpc_id
+                description: The id of the VPC where the subnets were provisioned
           - platforms: []
             providers:
               - name: ibm
