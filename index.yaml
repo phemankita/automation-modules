@@ -18854,6 +18854,98 @@ categories:
                 description: The certificate/public key used to encrypt the sealed secrets
                 default: ""
                 optional: true
+            version: v1.11.2
+            outputs:
+              - name: config_repo
+                description: The repo that contains the argocd configuration
+              - name: config_repo_url
+                description: The repo that contains the argocd configuration
+              - name: config_username
+                description: The username for the config repo
+              - name: config_token
+                description: The token for the config repo
+              - name: config_paths
+                description: The paths in the config repo
+              - name: config_projects
+                description: The ArgoCD projects for the different layers of the repo
+              - name: bootstrap_path
+                description: The path to the bootstrap configuration
+              - name: bootstrap_branch
+                description: The branch in the gitrepo containing the bootstrap configuration
+              - name: application_repo
+                description: The repo that contains the application configuration
+              - name: application_repo_url
+                description: The repo that contains the application configuration
+              - name: application_username
+                description: The username for the application repo
+              - name: application_token
+                description: The token for the application repo
+              - name: application_paths
+                description: The paths in the application repo
+              - name: gitops_config
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                description: The credentials for the gitops repo(s)
+              - name: server_name
+                description: The name of the cluster that will be configured for gitops
+              - name: sealed_secrets_cert
+                description: The certificate used to encrypt sealed secrets
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: host
+                type: string
+                description: The host for the git repository.
+              - name: type
+                type: string
+                description: The type of the hosted git repository (github or gitlab).
+              - name: org
+                type: string
+                description: The org/group where the git repository exists/will be provisioned.
+              - name: repo
+                type: string
+                description: The short name of the repository (i.e. the part after the org/group name)
+              - name: branch
+                type: string
+                description: The name of the branch that will be used. If the repo already exists (provision=false) then it is assumed this branch already exists as well
+                default: main
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that the git repo should be provisioned. If `false` then the repo is expected to already exist
+                default: true
+                optional: true
+              - name: initialize
+                type: bool
+                description: Flag indicating that the git repo should be initialized. If `false` then the repo is expected to already have been initialized
+                default: false
+                optional: true
+              - name: username
+                type: string
+                description: The username of the user with access to the repository
+              - name: token
+                type: string
+                description: The personal access token used to access the repository
+              - name: public
+                type: bool
+                description: Flag indicating that the repo should be public or private
+                default: false
+                optional: true
+              - name: gitops_namespace
+                type: string
+                description: The namespace where ArgoCD is running in the cluster
+                default: openshift-gitops
+                optional: true
+              - name: server_name
+                type: string
+                description: The name of the cluster that will be configured via gitops. This is used to separate the config by cluster
+                default: default
+                optional: true
+              - name: sealed_secrets_cert
+                type: string
+                description: The certificate/public key used to encrypt the sealed secrets
+                default: ""
+                optional: true
             version: v1.11.1
             outputs:
               - name: config_repo
@@ -45845,6 +45937,107 @@ categories:
           - subnets
           - vpc
         versions:
+          - platforms: []
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies:
+              - id: resource-group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 1.0.0'
+              - id: vpc
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-vpc
+                    version: '>= 1.0.0'
+              - id: gateways
+                refs: []
+                optional: true
+            variables:
+              - name: resource_group_id
+                moduleRef:
+                  id: resource-group
+                  output: id
+                type: string
+                description: The id of the IBM Cloud resource group where the VPC has been provisioned.
+              - name: vpc_name
+                moduleRef:
+                  id: vpc
+                  output: name
+                type: string
+                description: The name of the vpc instance
+              - name: gateways
+                moduleRef:
+                  id: gateways
+                  output: gateways
+                optional: true
+                type: list(object({id = string, zone = string}))
+                description: List of gateway ids and zones
+                default: []
+              - name: region
+                scope: global
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+              - name: _count
+                scope: module
+                important: true
+                type: number
+                description: The number of subnets that should be provisioned
+                default: 3
+                optional: true
+              - name: label
+                scope: module
+                type: string
+                description: Label for the subnets created
+                default: default
+                optional: true
+              - name: zone_offset
+                type: number
+                description: The offset for the zone where the subnet should be created. The default offset is 0 which means the first subnet should be created in zone xxx-1
+                default: 0
+                optional: true
+              - name: ipv4_cidr_blocks
+                type: list(string)
+                description: List of ipv4 cidr blocks for the subnets that will be created (e.g. ['10.10.10.0/24']). If you are providing cidr blocks then a value must be provided for each of the subnets. If you don't provide cidr blocks for each of the subnets then values will be generated using the {ipv4_address_count} value.
+                default: []
+                optional: true
+              - name: ipv4_address_count
+                type: number
+                description: The size of the ipv4 cidr block that should be allocated to the subnet. If {ipv4_cidr_blocks} are provided then this value is ignored.
+                default: 256
+                optional: true
+              - name: provision
+                type: bool
+                description: Flag indicating that the subnet should be provisioned. If 'false' then the subnet will be looked up.
+                default: true
+                optional: true
+              - name: acl_rules
+                type: list(object({}))
+                description: List of rules to set on the subnet access control list
+                default: []
+                optional: true
+            version: v1.9.4
+            outputs:
+              - name: count
+                description: The number of subnets created
+              - name: ids
+                description: The ids of the created subnets
+              - name: output[*].id }
+                description: output[*].id }
+              - name: names
+                description: The ids of the created subnets
+              - name: output[*].name }
+                description: output[*].name }
+              - name: subnets
+                description: The subnets that were created
+              - name: 'output: {id = subnet.id, zone = subnet.zone, label = var.label} ] }'
+                description: 'output: {id = subnet.id, zone = subnet.zone, label = var.label} ] }'
+              - name: acl_id
+                description: The id of the network acl for the subnets
+              - name: vpc_name
+                description: The name of the VPC where the subnets were provisioned
+              - name: vpc_id
+                description: The id of the VPC where the subnets were provisioned
           - platforms: []
             providers:
               - name: ibm
