@@ -13284,6 +13284,134 @@ categories:
                 description: Namespace where the toolkit config jobs run.
                 default: ""
                 optional: true
+            version: v1.5.5
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+              - id: console_link_job
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-console-link-job
+                    version: '>= 1.0.0'
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the cluster.
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The secret containing the tls certificates
+                default: ""
+                optional: true
+              - name: releases_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: Name of the existing namespace where Pact Broker will be deployed.
+              - name: toolkit_namespace
+                moduleRef:
+                  id: console_link_job
+                  output: namespace
+                type: string
+                description: Namespace where the toolkit config jobs run.
+                default: ""
+                optional: true
+            version: v1.5.4
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+              - id: console_link_job
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-console-link-job
+                    version: '>= 1.0.0'
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the cluster.
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The secret containing the tls certificates
+                default: ""
+                optional: true
+              - name: releases_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: Name of the existing namespace where Pact Broker will be deployed.
+              - name: toolkit_namespace
+                moduleRef:
+                  id: console_link_job
+                  output: namespace
+                type: string
+                description: Namespace where the toolkit config jobs run.
+                default: ""
+                optional: true
             version: v1.5.3
           - platforms:
               - kubernetes
@@ -13665,6 +13793,140 @@ categories:
           - quality gate
           - lint
         versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+              - id: console_link_job
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-console-link-job
+                    version: '>= 1.0.0'
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The secret containing the tls certificates
+                default: ""
+                optional: true
+              - name: releases_namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                  discriminator: tools
+                type: string
+                description: Name of the existing namespace where the Helm Releases will be deployed.
+              - name: mode
+                scope: global
+                type: string
+                description: The mode of operation for the module (setup)
+                default: ""
+                optional: true
+              - name: gitops_dir
+                scope: global
+                type: string
+                description: Directory where the gitops repo content should be written
+                default: ""
+                optional: true
+              - name: postgresql
+                scope: ignore
+                type: |-
+                  object({
+                      username      = string
+                      password      = string
+                      hostname      = string
+                      port          = string
+                      database_name = string
+                      external      = bool
+                    })
+                description: Properties for an existing postgresql database
+                default: '{ username = password = hostname = port = database_name = external = false }'
+                optional: true
+              - name: plugins
+                scope: ignore
+                type: list(string)
+                description: The list of plugins that will be installed on SonarQube
+                default: '[ https://binaries.sonarsource.com/Distribution/sonar-typescript-plugin/sonar-typescript-plugin-2.1.0.4359.jar, https://binaries.sonarsource.com/Distribution/sonar-java-plugin/sonar-java-plugin-6.5.1.22586.jar, https://binaries.sonarsource.com/Distribution/sonar-javascript-plugin/sonar-javascript-plugin-6.2.1.12157.jar, https://binaries.sonarsource.com/Distribution/sonar-python-plugin/sonar-python-plugin-2.9.0.6410.jar, https://binaries.sonarsource.com/Distribution/sonar-go-plugin/sonar-go-plugin-1.7.0.883.jar, https://github.com/checkstyle/sonar-checkstyle/releases/download/4.33/checkstyle-sonar-plugin-4.33.jar ]'
+                optional: true
+              - name: toolkit_namespace
+                moduleRef:
+                  id: console_link_job
+                  output: namespace
+                type: string
+                description: Namespace where the toolkit config jobs run.
+                default: ""
+                optional: true
+              - name: hostname
+                type: string
+                description: The hostname that will be used for the ingress/route
+                default: sonarqube
+                optional: true
+              - name: helm_version
+                type: string
+                description: The version of the helm chart that should be used
+                default: 6.4.1
+                optional: true
+              - name: service_account_name
+                type: string
+                description: The name of the service account that should be used for the deployment
+                default: sonarqube-sa
+                optional: true
+              - name: volume_capacity
+                type: string
+                description: The volume capacity of the persistence volume claim
+                default: 2Gi
+                optional: true
+              - name: storage_class
+                type: string
+                description: The storage class of the persistence volume claim
+                default: ""
+                optional: true
+            version: v1.10.2
+            outputs:
+              - name: ingress_host
+                description: The ingress host for the SonarQube instance
+              - name: ingress_url
+                description: The ingress url for the SonarQube instance
+              - name: config_name
+                description: The name of the configmap created to store the url
+              - name: secret_name
+                description: The name of the secret created to store the credentials
+              - name: service_account
+                description: The service account name that was used
+              - name: namespace
+                description: The namespace where sonarqube has been installed
           - platforms:
               - kubernetes
               - ocp3
@@ -29377,6 +29639,266 @@ categories:
             #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
             #          version: ">= 1.6.0"
             variables: []
+            version: v0.0.0
+        provider: gitops
+      - id: github.com/cloud-native-toolkit/terraform-gitops-cluster-config
+        name: gitops-cluster-config
+        type: terraform
+        description: Module to populate a gitops repository with base configuration of the Red Hat OpenShift cluster (notification banner, help menus, etc)
+        tags:
+          - tools
+          - gitops
+          - cluster config
+          - ocp
+        versions:
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: gitops_config
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+              - name: server_name
+                moduleRef:
+                  id: gitops
+                  output: server_name
+                type: string
+                description: The name of the server
+                default: default
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+              - name: banner_background_color
+                type: string
+                description: The background color of the top banner. This value can be a named color (e.g. purple, red) or an RGB value (#FF0000).
+                default: purple
+                optional: true
+              - name: banner_text_color
+                type: string
+                description: The text color for the top banner. This value can be a named color (e.g. purple, red) or an RGB value (#FF0000).
+                default: white
+                optional: true
+              - name: banner_text
+                type: string
+                description: The text that will appear in the top banner in the cluster
+            version: v1.0.0
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+              - id: argocd_bootstrap
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-argocd-bootstrap.git
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-vsi-argocd-bootstrap.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: gitops_config
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+              - name: git_credentials
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+              - name: server_name
+                moduleRef:
+                  id: gitops
+                  output: server_name
+                type: string
+                description: The name of the server
+                default: default
+                optional: true
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+                default: ocp4
+                optional: true
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+                default: ""
+                optional: true
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The name of the secret containing the tls certificate values
+                default: ""
+                optional: true
+              - name: namespace
+                moduleRef:
+                  id: namespace
+                  output: name
+                type: string
+                description: The namespace where the application should be deployed
+              - name: kubeseal_cert
+                moduleRef:
+                  id: argocd_bootstrap
+                  output: sealed_secrets_cert
+                type: string
+                description: The certificate/public key used to encrypt the sealed secrets
+                default: ""
+                optional: true
             version: v0.0.0
         provider: gitops
       - id: github.com/cloud-native-toolkit/terraform-gitops-image-registry
@@ -47084,6 +47606,290 @@ categories:
               - name: cert
                 description: output "cert" {   value = data.ibm_certificate_manager_certificate.cert.certificate_details[0].data.content }
         provider: ibm
+      - id: github.com/cloud-native-toolkit/terraform-ocp-mongodb
+        name: MongoDB
+        type: terraform
+        description: Module to install MongoDB-CE on OCP Cluster
+        tags:
+          - tools
+        versions:
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+                default: ocp4
+                optional: true
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The secret containing the tls certificates
+                default: ""
+                optional: true
+              - name: mongo_namespace
+                type: string
+                description: Namespace where MongoDB is deployed
+                default: mongo
+                optional: true
+              - name: mongo_storageclass
+                type: string
+                description: Storageclass for MongoDB
+                default: ibmc-vpc-block-10iops-tier
+                optional: true
+              - name: mongo_serviceaccount
+                type: string
+                description: Name of the service account to use for mongo
+                default: mongodb-kubernetes-operator
+                optional: true
+              - name: mongo_password
+                type: string
+                description: admin password for mongodb
+                default: changeMechange01
+                optional: true
+            version: v1.2.0
+            outputs:
+              - name: mongo_pw
+                description: mongo admin pw
+              - name: mongo_namespace
+                description: Namespace mongo is located in cluster
+              - name: mongo_servicename
+                description: Name of mongo service to connect to
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+                default: ocp4
+                optional: true
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The secret containing the tls certificates
+                default: ""
+                optional: true
+              - name: mongo_namespace
+                type: string
+                description: Namespace where MongoDB is deployed
+                default: mongo
+                optional: true
+              - name: mongo_storageclass
+                type: string
+                description: Storageclass for MongoDB
+                default: ibmc-vpc-block-10iops-tier
+                optional: true
+              - name: mongo_serviceaccount
+                type: string
+                description: Name of the service account to use for mongo
+                default: mongodb-kubernetes-operator
+                optional: true
+              - name: mongo_password
+                type: string
+                description: admin password for mongodb
+                default: changeMechange01
+                optional: true
+            version: v1.1.1
+            outputs:
+              - name: mongo_pw
+                description: mongo admin pw
+              - name: mongo_namespace
+                description: Namespace mongo is located in cluster
+              - name: mongo_servicename
+                description: Name of mongo service to connect to
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+                default: ocp4
+                optional: true
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The secret containing the tls certificates
+                default: ""
+                optional: true
+              - name: mongo_namespace
+                type: string
+                description: Namespace where MongoDB is deployed
+                default: mongo
+                optional: true
+              - name: mongo_storageclass
+                type: string
+                description: Storageclass for MongoDB
+                default: ibmc-vpc-block-10iops-tier
+                optional: true
+              - name: mongo_serviceaccount
+                type: string
+                description: Name of the service account to use for mongo
+                default: mongodb-kubernetes-operator
+                optional: true
+              - name: mongo_password
+                type: string
+                description: admin password for mongodb
+                default: changeMechange01
+                optional: true
+            version: v1.1.0
+            outputs:
+              - name: mongo_pw
+                description: mongo admin pw
+              - name: mongo_namespace
+                description: Namespace mongo is located in cluster
+              - name: mongo_servicename
+                description: Name of mongo service to connect to
+          - platforms:
+              - ocp4
+            dependencies:
+              - id: cluster
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+                    version: '>= 1.7.0'
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-ocp-vpc
+                    version: '>= 1.0.0'
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+                    version: '>= 2.0.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+                    version: '>= 2.1.0'
+            variables:
+              - name: cluster_type
+                moduleRef:
+                  id: cluster
+                  output: platform.type_code
+                type: string
+                description: The cluster type (openshift or ocp3 or ocp4 or kubernetes)
+                default: ocp4
+                optional: true
+              - name: cluster_ingress_hostname
+                moduleRef:
+                  id: cluster
+                  output: platform.ingress
+                type: string
+                description: Ingress hostname of the IKS cluster.
+              - name: cluster_config_file
+                moduleRef:
+                  id: cluster
+                  output: config_file_path
+                type: string
+                description: Cluster config file for Kubernetes cluster.
+              - name: tls_secret_name
+                moduleRef:
+                  id: cluster
+                  output: platform.tls_secret
+                type: string
+                description: The secret containing the tls certificates
+                default: ""
+                optional: true
+              - name: mongo_namespace
+                type: string
+                description: Namespace where MongoDB is deployed
+                default: mongo
+                optional: true
+              - name: mongo_storageclass
+                type: string
+                description: Storageclass for MongoDB
+                default: ibmc-vpc-block-10iops-tier
+                optional: true
+              - name: mongo_serviceaccount
+                type: string
+                description: Name of the service account to use for mongo
+                default: mongodb-kubernetes-operator
+                optional: true
+            version: v1.0.0
+        provider: ocp
   - category: network
     categoryName: Network
     selection: multiple
