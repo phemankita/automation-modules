@@ -1677,6 +1677,7 @@ categories:
               - name: tag
                 description: The tag based on the cluster type
         group: openshift
+        displayName: IBM Container Platform
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -2245,6 +2246,7 @@ categories:
               - name: tag
                 description: The tag vased on the cluster type
         group: openshift
+        displayName: OpenShift Cluster
         aliasIds:
           - github.com/cloud-native-toolkit/terraform-ocp-cluster
       - cloudProvider: ibm
@@ -5922,6 +5924,7 @@ categories:
                 optional: true
             version: v1.0.0
         group: openshift
+        displayName: IBM OpenShift VPC cluster
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -6253,6 +6256,7 @@ categories:
             variables: []
             version: v0.0.0
         group: kubernetes
+        displayName: IBM Kubernetes VPC cluster
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -6435,6 +6439,7 @@ categories:
             variables: []
             version: v0.0.0
         group: openshift
+        displayName: IBM OpenShift login
   - category: databases
     categoryName: Databases
     selection: multiple
@@ -6725,6 +6730,7 @@ categories:
                 optional: true
             version: v1.0.0
         group: mongodb
+        displayName: MongoDB on OCP
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -7022,6 +7028,7 @@ categories:
                 optional: true
             version: v0.0.0
         group: postgresql
+        displayName: Hyper Protect DBaaS PostgreSQL
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -7195,6 +7202,7 @@ categories:
                 default: false
                 optional: true
         group: mongodb
+        displayName: Hyper Protect DBaaS MongoDB
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -7320,6 +7328,7 @@ categories:
               - name: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
                 description: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
         group: mongodb
+        displayName: IBM MongoDB
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -7558,6 +7567,7 @@ categories:
               - name: label
                 description: The label for the redis instance
         group: redis
+        displayName: IBM Redis
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: terraform
@@ -7569,6 +7579,7 @@ categories:
           - gitops
         versions: []
         group: db2-warehouse
+        displayName: IBM DB2 Warehouse
   - category: dev-tool
     categoryName: Dev Tools
     selection: multiple
@@ -9592,6 +9603,7 @@ categories:
               - name: ingress_url
                 description: The ingress url for the Argo CD instance
         group: argocd
+        displayName: ArgoCD
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -10693,6 +10705,7 @@ categories:
               - name: secret_name
                 description: The name of the secret created to store the credentials
         group: artifactory
+        displayName: Artifactory
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -11641,6 +11654,7 @@ categories:
               - name: base_icon_url
                 description: The base url that serves icons for the tools
         group: dashboard
+        displayName: Developer Dashboard
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -11822,6 +11836,7 @@ categories:
               - name: secret_name
                 description: The name of the secret created to store the credentials
         group: jenkins
+        displayName: Jenkins
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -14370,6 +14385,7 @@ categories:
             variables: []
             version: v0.0.0
         group: cicd
+        displayName: OpenShift CICD
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -14944,6 +14960,7 @@ categories:
               - name: config_name
                 description: The name of the ConfigMap created to store the url
         group: pact-broker
+        displayName: Pact Broker
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -15681,6 +15698,7 @@ categories:
               - name: namespace
                 description: The namespace where sonarqube has been installed
         group: sonarqube
+        displayName: SonarQube
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -15985,6 +16003,7 @@ categories:
               - name: ingress_host
                 description: The ingress host for the Swagger Editor Console instance
         group: swagger-editor
+        displayName: Swagger Editor
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -17287,6 +17306,7 @@ categories:
               - name: namespace
                 description: The namespace where Tekton dashboard was deployed
         group: tekton
+        displayName: Tekton
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -18957,6 +18977,7 @@ categories:
                 optional: true
             version: v2.1.12
         group: tekton-resources
+        displayName: Tekton Resources
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -19599,6 +19620,7 @@ categories:
                 optional: true
             version: v1.0.1
         group: turbonomic
+        displayName: Turbonomic
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -19733,6 +19755,7 @@ categories:
             variables: []
             version: v0.0.0
         group: console-link
+        displayName: Console Link Job
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -19842,6 +19865,7 @@ categories:
             variables: []
             version: v0.0.0
         group: ""
+        displayName: Buildah Unprivileged
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -21196,6 +21220,7 @@ categories:
                 optional: true
             version: v0.0.0
         group: console-link
+        displayName: Console Link Job
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -21884,6 +21909,7 @@ categories:
             variables: []
             version: v0.0.0
         group: artifactory
+        displayName: Artifactory
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -23415,6 +23441,7 @@ categories:
             variables: []
             version: v0.0.0
         group: dashboard
+        displayName: Developer Dashboard
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -24417,6 +24444,7 @@ categories:
             variables: []
             version: v0.0.0
         group: pact-broker
+        displayName: Pact Broker
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -25322,6 +25350,7 @@ categories:
             variables: []
             version: v0.0.0
         group: sonarqube
+        displayName: SonarQube
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -26342,6 +26371,7 @@ categories:
                 description: The namespace where the application should be deployed
             version: v0.0.0
         group: registry
+        displayName: Image Registry
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -26971,6 +27001,7 @@ categories:
                 description: The namespace where the application should be deployed
             version: v0.0.0
         group: tekton-resources
+        displayName: Tekton Resources
   - category: gitops
     categoryName: GitOps
     selection: multiple
@@ -27318,6 +27349,7 @@ categories:
               - name: sealed_secrets_cert
                 description: output "sealed_secrets_cert" {   value = module.openshift_cicd.sealed_secrets_cert }
         group: ""
+        displayName: ArgoCD Bootstrap
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -28005,6 +28037,7 @@ categories:
             variables: []
             version: v0.0.0
         group: ""
+        displayName: VSI ArgoCD Bootstrap
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -30059,6 +30092,7 @@ categories:
               - name: application_paths
                 description: The paths in the application repo
         group: ""
+        displayName: GitOps repo
   - category: iam
     categoryName: IAM
     selection: multiple
@@ -30192,6 +30226,7 @@ categories:
                 description: Defines whether creating a API Key is access controlled. Valid values are RESTRICTED to apply access control. NOT_RESTRICTED to remove access control. NOT_SET to unset a previous set value.
             version: v0.0.0
         group: ""
+        displayName: IBM Onboard FS Cloud Account
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -30883,6 +30918,7 @@ categories:
               - name: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
                 description: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
         group: resource-group
+        displayName: IBM Resource Group
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -30930,6 +30966,7 @@ categories:
             variables: []
             version: v0.0.0
         group: access-group
+        displayName: IBM Account Access Group
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -31336,6 +31373,7 @@ categories:
               - name: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
                 description: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
         group: access-group
+        displayName: IBM Access Group
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -31397,6 +31435,7 @@ categories:
             variables: []
             version: v0.0.0
         group: ""
+        displayName: IBM Account Users
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -31443,6 +31482,7 @@ categories:
             variables: []
             version: v0.0.0
         group: ""
+        displayName: IBM Add Users to Access Group
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -32190,6 +32230,7 @@ categories:
             variables: []
             version: v0.0.0
         group: ""
+        displayName: IBM Service Authorization
   - category: image-registry
     categoryName: Image Registry
     selection: single
@@ -32438,6 +32479,7 @@ categories:
             variables: []
             version: v0.0.0
         group: registry
+        displayName: IBM Container Registry
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -33753,6 +33795,7 @@ categories:
               - name: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
                 description: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
         group: registry
+        displayName: IBM Container Registry
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -34146,6 +34189,7 @@ categories:
               - name: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
                 description: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
         group: registry
+        displayName: OpenShift Container Registry
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -34435,6 +34479,7 @@ categories:
               - name: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
                 description: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
         group: registry
+        displayName: External Container Registry
   - category: infrastructure
     categoryName: Infrastructure
     selection: indirect
@@ -34943,6 +34988,7 @@ categories:
               - name: name
                 description: Namespace name
         group: namespace
+        displayName: Namespace
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -37367,6 +37413,7 @@ categories:
             variables: []
             version: v0.0.0
         group: namespace
+        displayName: Namespace
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -37717,6 +37764,7 @@ categories:
               - name: target_namespace
                 description: Namespace where operatoes will be installed
         group: ""
+        displayName: Operator Lifecycle Manager
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: terraform
@@ -38098,6 +38146,7 @@ categories:
                 optional: true
             version: v1.0.3
         group: ""
+        displayName: Cloud Pak Catalog
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: terraform
@@ -38573,6 +38622,7 @@ categories:
             variables: []
             version: v0.0.0
         group: platform-navigator
+        displayName: Cloud Pak Platform Navigator
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: terraform
@@ -39063,6 +39113,7 @@ categories:
                 optional: true
             version: v0.0.0
         group: catalog
+        displayName: Cloud Pak Catalogs
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: terraform
@@ -39502,6 +39553,7 @@ categories:
                 optional: true
             version: v0.0.0
         group: platform-navigator
+        displayName: Cloud Pak Platform Navigator
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: gitops
@@ -39515,6 +39567,7 @@ categories:
           - gitops
         versions: []
         group: sls
+        displayName: IBM Suite License Server
   - category: middleware
     categoryName: Middleware
     selection: multiple
@@ -39675,6 +39728,7 @@ categories:
                 optional: true
             version: v1.1.1
         group: ""
+        displayName: IBM AppId
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -40171,6 +40225,7 @@ categories:
             variables: []
             version: v0.0.0
         group: kms
+        displayName: IBM KMS
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -40981,6 +41036,7 @@ categories:
                 optional: true
             version: v1.3.2
         group: kms
+        displayName: IBM Key Protect
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -41653,6 +41709,7 @@ categories:
             version: v1.1.2
             outputs: []
         group: kms
+        displayName: IBM Hyper Protect
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -41865,6 +41922,7 @@ categories:
               - name: hpcs_init
                 description: 'output "hpcs_init" {   value = var.initialize == false ? null : format("%v", null_resource.hpcs_init.*.id) }'
         group: kms
+        displayName: IBM Hyper Protect Initialization
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -42584,6 +42642,7 @@ categories:
             variables: []
             version: v0.0.0
         group: kms-key
+        displayName: IBM KMS Key
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: terraform
@@ -42958,6 +43017,7 @@ categories:
             variables: []
             version: v0.0.0
         group: app-connect
+        displayName: App Connect
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -43159,6 +43219,7 @@ categories:
             variables: []
             version: v0.0.0
         group: kafka
+        displayName: Event Streams
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -43263,6 +43324,7 @@ categories:
             variables: []
             version: v0.0.0
         group: kafka-topic
+        displayName: Event Streams Topic
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -43741,6 +43803,7 @@ categories:
             variables: []
             version: v0.0.0
         group: cert-manager
+        displayName: JetStack Cert Manager
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -44219,6 +44282,7 @@ categories:
             variables: []
             version: v0.0.0
         group: cert-manager
+        displayName: IBM Certificate Manager
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -44405,6 +44469,7 @@ categories:
               - name: cert
                 description: output "cert" {   value = data.ibm_certificate_manager_certificate.cert.certificate_details[0].data.content }
         group: ""
+        displayName: IBM Certificate Manager Certificate
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: terraform
@@ -44912,6 +44977,7 @@ categories:
                 optional: true
             version: v0.0.0
         group: mq
+        displayName: Cloud Pak MQ Operator
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: terraform
@@ -45296,6 +45362,7 @@ categories:
                 optional: true
             version: v0.0.0
         group: api-connect
+        displayName: Cloud Pak API Connect Operator
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: terraform
@@ -45827,6 +45894,7 @@ categories:
                 optional: true
             version: v0.0.0
         group: app-connect
+        displayName: Cloud Pak App Connect Operator
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: gitops
@@ -45839,6 +45907,7 @@ categories:
           - gitops
         versions: []
         group: odm
+        displayName: IBM Operational Decision Making
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: gitops
@@ -45852,6 +45921,7 @@ categories:
           - gitops
         versions: []
         group: sterling
+        displayName: IBM Sterling Order Management
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -45863,6 +45933,7 @@ categories:
           - gitops
         versions: []
         group: ldap
+        displayName: OpenLDAP
   - category: network
     categoryName: Network
     selection: multiple
@@ -48515,6 +48586,7 @@ categories:
               - name: subnet_ids
                 description: The list of subnet ids
         group: vpc
+        displayName: IBM VPC
       - cloudProvider: aws
         softwareProvider: ""
         type: terraform
@@ -48526,6 +48598,7 @@ categories:
           - devops
         versions: []
         group: vpc
+        displayName: AWS VPC
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -49006,6 +49079,7 @@ categories:
             variables: []
             version: v0.0.0
         group: vpc-gateways
+        displayName: IBM VPC Gateways
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -51782,6 +51856,7 @@ categories:
             variables: []
             version: v0.0.0
         group: vpc-subnets
+        displayName: IBM VPC Subnets
       - cloudProvider: aws
         softwareProvider: ""
         type: terraform
@@ -51793,6 +51868,7 @@ categories:
           - devops
         versions: []
         group: vpc-subnets
+        displayName: AWS VPC Subnets
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -52756,6 +52832,7 @@ categories:
             variables: []
             version: v0.0.0
         group: vpc-ssh
+        displayName: IBM VPC SSH
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -53904,6 +53981,7 @@ categories:
             variables: []
             version: v0.0.0
         group: vpc-vpe-gateway
+        displayName: VPE Gateway
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -57180,6 +57258,7 @@ categories:
             variables: []
             version: v0.0.0
         group: bastion
+        displayName: VSI Bastion
       - cloudProvider: aws
         softwareProvider: ""
         type: terraform
@@ -57191,6 +57270,7 @@ categories:
           - devops
         versions: []
         group: bastion
+        displayName: AWS Bastion
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -61406,6 +61486,7 @@ categories:
             variables: []
             version: v0.0.0
         group: vpn
+        displayName: VSI OpenVPN
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -65038,6 +65119,7 @@ categories:
                 type: string
                 description: sshPublicKey that should be applied to the service
         group: vsi
+        displayName: VPC VSI
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -65289,6 +65371,7 @@ categories:
             version: v0.0.1
             outputs: []
         group: transit-gateway
+        displayName: Transit Gateway
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -65401,6 +65484,7 @@ categories:
             variables: []
             version: v0.0.0
         group: vpc-flow-logs
+        displayName: VPC Flow Logs
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -65671,6 +65755,7 @@ categories:
             variables: []
             version: v0.0.0
         group: vpn
+        displayName: VPC VPN Gateway
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -66540,6 +66625,7 @@ categories:
             variables: []
             version: v0.0.0
         group: vpn
+        displayName: VPC VPN Server
   - category: source-control
     categoryName: Source Control
     selection: single
@@ -66952,6 +67038,7 @@ categories:
               - name: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
                 description: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
         group: source-control
+        displayName: Source Control
   - category: sre
     categoryName: SRE tools
     selection: multiple
@@ -67346,6 +67433,7 @@ categories:
             version: v1.1.3
             outputs: []
         group: activity-tracker
+        displayName: IBM Activity Tracker
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -68564,6 +68652,7 @@ categories:
               - name: sync
                 description: output "sync" {   value = "logdna"   depends_on = [helm_release.logdna] }
         group: logging
+        displayName: IBM LogDNA
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -69894,6 +69983,7 @@ categories:
             variables: []
             version: v0.0.0
         group: ""
+        displayName: IBM LogDNA Bind
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -71243,6 +71333,7 @@ categories:
               - name: sync
                 description: output "sync" {   value = "sysdig"   depends_on = [helm_release.sysdig] }
         group: monitoring
+        displayName: IBM Sysdig
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -72446,6 +72537,7 @@ categories:
             variables: []
             version: v0.0.0
         group: ""
+        displayName: IBM Sysdig Bind
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -74156,6 +74248,7 @@ categories:
               - name: DISABLE_SSH
                 description: output "DISABLE_SSH" {   value = "nCommand to remove rule that allows inbound ssh:n ibmcloud is security-group-rule-delete ${ibm_is_security_group.vsi_sg.id} ${split(".", ibm_is_security_group_rule.rule-ssh-inbound.id)[1]}n" }
         group: ""
+        displayName: IBM SCC Collector
   - category: storage
     categoryName: Storage
     selection: multiple
@@ -75127,6 +75220,7 @@ categories:
                 default: ""
                 optional: true
         group: object-storage
+        displayName: IBM Object Storage
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
@@ -76615,6 +76709,7 @@ categories:
               - name: id
                 description: The ID of the COS bucket instance
         group: object-storage-bucket
+        displayName: IBM Object Storage Bucket
   - category: util
     categoryName: Utilities
     selection: multiple
@@ -76683,6 +76778,7 @@ categories:
             variables: []
             version: v0.0.0
         group: ""
+        displayName: Sealed Secret Cert
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -76920,6 +77016,7 @@ categories:
             variables: []
             version: v0.0.0
         group: cluster-config
+        displayName: Cluster Config
       - cloudProvider: ""
         softwareProvider: ""
         type: terraform
@@ -77182,3 +77279,4 @@ categories:
                 optional: true
             version: v0.0.0
         group: cluster-config
+        displayName: Cluster Config
