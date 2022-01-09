@@ -35131,7 +35131,7 @@ categories:
         group: registry
         displayName: External Container Registry
   - category: infrastructure
-    categoryName: Infrastructure
+    categoryName: Software Infrastructure
     selection: indirect
     modules:
       - cloudProvider: ""
@@ -67526,7 +67526,7 @@ categories:
           - devops
         versions: []
         group: vpc
-        displayName: azure-vpc
+        displayName: Azure VPC
   - category: source-control
     categoryName: Source Control
     selection: single
