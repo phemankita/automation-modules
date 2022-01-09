@@ -1996,6 +1996,18 @@ categories:
           - v0.0.0
         group: vpn
         displayName: VPC VPN Server
+      - cloudProvider: azure
+        softwareProvider: ""
+        type: terraform
+        id: github.com/cloud-native-toolkit/terraform-azure-vpc
+        name: azure-vpc
+        description: Module to provision vpc on azure
+        tags:
+          - tools
+          - devops
+        versions: []
+        group: vpc
+        displayName: azure-vpc
   - category: source-control
     categoryName: Source Control
     selection: single
