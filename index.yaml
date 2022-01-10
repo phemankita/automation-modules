@@ -6283,13 +6283,12 @@ categories:
               - name: login_password
                 type: string
                 description: Password for login
-                default: sensitive = true
+                sensitive: true
                 optional: true
               - name: login_token
                 type: string
-                description: |-
-                  Token used for authentication
-                    sensitive   = true
+                description: Token used for authentication
+                sensitive: true
               - name: skip
                 type: bool
                 description: Flag indicating that the cluster login has already been performed
@@ -6338,12 +6337,12 @@ categories:
               - name: login_password
                 type: string
                 description: Password for login
-                default: sensitive = true
+                sensitive: true
                 optional: true
               - name: login_token
                 type: string
                 description: Token used for authentication
-                default: sensitive = true
+                sensitive: true
                 optional: true
               - name: skip
                 type: bool
