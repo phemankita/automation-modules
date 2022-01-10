@@ -30650,6 +30650,18 @@ categories:
                 description: The paths in the application repo
         group: ""
         displayName: GitOps repo
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        id: github.com/cloud-native-toolkit/terraform-gitops-bootstrap
+        name: gitops-bootstrap
+        description: Module to populate a gitops repo with the resources to provision bootstrap
+        tags:
+          - tools
+          - gitops
+        versions: []
+        group: ""
+        displayName: gitops-bootstrap
   - category: iam
     categoryName: IAM
     selection: multiple
