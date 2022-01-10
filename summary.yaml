@@ -2322,3 +2322,15 @@ categories:
           - v0.0.0
         group: cluster-config
         displayName: Cluster Config
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        id: github.com/cloud-native-toolkit/terraform-gitops-pull-secret
+        name: gitops-pull-secret
+        description: Module to populate a gitops repo with the resources to provision pull-secret
+        tags:
+          - tools
+          - gitops
+        versions: []
+        group: pull-secret
+        displayName: gitops-pull-secret
