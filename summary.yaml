@@ -124,6 +124,7 @@ categories:
         tags:
           - openshift
         versions:
+          - v1.2.1
           - v1.2.0
           - v1.1.1
           - v1.1.0
@@ -771,6 +772,7 @@ categories:
           - devops
           - gitops
         versions:
+          - v1.13.0
           - v1.12.7
           - v1.12.6
           - v1.12.5
