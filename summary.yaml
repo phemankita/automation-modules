@@ -2352,6 +2352,7 @@ categories:
         tags:
           - tools
           - gitops
-        versions: []
+        versions:
+          - v1.0.0
         group: pull-secret
         displayName: gitops-pull-secret
