@@ -68643,7 +68643,7 @@ categories:
                 type: string
                 description: The IBM Cloud api key
               - name: resource_label
-                type: 'string                        '
+                type: string
                 description: The label for the resource to which the vpe will be connected. Used as a tag and as part of the vpe name.
                 default: vpn
                 optional: true
@@ -68660,7 +68660,9 @@ categories:
               - name: client_dns
                 type: list(string)
                 description: Comma-separated DNS IPs for VPN Client Use ['161.26.0.10','161.26.0.11'] for public endpoints, or ['161.26.0.7','161.26.0.8'] for private endpoints
-                default: '[161.26.0.7,161.26.0.8]'
+                default:
+                  - 161.26.0.7
+                  - 161.26.0.8
                 optional: true
               - name: auth_method
                 type: string
@@ -68748,7 +68750,7 @@ categories:
                 type: string
                 description: The IBM Cloud api key
               - name: resource_label
-                type: 'string                        '
+                type: string
                 description: The label for the resource to which the vpe will be connected. Used as a tag and as part of the vpe name.
                 default: vpn
                 optional: true
@@ -68853,7 +68855,7 @@ categories:
                 type: string
                 description: The IBM Cloud api key
               - name: resource_label
-                type: 'string                        '
+                type: string
                 description: The label for the resource to which the vpe will be connected. Used as a tag and as part of the vpe name.
                 default: vpn
                 optional: true
