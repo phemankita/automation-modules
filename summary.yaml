@@ -969,6 +969,7 @@ categories:
           - authorization
           - policy
         versions:
+          - v1.2.5
           - v1.2.4
           - v1.2.3
           - v1.2.2
