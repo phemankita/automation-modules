@@ -721,6 +721,20 @@ categories:
           - v0.0.0
         group: tekton-resources
         displayName: Tekton Resources
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: terraform
+        id: github.com/cloud-native-toolkit/terraform-gitops-ocp-turbonomic
+        name: gitops-ocp-turbonomic
+        description: Module to install Turbonomic via Gitops
+        tags:
+          - tools
+          - gitops
+        versions:
+          - v1.0.1
+          - v1.0.0
+        group: turbonomic
+        displayName: gitops-turbonomic
   - category: gitops
     categoryName: GitOps
     selection: multiple
