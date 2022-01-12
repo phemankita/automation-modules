@@ -1583,7 +1583,8 @@ categories:
           - odm
           - cloudpak
           - gitops
-        versions: []
+        versions:
+          - v1.0.0
         group: odm
         displayName: IBM Operational Decision Making
       - cloudProvider: ""
