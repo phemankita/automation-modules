@@ -2058,6 +2058,18 @@ categories:
         versions: []
         group: vpc
         displayName: Azure VPC
+      - cloudProvider: aws
+        softwareProvider: ""
+        type: terraform
+        id: github.com/cloud-native-toolkit/terraform-aws-ec2
+        name: aws-ec2
+        description: Module to provision ec2 on aws
+        tags:
+          - tools
+          - devops
+        versions: []
+        group: vsi
+        displayName: aws-ec2
   - category: source-control
     categoryName: Source Control
     selection: single
@@ -2321,6 +2333,25 @@ categories:
           - v0.1.3
         group: object-storage-bucket
         displayName: IBM Object Storage Bucket
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        id: github.com/cloud-native-toolkit/terraform-gitops-ocp-storageclass
+        name: gitops-storageclass
+        description: Module to populate a gitops repo with the resources to provision a storage class in an OCP cluster
+        tags:
+          - storage class
+          - ocp
+          - gitops
+        versions:
+          - v1.2.0
+          - v1.1.0
+          - v1.0.0
+          - v0.0.2
+          - v0.0.1
+          - v0.0.0
+        group: ""
+        displayName: storageclass
   - category: util
     categoryName: Utilities
     selection: multiple
