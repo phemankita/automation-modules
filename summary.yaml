@@ -221,7 +221,7 @@ categories:
         softwareProvider: ibm-cp
         type: terraform
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-db2wh
-        name: gitops-cp-db2
+        name: gitops-cp-db2wh
         description: ""
         tags:
           - tools
