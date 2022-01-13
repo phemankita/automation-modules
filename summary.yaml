@@ -1632,7 +1632,8 @@ categories:
         tags:
           - tools
           - gitops
-        versions: []
+        versions:
+          - v1.0.0
         group: ldap
         displayName: OpenLDAP
   - category: network
