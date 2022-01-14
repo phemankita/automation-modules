@@ -245,6 +245,7 @@ categories:
           - gitops
           - argocd
         versions:
+          - v2.17.9
           - v2.17.8
           - v2.17.7
           - v2.17.6
