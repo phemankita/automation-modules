@@ -1298,6 +1298,7 @@ categories:
           - tools
           - gitops
         versions:
+          - v0.0.2
           - v0.0.1
         group: ""
         displayName: gitops-cp4d-operator
