@@ -120,10 +120,13 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-ocp-login
         name: ocp-login
         alias: cluster
+        interfaces:
+          - github.com/cloud-native-toolkit/automation-modules#cluster
         description: Module to perform a simple cluster login and provide the cluster path
         tags:
           - openshift
         versions:
+          - v1.2.2
           - v1.2.1
           - v1.2.0
           - v1.1.1
@@ -2039,6 +2042,7 @@ categories:
           - vpn server
           - client to site
         versions:
+          - v0.0.9
           - v0.0.8
           - v0.0.7
           - v0.0.6
