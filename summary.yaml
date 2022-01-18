@@ -2365,6 +2365,19 @@ categories:
           - v0.0.0
         group: ""
         displayName: storageclass
+      - cloudProvider: ibm
+        softwareProvider: ""
+        type: terraform
+        id: github.com/cloud-native-toolkit/terraform-portworx
+        name: ibm-portworx
+        description: Terraform module to install Portworx storage in an OpenShift cluster.
+        tags:
+          - tools
+          - devops
+        versions:
+          - v1.0.0
+        group: ""
+        displayName: Portworx on IBM Cloud
   - category: util
     categoryName: Utilities
     selection: multiple
