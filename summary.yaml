@@ -1632,7 +1632,7 @@ categories:
         group: sterling
         displayName: IBM Sterling Order Management
       - cloudProvider: ""
-        softwareProvider: ""
+        softwareProvider: opensource
         type: terraform
         id: github.com/cloud-native-toolkit/terraform-gitops-openldap
         name: gitops-openldap
