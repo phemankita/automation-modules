@@ -2364,13 +2364,13 @@ categories:
         type: gitops
         id: github.com/cloud-native-toolkit/terraform-gitops-ocp-storageclass
         name: gitops-storageclass
-        alias: storageclass
         description: Module to populate a gitops repo with the resources to provision a storage class in an OCP cluster
         tags:
-          - storage class
+          - storageclass
           - ocp
           - gitops
         versions:
+          - v1.2.2
           - v1.2.1
           - v1.2.0
           - v1.1.0
