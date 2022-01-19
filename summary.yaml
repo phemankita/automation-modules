@@ -223,7 +223,7 @@ categories:
         group: redis
         displayName: IBM Redis
       - cloudProvider: ""
-        softwareProvider: ibm-cp
+        softwareProvider: ""
         type: terraform
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-db2wh
         name: gitops-cp-db2wh
@@ -234,6 +234,18 @@ categories:
         versions: []
         group: db2-warehouse
         displayName: IBM DB2 Warehouse
+      - cloudProvider: ""
+        softwareProvider: ibm-cp
+        type: terraform
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp-db2wh
+        name: gitops-cp-db2wh
+        description: ""
+        tags:
+          - tools
+          - gitops
+        versions: []
+        group: terraform-gitops-db2u-operator
+        displayName: IBM DB2U Operator
   - category: dev-tool
     categoryName: Dev Tools
     selection: multiple
