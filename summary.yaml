@@ -1510,22 +1510,17 @@ categories:
           - v0.0.0
         group: kafka-topic
         displayName: Event Streams Topic
-      - cloudProvider: ibm
-        softwareProvider: ""
-        type: terraform
-        id: github.com/cloud-native-toolkit/terraform-ibm-cert-manager
-        name: ibm-cert-manager
-        description: Module to provision an IBM Cloud Certificate Manager instance.
+      - cloudProvider: ""
+        softwareProvider: jetstack
+        type: gitops
+        id: github.com/cloud-native-toolkit/terraform-gitops-ocp-cert-manager
+        name: gitops-cert-manager-jetstack
+        description: Module to populate a gitops repository with the resources to deploy the JetStack Cert Manager
         tags:
-          - ibm cloud
-          - certificate
           - cert manager
-        versions:
-          - v1.1.0
-          - v1.0.2
-          - v1.0.1
-          - v1.0.0
-          - v0.0.0
+          - jetstack
+          - gitops
+        versions: []
         group: cert-manager
         displayName: JetStack Cert Manager
       - cloudProvider: ibm
