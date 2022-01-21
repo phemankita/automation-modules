@@ -1299,13 +1299,14 @@ categories:
         type: gitops
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-sls
         name: gitops-cp-sls
-        description: Module to populate a gitops repo with the resources to deploy IBM Suite License Service
+        description: Module to populate a gitops repository for SLS service
         tags:
+          - gitops
           - cluudpak
           - ibm
           - license
-          - gitops
-        versions: []
+        versions:
+          - v1.0.0
         group: sls
         displayName: IBM Suite License Server
       - cloudProvider: ""
