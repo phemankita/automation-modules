@@ -2438,6 +2438,7 @@ categories:
           - tools
           - gitops
         versions:
+          - v1.1.0
           - v1.0.0
         group: pull-secret
         displayName: gitops-pull-secret
