@@ -29700,6 +29700,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-gitops-ocs-operator
         group: ""
         displayName: gitops-ocs-operator
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        name: gitops-ibm-ocs
+        description: Module to populate a gitops repo with the resources to provision ibm-ocs
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-ibm-ocs
+        group: ""
+        displayName: gitops-ibm-ocs
   - category: iam
     categoryName: IAM
     selection: multiple
