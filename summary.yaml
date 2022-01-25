@@ -140,6 +140,18 @@ categories:
           - v0.0.0
         group: openshift
         displayName: IBM OpenShift login
+      - cloudProvider: aws
+        softwareProvider: ""
+        type: terraform
+        name: aws-rosa
+        description: Module to provision rosa on aws
+        tags:
+          - tools
+          - devops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-aws-rosa
+        group: ""
+        displayName: aws-rosa
   - category: databases
     categoryName: Databases
     selection: multiple
