@@ -839,6 +839,7 @@ categories:
           - gitops
           - bootstrap
         versions:
+          - v1.2.1
           - v1.2.0
           - v1.1.0
           - v1.0.2
@@ -1679,6 +1680,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-event-streams
         group: kafka
         displayName: gitops-cp-event-streams
+      - cloudProvider: aws
+        softwareProvider: ""
+        type: terraform
+        name: aws-kms
+        description: Module to provision kms on aws
+        tags:
+          - tools
+          - devops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-aws-kms
+        group: kms
+        displayName: aws-kms
   - category: network
     categoryName: Network
     selection: multiple
