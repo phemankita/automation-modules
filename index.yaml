@@ -69226,6 +69226,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-aws-ssh-key
         group: ""
         displayName: aws-ssh-key
+      - cloudProvider: aws
+        softwareProvider: ""
+        type: terraform
+        name: aws-vpn-server
+        description: Module to provision vpn-server on aws
+        tags:
+          - tools
+          - devops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-aws-vpn-server
+        group: vpn
+        displayName: aws-vpn-server
   - category: source-control
     categoryName: Source Control
     selection: single
