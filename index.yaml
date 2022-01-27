@@ -69214,6 +69214,18 @@ categories:
         versions: []
         group: vsi
         displayName: aws-ec2
+      - cloudProvider: aws
+        softwareProvider: ""
+        type: terraform
+        name: aws-ssh-key
+        description: Module to provision ssh-key on aws
+        tags:
+          - tools
+          - devops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-aws-ssh-key
+        group: ""
+        displayName: aws-ssh-key
   - category: source-control
     categoryName: Source Control
     selection: single
