@@ -1667,6 +1667,18 @@ categories:
           - v1.0.0
         group: ldap
         displayName: OpenLDAP
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        name: gitops-cp-event-streams
+        description: Module to populate a gitops repo with the resources to provision cp-event-streams
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp-event-streams
+        group: kafka
+        displayName: gitops-cp-event-streams
   - category: network
     categoryName: Network
     selection: multiple
