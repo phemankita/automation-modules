@@ -1840,6 +1840,89 @@ categories:
             dependencies: []
             variables:
               - name: cluster_type
+                type: string
+                description: The type of cluster into which the toolkit will be installed (openshift or ocp3 or ocp4)
+                default: ocp4
+                scope: global
+              - name: login_user
+                type: string
+                description: The username to log in to openshift
+                default: ""
+                scope: module
+              - name: login_password
+                type: string
+                description: The password to log in to openshift
+                default: ""
+                scope: module
+              - name: login_token
+                type: string
+                description: The token to log in to openshift
+                default: ""
+                scope: module
+              - name: server_url
+                type: string
+                description: The url to the server
+                scope: module
+              - name: resource_group_name
+                type: string
+                description: The name of the IBM Cloud resource group where the cluster will be created/can be found.
+                default: N/A
+                scope: ignore
+              - name: cluster_region
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+                default: N/A
+                scope: ignore
+              - name: ingress_subdomain
+                type: string
+                description: The ROUTER_CANONICAL_HOSTNAME for the cluster
+                default: ""
+                scope: ignore
+              - name: gitops_dir
+                type: string
+                description: Directory where the gitops repo content should be written
+                default: ""
+                scope: global
+            version: v2.4.7
+            outputs:
+              - name: id
+                description: ID of the cluster.
+              - name: name
+                description: Name of the cluster.
+              - name: resource_group_name
+                description: Name of the resource group containing the cluster.
+              - name: region
+                description: Region containing the cluster.
+              - name: ingress_hostname
+                description: Ingress hostname of the cluster.
+              - name: server_url
+                description: The url of the control server.
+              - name: config_file_path
+                description: Path to the config file for the cluster.
+              - name: type
+                description: (Deprecated, use platform.type) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: type_code
+                description: (Deprecated, use platform.type_code) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: platform
+                type:
+                  lines:
+                    - local.cluster_type
+                description: Configuration values for the cluster platform
+              - name: version
+                description: (Deprecated, use platform.version) The point release version number of cluster (3.11 or 4.3 or 1.16)
+              - name: login_user
+                description: The username used to log into the openshift cli
+              - name: login_password
+                description: The password used to log into the openshift cli
+              - name: tls_secret_name
+                description: The name of the secret containin the tls information for the cluster
+              - name: tag
+                description: The tag vased on the cluster type
+          - platforms:
+              - ocp4
+            dependencies: []
+            variables:
+              - name: cluster_type
                 scope: global
                 type: string
                 description: The type of cluster into which the toolkit will be installed (openshift or ocp3 or ocp4)
@@ -2391,6 +2474,8 @@ categories:
                 description: The name of the secret containin the tls information for the cluster
               - name: tag
                 description: The tag vased on the cluster type
+        interfaces:
+          - github.com/cloud-native-toolkit/automation-modules#cluster
         group: openshift
         displayName: OpenShift Cluster
         aliasIds:
