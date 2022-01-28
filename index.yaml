@@ -41680,6 +41680,105 @@ categories:
             version: v0.0.1
         group: ""
         displayName: gitops-cp4d-operator
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: terraform
+        id: github.com/cloud-native-toolkit/terraform-cp4i-dependency-management
+        name: cp4i-dependency-management
+        description: Module to configure the manage and coordinate channels, versions, and license keys across different Cloud Pak for Integration components
+        tags:
+          - cloud pak
+          - dependency management
+          - channel
+        versions:
+          - platforms: []
+            dependencies: []
+            variables: []
+            version: v1.0.0
+            outputs:
+              - name: platform_navigator
+                description: Platform navigator operator configuration
+              - name: mq
+                description: MQ operator configuration
+              - name: ace
+                description: ACE operator configuration
+              - name: apic
+                description: API Connect operator configuration
+          - platforms: []
+            dependencies: []
+            variables: []
+            version: v0.4.1
+            outputs:
+              - name: platform_navigator
+                description: Platform navigator operator configuration
+              - name: mq
+                description: MQ operator configuration
+              - name: ace
+                description: ACE operator configuration
+              - name: apic
+                description: API Connect operator configuration
+          - platforms: []
+            dependencies: []
+            variables: []
+            version: v0.4.0
+            outputs:
+              - name: platform_navigator
+                description: Platform navigator operator configuration
+              - name: mq
+                description: MQ operator configuration
+              - name: ace
+                description: ACE operator configuration
+              - name: apic
+                description: API Connect operator configuration
+          - platforms: []
+            dependencies: []
+            variables: []
+            version: v0.3.1
+            outputs:
+              - name: platform_navigator
+                description: Platform navigator operator configuration
+              - name: mq
+                description: MQ operator configuration
+              - name: ace
+                description: ACE operator configuration
+          - platforms: []
+            dependencies: []
+            variables: []
+            version: v0.3.0
+            outputs:
+              - name: platform_navigator
+                description: Platform navigator operator configuration
+              - name: mq
+                description: MQ operator configuration
+          - platforms: []
+            dependencies: []
+            variables: []
+            version: v0.2.1
+            outputs:
+              - name: platform_navigator
+                description: Platform navigator operator configuration
+              - name: mq
+                description: MQ operator configuration
+          - platforms: []
+            dependencies: []
+            variables: []
+            version: v0.2.0
+            outputs:
+              - name: platform_navigator
+                description: Platform navigator operator configuration
+              - name: mq
+                description: MQ operator configuration
+          - platforms: []
+            dependencies: []
+            variables: []
+            version: v0.1.0
+            outputs:
+              - name: platform_navigator
+                description: output "platform_navigator" {   description = "Description of my
+              - name: output"   value       = local.platform_navigator }
+                description: output"   value       = local.platform_navigator }
+        group: ""
+        displayName: CP4I Dependency Manager
   - category: middleware
     categoryName: Middleware
     selection: multiple

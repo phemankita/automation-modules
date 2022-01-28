@@ -1337,6 +1337,27 @@ categories:
           - v0.0.1
         group: ""
         displayName: gitops-cp4d-operator
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: terraform
+        id: github.com/cloud-native-toolkit/terraform-cp4i-dependency-management
+        name: cp4i-dependency-management
+        description: Module to configure the manage and coordinate channels, versions, and license keys across different Cloud Pak for Integration components
+        tags:
+          - cloud pak
+          - dependency management
+          - channel
+        versions:
+          - v1.0.0
+          - v0.4.1
+          - v0.4.0
+          - v0.3.1
+          - v0.3.0
+          - v0.2.1
+          - v0.2.0
+          - v0.1.0
+        group: ""
+        displayName: CP4I Dependency Manager
   - category: middleware
     categoryName: Middleware
     selection: multiple
