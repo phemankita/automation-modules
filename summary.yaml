@@ -794,6 +794,7 @@ categories:
           - gitops
           - bootstrap
         versions:
+          - v1.6.0
           - v1.5.1
           - v1.5.0
           - v1.4.4
