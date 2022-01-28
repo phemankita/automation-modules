@@ -70566,7 +70566,7 @@ categories:
           - devops
         versions: []
         id: github.com/cloud-native-toolkit/terraform-aws-ssh-key
-        group: ""
+        group: vpc-ssh
         displayName: AWS SSH Key
       - cloudProvider: aws
         softwareProvider: ""
