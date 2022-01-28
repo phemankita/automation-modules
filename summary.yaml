@@ -1840,6 +1840,7 @@ categories:
           - subnets
           - vpc
         versions:
+          - v1.9.5
           - v1.9.4
           - v1.9.3
           - v1.9.2
@@ -1871,6 +1872,8 @@ categories:
           - v1.0.1
           - v1.0.0
           - v0.0.0
+        interfaces:
+          - github.com/cloud-native-toolkit/automation-modules#ibm-vpc-resource
         group: vpc-subnets
         displayName: IBM VPC Subnets
       - cloudProvider: aws
