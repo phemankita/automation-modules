@@ -29,6 +29,150 @@ categories:
             dependencies: []
             variables:
               - name: resource_group_name
+                type: string
+                description: The name of the IBM Cloud resource group where the cluster will be created/can be found.
+                scope: global
+              - name: cluster_name
+                type: string
+                description: The name of the cluster that will be created within the resource group
+                scope: global
+              - name: cluster_hardware
+                type: string
+                description: The type of hardware for the cluster (shared, dedicated)
+                default: shared
+                scope: global
+              - name: cluster_worker_count
+                type: number
+                description: The number of worker nodes that should be provisioned for classic infrastructure
+                default: "3"
+                scope: global
+              - name: cluster_machine_type
+                type: string
+                description: (Deprecated, use VPC) The machine type that will be provisioned for classic infrastructure
+                default: b3c.4x16
+                scope: global
+              - name: flavor
+                type: string
+                description: (Deprecated, use VPC) The machine type that will be provisioned for classic infrastructure
+                default: b3c.4x16
+                scope: module
+              - name: vlan_datacenter
+                type: string
+                description: (Deprecated, use VPC) The datacenter that should be used for classic infrastructure provisioning
+                default: ""
+                scope: module
+              - name: private_vlan_id
+                type: string
+                description: (Deprecated, use VPC) The private vlan id that should be used for classic infrastructure provisioning
+                default: ""
+                scope: module
+              - name: public_vlan_id
+                type: string
+                description: (Deprecated, use VPC) The public vlan id that should be used for classic infrastructure provisioning
+                default: ""
+                scope: module
+              - name: vpc_zone_count
+                type: number
+                description: Number of vpc zones
+                default: "0"
+                scope: module
+              - name: cluster_region
+                type: string
+                description: The IBM Cloud region where the cluster will be/has been installed.
+                scope: global
+                alias: region
+              - name: cluster_type
+                type: string
+                description: The type of cluster that should be created (openshift or ocp3 or ocp4 or kubernetes)
+                scope: global
+              - name: ibmcloud_api_key
+                type: string
+                description: The IBM Cloud api token
+                scope: global
+              - name: cluster_exists
+                type: bool
+                description: Flag indicating if the cluster already exists (true or false)
+                scope: global
+              - name: login_user
+                type: string
+                description: The username to log in to openshift
+                default: apikey
+                scope: module
+              - name: name_prefix
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                scope: global
+              - name: is_vpc
+                type: bool
+                description: Flag indicating that the cluster uses vpc infrastructure
+                default: false
+                scope: module
+              - name: ocp_entitlement
+                type: string
+                description: Value that is applied to the entitlements for OCP cluster provisioning
+                default: cloud_pak
+                scope: module
+              - name: cos_name
+                type: string
+                description: (optional) The name of the cos instance that will be used for the OCP 4 vpc instance
+                default: ""
+                scope: module
+              - name: provision_cos
+                type: bool
+                description: Flag indicating that the cos instance should be provisioned, if necessary
+                default: true
+                scope: module
+              - name: gitops_dir
+                type: string
+                description: Directory where the gitops repo content should be written
+                default: ""
+                scope: global
+            version: v1.21.1
+            outputs:
+              - name: id
+                description: ID of the cluster.
+              - name: name
+                description: Name of the cluster.
+              - name: resource_group_name
+                description: Name of the resource group containing the cluster.
+              - name: region
+                description: Region containing the cluster.
+              - name: ingress_hostname
+                description: (Deprecated) Ingress hostname of the cluster.
+              - name: server_url
+                description: The url of the control server.
+              - name: config_file_path
+                description: (Deprecated) Path to the config file for the cluster.
+              - name: type
+                description: (Deprecated, use platform.type) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: type_code
+                description: (Deprecated, use platform.type_code) The type of cluster (openshift or ocp4 or ocp3 or kubernetes)
+              - name: platform
+                type:
+                  lines:
+                    - local.cluster_type
+                description: Configuration values for the cluster platform
+              - name: version
+                description: (Deprecated, use platform.version) The point release version number of cluster (3.11 or 4.3 or 1.16)
+              - name: login_user
+                description: (Deprecated) The username used to log into the openshift cli
+              - name: login_password
+                description: (Deprecated) The password used to log into the openshift cli
+              - name: tls_secret_name
+                description: (Deprecated) The name of the secret containin the tls information for the cluster
+              - name: tag
+                description: The tag based on the cluster type
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies: []
+            variables:
+              - name: resource_group_name
                 scope: global
                 type: string
                 description: The name of the IBM Cloud resource group where the cluster will be created/can be found.
@@ -1676,6 +1820,8 @@ categories:
                 description: (Deprecated) The name of the secret containin the tls information for the cluster
               - name: tag
                 description: The tag based on the cluster type
+        interfaces:
+          - github.com/cloud-native-toolkit/automation-modules#cluster
         group: openshift
         displayName: IBM Container Platform
       - cloudProvider: ""
