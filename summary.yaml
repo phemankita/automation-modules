@@ -286,6 +286,7 @@ categories:
           - gitops
           - argocd
         versions:
+          - v2.17.10
           - v2.17.9
           - v2.17.8
           - v2.17.7
@@ -391,6 +392,7 @@ categories:
           - tekton
           - argocd
         versions:
+          - v1.7.8
           - v1.7.7
           - v1.7.6
           - v1.7.5
