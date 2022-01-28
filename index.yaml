@@ -41694,6 +41694,19 @@ categories:
           - platforms: []
             dependencies: []
             variables: []
+            version: v1.1.0
+            outputs:
+              - name: platform_navigator
+                description: Platform navigator operator configuration
+              - name: mq
+                description: MQ operator configuration
+              - name: ace
+                description: ACE operator configuration
+              - name: apic
+                description: API Connect operator configuration
+          - platforms: []
+            dependencies: []
+            variables: []
             version: v1.0.0
             outputs:
               - name: platform_navigator
