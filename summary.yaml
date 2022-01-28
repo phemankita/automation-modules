@@ -151,7 +151,7 @@ categories:
         versions: []
         id: github.com/cloud-native-toolkit/terraform-aws-rosa
         group: ""
-        displayName: aws-rosa
+        displayName: AWS ROSA
   - category: databases
     categoryName: Databases
     selection: multiple
@@ -847,7 +847,7 @@ categories:
           - v1.0.1
           - v1.0.0
         group: ""
-        displayName: gitops-bootstrap
+        displayName: Bootstrap GitOps
       - cloudProvider: ""
         softwareProvider: ""
         type: gitops
@@ -859,7 +859,7 @@ categories:
         versions: []
         id: github.com/cloud-native-toolkit/terraform-gitops-ocs-operator
         group: ""
-        displayName: gitops-ocs-operator
+        displayName: ocs-operator
       - cloudProvider: ""
         softwareProvider: ""
         type: gitops
@@ -871,7 +871,7 @@ categories:
         versions: []
         id: github.com/cloud-native-toolkit/terraform-gitops-ibm-ocs
         group: ""
-        displayName: gitops-ibm-ocs
+        displayName: ibm-ocs
   - category: iam
     categoryName: IAM
     selection: multiple
@@ -1710,7 +1710,7 @@ categories:
         versions: []
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-event-streams
         group: kafka
-        displayName: gitops-cp-event-streams
+        displayName: Event Streams
       - cloudProvider: aws
         softwareProvider: ""
         type: terraform
@@ -1722,7 +1722,7 @@ categories:
         versions: []
         id: github.com/cloud-native-toolkit/terraform-aws-kms
         group: kms
-        displayName: aws-kms
+        displayName: AWS KMS
       - cloudProvider: ""
         softwareProvider: ""
         type: gitops
@@ -1734,7 +1734,7 @@ categories:
         versions: []
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-mq-uniform-cluster
         group: ""
-        displayName: gitops-cp-mq-uniform-cluster
+        displayName: CP MQ Uniform Cluster
   - category: network
     categoryName: Network
     selection: multiple
@@ -2104,6 +2104,7 @@ categories:
           - flow log
           - vpc
         versions:
+          - v1.0.1
           - v1.0.0
           - v0.0.0
         group: vpc-flow-logs
@@ -2178,7 +2179,7 @@ categories:
           - devops
         versions: []
         group: vsi
-        displayName: aws-ec2
+        displayName: AWS EC2
       - cloudProvider: aws
         softwareProvider: ""
         type: terraform
@@ -2190,7 +2191,7 @@ categories:
         versions: []
         id: github.com/cloud-native-toolkit/terraform-aws-ssh-key
         group: ""
-        displayName: aws-ssh-key
+        displayName: AWS SSH Key
       - cloudProvider: aws
         softwareProvider: ""
         type: terraform
@@ -2202,7 +2203,7 @@ categories:
         versions: []
         id: github.com/cloud-native-toolkit/terraform-aws-vpn-server
         group: vpn
-        displayName: aws-vpn-server
+        displayName: AWS VPN Server
   - category: source-control
     categoryName: Source Control
     selection: single
@@ -2568,4 +2569,4 @@ categories:
           - v1.1.0
           - v1.0.0
         group: pull-secret
-        displayName: gitops-pull-secret
+        displayName: Pull Secret
