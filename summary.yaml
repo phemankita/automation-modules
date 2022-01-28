@@ -1362,6 +1362,7 @@ categories:
   - category: middleware
     categoryName: Middleware
     selection: multiple
+    catalogFile: catalog.yaml
     modules:
       - cloudProvider: ibm
         softwareProvider: ""
