@@ -1680,6 +1680,7 @@ categories:
           - cloudpak
           - gitops
         versions:
+          - v1.0.1
           - v1.0.0
         group: odm
         displayName: IBM Operational Decision Making
