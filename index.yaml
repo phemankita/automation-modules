@@ -42881,6 +42881,18 @@ categories:
                 description: output"   value       = local.platform_navigator }
         group: ""
         displayName: CP4I Dependency Manager
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        name: gitops-cp-truststore
+        description: Module to populate a gitops repo with the resources to provision cp-truststore
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp-truststore
+        group: ""
+        displayName: CP TrustStore
   - category: middleware
     categoryName: Middleware
     selection: multiple
