@@ -844,6 +844,7 @@ categories:
           - devops
           - gitops
         versions:
+          - v1.14.4
           - v1.14.3
           - v1.14.2
           - v1.14.1
@@ -1760,6 +1761,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-mq-uniform-cluster
         group: ""
         displayName: CP MQ Uniform Cluster
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        name: gitops-cp-sterling-oms
+        description: Module to populate a gitops repo with the resources to provision cp-sterling-oms
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp-sterling-oms
+        group: ""
+        displayName: CP Sterling Order Management
   - category: network
     categoryName: Network
     selection: multiple
