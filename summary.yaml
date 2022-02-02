@@ -2,6 +2,19 @@ categories:
   - category: ai-ml
     categoryName: AI/ML
     selection: multiple
+    modules:
+      - cloudProvider: ""
+        softwareProvider: ibm-cp
+        type: gitops
+        name: gitops-cp-bas
+        description: Module to populate a gitops repo with the resources to provision cp-bas
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp-bas
+        group: ""
+        displayName: CP Behavior Analytics Service
   - category: cluster
     categoryName: Cluster
     selection: single
