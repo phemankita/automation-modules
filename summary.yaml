@@ -1654,7 +1654,8 @@ categories:
           - cert manager
           - jetstack
           - gitops
-        versions: []
+        versions:
+          - v1.0.0
         group: cert-manager
         displayName: JetStack Cert Manager
       - cloudProvider: ibm
