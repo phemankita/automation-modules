@@ -39,6 +39,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-watson-machine-learning
         group: ""
         displayName: Watson Machine Learning
+      - cloudProvider: ""
+        softwareProvider: ibm-cp
+        type: gitops
+        name: gitops-cp-waiops
+        description: Module to populate a gitops repo with the resources to provision cp-waiops
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp-waiops
+        group: ""
+        displayName: Watson AI Ops
   - category: cluster
     categoryName: Cluster
     selection: single
@@ -42795,7 +42807,7 @@ categories:
                     version: '>= 1.0.0'
               - id: cluster
                 refs: []
-                interface: github.com/cloud-native-toolkit/garage-terraform-modules#cluster
+                interface: github.com/cloud-native-toolkit/automation-modules#cluster
               - id: namespace
                 refs:
                   - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
@@ -43206,6 +43218,21 @@ categories:
           - dependency management
           - channel
         versions:
+          - platforms: []
+            dependencies: []
+            variables: []
+            version: v1.1.1
+            outputs:
+              - name: platform_navigator
+                description: Platform navigator operator configuration
+              - name: mq
+                description: MQ operator configuration
+              - name: ace
+                description: ACE operator configuration
+              - name: apic
+                description: API Connect operator configuration
+              - name: eventstreams
+                description: IBM Eventstreams operator configuration
           - platforms: []
             dependencies: []
             variables: []
