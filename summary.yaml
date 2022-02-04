@@ -2271,7 +2271,8 @@ categories:
         tags:
           - tools
           - devops
-        versions: []
+        versions:
+          - v1.0.0
         id: github.com/cloud-native-toolkit/terraform-aws-ssh-key
         group: vpc-ssh
         displayName: AWS SSH Key
