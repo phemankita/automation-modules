@@ -2599,6 +2599,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-aws-s3-instance
         group: object-storage
         displayName: AWS S3 Instance
+      - cloudProvider: aws
+        softwareProvider: ""
+        type: terraform
+        name: aws-s3-bucket
+        description: Module to provision s3-bucket on aws
+        tags:
+          - tools
+          - devops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-aws-s3-bucket
+        group: object-storage-bucket
+        displayName: AWS S3 Bucket
   - category: util
     categoryName: Utilities
     selection: multiple
