@@ -1664,6 +1664,7 @@ categories:
           - jetstack
           - gitops
         versions:
+          - v1.0.1
           - v1.0.0
         group: cert-manager
         displayName: JetStack Cert Manager
