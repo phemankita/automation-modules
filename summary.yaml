@@ -2630,13 +2630,15 @@ categories:
       - cloudProvider: aws
         softwareProvider: ""
         type: terraform
+        id: github.com/cloud-native-toolkit/terraform-aws-s3-instance
         name: aws-s3-instance
         description: Module to provision s3-instance on aws
         tags:
-          - tools
-          - devops
-        versions: []
-        id: github.com/cloud-native-toolkit/terraform-aws-s3-instance
+          - aws
+          - s3 bucket
+          - s3
+        versions:
+          - v0.0.1
         group: object-storage
         displayName: AWS S3 Instance
       - cloudProvider: aws
