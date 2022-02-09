@@ -204,12 +204,15 @@ categories:
         softwareProvider: ""
         type: terraform
         name: aws-rosa
-        description: Module to provision rosa on aws
+        description: Module to provision rosa on aws rosa cluster
         tags:
-          - tools
-          - devops
-        versions: []
+          - ocp
+          - cluster
+          - vpc
+        versions:
+          - v1.0.0
         id: github.com/cloud-native-toolkit/terraform-aws-rosa
+        alias: rosa-cluster
         group: ""
         displayName: AWS ROSA
   - category: databases
