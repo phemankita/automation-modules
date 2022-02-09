@@ -74515,7 +74515,97 @@ categories:
         description: Module to provision ec2 on aws
         tags:
           - infrastructure
+          - ec2
+          - virtual instance
+          - vpc
         versions:
+          - platforms: []
+            providers:
+              - name: aws
+                source: hashicorp/aws
+            dependencies:
+              - id: vpcssh
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-aws-ssh-key
+                    version: '>= 1.0.0'
+              - id: vpc
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-aws-vpc
+                    version: '>= 1.0.0'
+              - id: subnets
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-aws-vpc-subnets
+                    version: '>= 1.0.0'
+              - id: kms_key
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-kms-key
+                    version: '>= 0.0.1'
+                optional: true
+            variables:
+              - name: vpc_id
+                moduleRef:
+                  id: vpc
+                  output: vpcID
+              - name: subnet_ids_pri
+                moduleRef:
+                  id: subnets
+                  output: subnet_ids_pri_network
+              - name: subnet_ids_pub
+                moduleRef:
+                  id: subnets
+                  output: subnet_ids_pub_network
+              - name: subnet_count_private
+                moduleRef:
+                  id: subnets
+                  output: count
+              - name: subnet_count_public
+                moduleRef:
+                  id: subnets
+                  output: count
+              - name: ssh_key
+                moduleRef:
+                  id: vpcssh
+                  output: name
+              - name: region
+                scope: global
+                type: string
+                description: AWS  Region to provision EC2 instance
+                default: ap-south-1
+              - name: tags
+                scope: module
+              - name: kms_key_crn
+                moduleRef:
+                  id: kms_key
+                  output: crn
+                optional: true
+              - name: base_security_group
+                scope: module
+                type: string
+                description: ID of the base security group(SG) to use for the ec2 instance. If not provided a new SG  will be created.
+                default: null
+              - name: root_volume_size
+                scope: module
+              - name: root_volume_type
+                scope: module
+              - name: allow_ssh_from
+                type: list(any)
+                description: An IP address, a CIDR block, or a single security group identifier to allow incoming SSH connection to the virtual server
+                default:
+                  - 0.0.0.0/0
+              - name: allow_acl_from
+                type: string
+                description: An IP address, a CIDR block, or a single security group identifier to allow incoming SSH connection to the virtual server
+                default: 0.0.0.0/0
+              - name: init_script
+                type: string
+                description: User data to provide when launching the instance.
+                default: ""
+              - name: base_acl_group
+                type: string
+                description: ID of the base ACL to use for the ec2 instance. If not provided a new ACL  will be created.
+                default: null
+              - name: access_key
+            version: v1.0.1
           - platforms: []
             providers:
               - name: aws
@@ -86502,6 +86592,51 @@ categories:
           - s3 bucket
           - s3
         versions:
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bucket_prefix
+                type: string
+                description: (required since we are not using 'bucket') Creates a unique bucket name beginning with the specified prefix. Conflicts with bucket.
+                default: s3-bucket
+                optional: true
+              - name: acl
+                type: string
+                description: (Optional) The canned ACL to apply. Defaults to private. Conflicts with grant.
+                default: private
+                optional: true
+              - name: tags
+                type: map
+                description: (Optional) A mapping of tags to assign to the bucket.
+                default: '{ environment = swew terraform = true }'
+                optional: true
+              - name: region
+                type: string
+                description: 'Please set the region where the resouces to be created '
+                default: ap-south-1
+                optional: true
+              - name: access_key
+                type: string
+                default: ""
+                optional: true
+              - name: secret_key
+                type: string
+                default: ""
+                optional: true
+            version: v0.0.2
+            outputs:
+              - name: s3_bucket_id
+                description: The name of the bucket.
+              - name: s3_bucket_arn
+                description: The ARN of the bucket. Will be of format arn:aws:s3:::bucketname.
+              - name: s3_bucket_bucket_domain_name
+                description: The bucket domain name. Will be of format bucketname.s3.amazonaws.com.
+              - name: s3_bucket_bucket_regional_domain_name
+                description: 'The bucket region-specific domain name. The bucket domain name including the region name, please refer here for format. Note: The AWS CloudFront allows specifying S3 region-specific endpoint when creating S3 origin, it will prevent redirect issues from CloudFront to S3 Origin URL.'
+              - name: s3_bucket_hosted_zone_id
+                description: The Route 53 Hosted Zone ID for this bucket's region.
+              - name: s3_bucket_region
+                description: The AWS region this bucket resides in.
           - platforms: []
             dependencies: []
             variables:

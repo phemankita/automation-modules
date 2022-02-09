@@ -2294,7 +2294,11 @@ categories:
         description: Module to provision ec2 on aws
         tags:
           - infrastructure
+          - ec2
+          - virtual instance
+          - vpc
         versions:
+          - v1.0.1
           - v1.0.0
         group: vsi
         displayName: AWS EC2
@@ -2638,6 +2642,7 @@ categories:
           - s3 bucket
           - s3
         versions:
+          - v0.0.2
           - v0.0.1
         group: object-storage
         displayName: AWS S3 Instance
