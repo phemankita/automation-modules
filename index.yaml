@@ -55908,7 +55908,7 @@ categories:
                        })),
                      }))
                 description: List of rules to set on the subnet access control list
-                default: '[]'
+                default: []
             version: v1.9.7
             outputs:
               - name: count
