@@ -2701,13 +2701,15 @@ categories:
       - cloudProvider: aws
         softwareProvider: ""
         type: terraform
+        id: github.com/cloud-native-toolkit/terraform-aws-s3-bucket
         name: aws-s3-bucket
         description: Module to provision s3-bucket on aws
         tags:
-          - tools
-          - devops
-        versions: []
-        id: github.com/cloud-native-toolkit/terraform-aws-s3-bucket
+          - aws
+          - s3 bucket
+          - s3
+        versions:
+          - v0.0.1
         group: object-storage-bucket
         displayName: AWS S3 Bucket
   - category: util
