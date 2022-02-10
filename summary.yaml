@@ -1831,13 +1831,18 @@ categories:
         displayName: OpenLDAP
       - cloudProvider: ""
         softwareProvider: ""
-        type: gitops
-        name: gitops-cp-event-streams
-        description: Module to populate a gitops repo with the resources to provision cp-event-streams
+        type: terraform
+        name: gitops-cp-eventstreams
+        description: Module to populate a gitops repository with the resources to provision the Event Streams operator from IBM Cloud Pak for Integration.
         tags:
           - tools
           - gitops
-        versions: []
+          - ibm
+          - cloud pak
+          - operator
+          - eventstreams
+        versions:
+          - v1.0.0
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-event-streams
         group: kafka
         displayName: Event Streams
