@@ -253,12 +253,13 @@ categories:
       - cloudProvider: ""
         softwareProvider: ""
         type: gitops
-        name: gitops-mongo-ce-instance
-        description: Module to populate a gitops repo with the resources to provision mongo-ce-instance
+        name: gitops-mongo-ce
+        description: Module to populate a gitops repo with the resources to provision mongo-ce instance
         tags:
           - tools
           - gitops
-        versions: []
+        versions:
+          - v1.0.0
         id: github.com/cloud-native-toolkit/terraform-gitops-mongo-ce
         group: mongodb
         displayName: MongoDB Instance
