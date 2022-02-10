@@ -2006,6 +2006,7 @@ categories:
           - infrastructure
           - networking
         versions:
+          - v1.0.1
           - v1.0.0
         group: vpc-subnets
         displayName: AWS VPC Subnets
