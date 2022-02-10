@@ -1688,6 +1688,22 @@ categories:
         group: kafka-topic
         displayName: Event Streams Topic
       - cloudProvider: ""
+        softwareProvider: ibm-cp
+        type: terraform
+        id: github.com/cloud-native-toolkit/terraform-ocp-certmanager
+        name: cert-manager-jetstack
+        description: Module to install JetStack Cert Manager
+        tags:
+          - cert manager
+          - jetstack
+          - tools
+        versions:
+          - v1.0.2
+          - v1.0.1
+          - v1.0.0
+        group: cert-manager
+        displayName: JetStack Cert Manager
+      - cloudProvider: ""
         softwareProvider: jetstack
         type: gitops
         id: github.com/cloud-native-toolkit/terraform-gitops-ocp-cert-manager
