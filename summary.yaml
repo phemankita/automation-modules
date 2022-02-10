@@ -235,6 +235,30 @@ categories:
           - v1.0.0
         group: mongodb
         displayName: MongoDB on OCP
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        name: gitops-mongo-ce
+        description: Module to populate a gitops repo with the resources to provision mongo-ce
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-mongo-ce-operator
+        group: mongodb
+        displayName: MongoDB Operator
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        name: gitops-mongo-ce-instance
+        description: Module to populate a gitops repo with the resources to provision mongo-ce-instance
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-mongo-ce
+        group: mongodb
+        displayName: MongoDB Instance
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
