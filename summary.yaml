@@ -238,12 +238,13 @@ categories:
       - cloudProvider: ""
         softwareProvider: ""
         type: gitops
-        name: gitops-mongo-ce
-        description: Module to populate a gitops repo with the resources to provision mongo-ce
+        name: gitops-mongo-ce-operator
+        description: Module to populate a gitops repo with the resources to provision mongo-ce operator
         tags:
           - tools
           - gitops
-        versions: []
+        versions:
+          - v1.0.0
         id: github.com/cloud-native-toolkit/terraform-gitops-mongo-ce-operator
         group: mongodb
         displayName: MongoDB Operator
