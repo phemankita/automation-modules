@@ -33163,6 +33163,44 @@ categories:
             dependencies:
               - id: sync
                 refs: []
+                interface: github.com/cloud-native-toolkit/automation-modules#sync
+                optional: true
+            variables:
+              - name: resource_group_name
+                type: string
+                description: The name of the resource group
+                alias: name
+                scope: module
+              - name: provision
+                type: bool
+                description: Flag indicating that the resource group should be created
+                default: true
+              - name: sync
+                type: string
+                description: Value used to order the provisioning of the resource group
+                default: ""
+                moduleRef:
+                  id: sync
+                  output: sync
+            version: v3.0.2
+            outputs:
+              - name: name
+                description: The name of the resource group
+              - name: id
+                description: The id of the resource group
+              - name: group
+                description: The resource group object
+              - name: provision
+                description: Flag indicating whether the resource group was provisioned
+              - name: sync
+                description: Value used to order the provisioning of the resource group
+          - platforms: []
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies:
+              - id: sync
+                refs: []
                 interface: github.com/cloud-native-toolkit/garage-terraform-modules#sync
                 optional: true
             variables:
@@ -33801,20 +33839,6 @@ categories:
               - ocp3
               - ocp4
             dependencies: []
-            #    - id: cluster
-            #      refs:
-            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
-            #          version: ">= 1.7.0"
-            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
-            #          version: ">= 2.0.0"
-            #    - id: namespace
-            #      refs:
-            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
-            #          version: ">= 2.1.0"
-            #    - id: dashboard
-            #      refs:
-            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
-            #          version: ">= 1.6.0"
             variables:
               - name: variable "my
                 type: variable "my
@@ -33834,6 +33858,8 @@ categories:
                 description: 'output" { #  description = "Description of my'
               - name: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
                 description: 'output" #  value       = "value" #  depends_on  = [<some resource>] #}'
+        interfaces:
+          - github.com/cloud-native-toolkit/automation-modules#sync
         group: resource-group
         displayName: IBM Resource Group
       - cloudProvider: ibm
