@@ -1535,6 +1535,7 @@ categories:
           - hpcs
           - key protect
         versions:
+          - v0.3.3
           - v0.3.2
           - v0.2.0
           - v0.1.3
@@ -1542,6 +1543,8 @@ categories:
           - v0.1.1
           - v0.1.0
           - v0.0.0
+        interfaces:
+          - github.com/cloud-native-toolkit/garage-terraform-modules#ibm-service
         group: kms
         displayName: IBM KMS
       - cloudProvider: ibm
@@ -1716,6 +1719,7 @@ categories:
           - jetstack
           - gitops
         versions:
+          - v1.2.1
           - v1.2.0
           - v1.1.0
           - v1.0.1
