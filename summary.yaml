@@ -2710,7 +2710,9 @@ categories:
           - aws
           - s3 bucket
           - s3
+          - file upload
         versions:
+          - v1.0.0
           - v0.0.1
         group: object-storage-bucket
         displayName: AWS S3 Bucket

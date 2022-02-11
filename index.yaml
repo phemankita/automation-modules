@@ -87869,7 +87869,43 @@ categories:
           - aws
           - s3 bucket
           - s3
+          - file upload
         versions:
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bucket_id
+                type: string
+                default: ""
+                optional: true
+              - name: acl_value
+                type: string
+                default: private
+                optional: true
+              - name: region
+                type: string
+                description: 'Please set the region where the resouces to be created '
+                default: ap-south-1
+                optional: true
+              - name: access_key
+                type: string
+                default: ""
+                optional: true
+              - name: secret_key
+                type: string
+                default: ""
+                optional: true
+              - name: file_path
+                type: string
+                description: 'Path to a folder that will be read and uploaded '
+                default: Datafiles/aws
+                optional: true
+            version: v1.0.0
+            outputs:
+              - name: s3_bucket_id
+                description: The name of the bucket.
+              - name: s3_bucket_region
+                description: The AWS region this bucket resides in.
           - platforms: []
             dependencies: []
             variables:
