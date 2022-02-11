@@ -1138,6 +1138,7 @@ categories:
           - authorization
           - policy
         versions:
+          - v1.2.7
           - v1.2.6
           - v1.2.5
           - v1.2.4
@@ -1538,6 +1539,7 @@ categories:
           - hpcs
           - key protect
         versions:
+          - v0.3.4
           - v0.3.3
           - v0.3.2
           - v0.2.0
@@ -1547,7 +1549,7 @@ categories:
           - v0.1.0
           - v0.0.0
         interfaces:
-          - github.com/cloud-native-toolkit/garage-terraform-modules#ibm-service
+          - github.com/cloud-native-toolkit/automation-modules#ibm-service
         group: kms
         displayName: IBM KMS
       - cloudProvider: ibm

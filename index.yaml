@@ -34446,6 +34446,119 @@ categories:
             dependencies:
               - id: source_resource
                 refs: []
+                interface: github.com/cloud-native-toolkit/automation-modules#ibm-service
+                optional: true
+              - id: source_resource_group
+                refs: []
+                optional: true
+              - id: target_resource
+                refs: []
+                interface: github.com/cloud-native-toolkit/automation-modules#ibm-service
+                optional: true
+              - id: target_resource_group
+                refs: []
+                optional: true
+            variables:
+              - name: ibmcloud_api_key
+                type: string
+                description: The IBM Cloud api key
+                scope: global
+              - name: source_service_name
+                description: The name of the service that will be authorized to access the target service. This value is the name of the service as it appears in the service catalog.
+                type: string
+                moduleRef:
+                  id: source_resource
+                  output: service
+              - name: target_service_name
+                description: The name of the service to which the source service will be authorization to access. This value is the name of the service as it appears in the service catalog.
+                type: string
+                moduleRef:
+                  id: target_resource
+                  output: service
+              - name: roles
+                type: list(string)
+                description: A list of roles that should be granted on the target service (e.g. Reader, Writer).
+                default:
+                  - Reader
+              - name: source_resource_instance_id
+                description: The instance id of the source service. This value is required if the authorization will be scoped to a specific service instance. If not provided the authorization will be scoped to the resource group or the account.
+                type: string
+                default: "null"
+                moduleRef:
+                  id: source_resource
+                  output: id
+                optional: true
+              - name: target_resource_instance_id
+                description: The instance id of the target service. This value is required if the authorization will be scoped to a specific service instance. If not provided the authorization will be scoped to the resource group or the account.
+                type: string
+                default: "null"
+                moduleRef:
+                  id: target_resource
+                  output: id
+                optional: true
+              - name: source_resource_group_id
+                description: The id of the resource group that will be used to scope which source services will be authorized to access the target service. If not provided the authorization will be scoped to the entire account. This value is superseded by the source_resource_instance_id
+                type: string
+                default: "null"
+                moduleRef:
+                  id: source_resource_group
+                  output: id
+                optional: true
+              - name: target_resource_group_id
+                description: The id of the resource group that will be used to scope which services the source services will be authorized to access. If not provided the authorization will be scoped to the entire account. This value is superseded by the target_resource_instance_id
+                type: string
+                default: "null"
+                moduleRef:
+                  id: target_resource_group
+                  output: id
+                optional: true
+              - name: source_resource_type
+                description: The resource type of the source service. This value is used to define sub-types of services in the service catalog (e.g. flow-log-collector).
+                type: string
+                default: "null"
+                moduleRef:
+                  id: source_resource
+                  output: type
+                optional: true
+              - name: target_resource_type
+                description: The resource type of the target service. This value is used to define sub-types of services in the service catalog (e.g. flow-log-collector).
+                type: string
+                default: "null"
+                moduleRef:
+                  id: target_resource
+                  output: type
+                optional: true
+              - name: source_service_account
+                description: GUID of the account where the source service is provisioned. This is required to authorize service access across accounts.
+                type: string
+                default: "null"
+              - name: provision
+                description: Flag indicating that the service authorization should be created
+                type: bool
+                default: true
+                moduleRef:
+                  id: source_resource_group
+                  output: provision
+                optional: true
+              - name: source_instance
+                description: Flag indicating that the source instance id should be mapped
+                type: bool
+                default: false
+              - name: target_instance
+                description: Flag indicating that the target instance id should be mapped
+                type: bool
+                default: false
+            version: v1.2.7
+            outputs:
+              - name: id
+                description: The ID of the authorization policy ID
+          - platforms: []
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies:
+              - id: source_resource
+                refs: []
                 interface: github.com/cloud-native-toolkit/garage-terraform-modules#ibm-service
                 optional: true
               - id: source_resource_group
@@ -35751,20 +35864,6 @@ categories:
               - ocp3
               - ocp4
             dependencies: []
-            #    - id: cluster
-            #      refs:
-            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
-            #          version: ">= 1.7.0"
-            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
-            #          version: ">= 2.0.0"
-            #    - id: namespace
-            #      refs:
-            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
-            #          version: ">= 2.1.0"
-            #    - id: dashboard
-            #      refs:
-            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
-            #          version: ">= 1.6.0"
             variables: []
             version: v0.0.0
         group: ""
@@ -45975,6 +46074,78 @@ categories:
                 type: string
                 description: The name of the KMS provider that should be used (keyprotect or hpcs)
                 default: keyprotect
+            version: v0.3.4
+            outputs:
+              - name: id
+                description: The id of the provisioned instance.
+              - name: guid
+                description: The id of the provisioned instance.
+              - name: name
+                description: The name of the provisioned instance.
+              - name: crn
+                description: The id of the provisioned instance
+              - name: location
+                description: The location of the provisioned instance
+              - name: service
+                description: The service name of the key provisioned for the instance
+              - name: label
+                description: The label for the instance
+              - name: type
+                description: The type of the resource
+              - name: public_url
+                description: The public endpoint for the resource
+              - name: private_url
+                description: The private endpoint for the resource
+          - platforms: []
+            providers:
+              - name: ibm
+                source: ibm-cloud/ibm
+            dependencies:
+              - id: resource_group
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-ibm-resource-group
+                    version: '>= 2.1.0'
+            variables:
+              - name: resource_group_name
+                type: string
+                description: Resource group where the cluster has been provisioned.
+                moduleRef:
+                  id: resource_group
+                  output: name
+              - name: region
+                type: string
+                description: Geographic location of the resource (e.g. us-south, us-east)
+                scope: global
+              - name: tags
+                type: list(string)
+                description: Tags that should be applied to the service
+                default: []
+              - name: name_prefix
+                type: string
+                description: The prefix name for the service. If not provided it will default to the resource group name
+                default: ""
+                scope: global
+              - name: provision
+                type: bool
+                description: Flag indicating that key-protect instance should be provisioned
+                default: true
+              - name: name
+                type: string
+                description: The name that should be used for the service, particularly when connecting to an existing service. If not provided then the name will be defaulted to {name prefix}-{service}
+                default: ""
+              - name: private_endpoint
+                type: string
+                description: Flag indicating that the service should be created with private endpoints
+                default: "true"
+                scope: global
+              - name: number_of_crypto_units
+                type: number
+                description: No of crypto units that has to be attached to the instance.
+                default: "2"
+              - name: service
+                type: string
+                description: The name of the KMS provider that should be used (keyprotect or hpcs)
+                default: keyprotect
             version: v0.3.3
             outputs:
               - name: id
@@ -46467,7 +46638,7 @@ categories:
             variables: []
             version: v0.0.0
         interfaces:
-          - github.com/cloud-native-toolkit/garage-terraform-modules#ibm-service
+          - github.com/cloud-native-toolkit/automation-modules#ibm-service
         group: kms
         displayName: IBM KMS
       - cloudProvider: ibm
