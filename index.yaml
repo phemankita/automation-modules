@@ -89009,3 +89009,229 @@ categories:
                 description: The type of module where the module is deployed
         group: pull-secret
         displayName: Pull Secret
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: terraform
+        id: github.com/cloud-native-toolkit/terraform-util-clis
+        name: util-clis
+        description: Module to install clis into local bin directory
+        tags:
+          - tools
+          - util
+          - cli
+          - yq
+          - jq
+          - igc
+        versions:
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+              - name: clis
+                type: list(string)
+                description: The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, helm, argocd, rosa, gh, glab, and kubeseal. (If not provided the list will default to yq, jq, and igc)
+                default: '[yq, jq, igc]'
+                optional: true
+            version: v1.6.0
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+              - name: clis
+                type: list(string)
+                description: The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, helm, argocd, rosa, gh, and glab. (If not provided the list will default to yq, jq, and igc)
+                default: '[yq, jq, igc]'
+                optional: true
+            version: v1.5.1
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+              - name: clis
+                type: list(string)
+                description: The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, helm, argocd, rosa, gh, and glab. (If not provided the list will default to yq, jq, and igc)
+                default: '[yq, jq, igc]'
+                optional: true
+            version: v1.5.0
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+              - name: clis
+                type: list(string)
+                description: The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, helm, and argocd. (If not provided the list will default to yq, jq, and igc)
+                default: '[yq, jq, igc]'
+                optional: true
+            version: v1.4.0
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+              - name: clis
+                type: list(string)
+                description: The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, helm, and argocd. (If not provided the list will default to yq, jq, and igc)
+                default: '[yq, jq, igc]'
+                optional: true
+            version: v1.3.0
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+              - name: clis
+                type: list(string)
+                description: The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, helm, and argocd. (If not provided the list will default to yq, jq, and igc)
+                default: '[yq, jq, igc]'
+                optional: true
+            version: v1.2.0
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+              - name: clis
+                type: list(string)
+                description: The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, and helm. (If not provided the list will default to yq, jq, and igc)
+                default: '[yq, jq, igc]'
+                optional: true
+            version: v1.1.2
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+              - name: clis
+                type: list(string)
+                description: The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, and helm. (If not provided the list will default to yq, jq, and igc)
+                default: '[yq, jq, igc]'
+                optional: true
+            version: v1.1.1
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+              - name: clis
+                type: list(string)
+                description: The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, and helm. (If not provided the list will default to yq, jq, and igc)
+                default: '[yq, jq, igc]'
+                optional: true
+            version: v1.1.0
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+            version: v1.0.2
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+            version: v1.0.1
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
+                optional: true
+            version: v1.0.0
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            dependencies: []
+            #    - id: cluster
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
+            #          version: ">= 1.7.0"
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
+            #          version: ">= 2.0.0"
+            #    - id: namespace
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
+            #          version: ">= 2.1.0"
+            #    - id: dashboard
+            #      refs:
+            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
+            #          version: ">= 1.6.0"
+            variables: []
+            version: v0.0.0
+        group: clis
+        displayName: CLI installer
