@@ -1916,6 +1916,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-sterling-oms
         group: ""
         displayName: CP Sterling Order Management
+      - cloudProvider: ""
+        softwareProvider: ibm-cp
+        type: gitops
+        name: gitops-cp-maximo
+        description: IBM Maximo Application Suite
+        tags:
+          - gitops
+        versions:
+          - v1.0.1
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp-maximo
+        group: maximo
+        displayName: Maximo Application Suite
   - category: network
     categoryName: Network
     selection: multiple
