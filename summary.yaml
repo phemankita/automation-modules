@@ -2747,6 +2747,18 @@ categories:
           - v0.0.1
         group: object-storage-bucket
         displayName: AWS S3 Bucket
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: terraform
+        name: terraform-aws-portworx
+        description: 'Module to provision terraform-aws-portworx on '
+        tags:
+          - tools
+          - devops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-aws-portworx
+        group: ""
+        displayName: terraform-aws-portworx
   - category: util
     categoryName: Utilities
     selection: multiple
