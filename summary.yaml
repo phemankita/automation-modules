@@ -1463,6 +1463,7 @@ categories:
           - ibm
           - license
         versions:
+          - v1.0.1
           - v1.0.0
         group: sls
         displayName: IBM Suite License Server
