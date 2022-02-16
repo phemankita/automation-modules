@@ -1522,6 +1522,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-truststore
         group: ""
         displayName: CP TrustStore
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        name: gitops-cp4s
+        description: Module to populate a gitops repo with the resources to provision cp4s
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp4s
+        group: ""
+        displayName: Cloud Pak for Security
   - category: middleware
     categoryName: Middleware
     selection: multiple
@@ -1844,21 +1856,6 @@ categories:
           - v0.0.0
         group: app-connect
         displayName: Cloud Pak App Connect Operator
-      - cloudProvider: ""
-        softwareProvider: ibm-cp
-        type: gitops
-        id: github.com/cloud-native-toolkit/terraform-gitops-cp-odm
-        name: gitops-cp-odm
-        description: Module to populate a gitops repo wih the resources to provision IBM ODM
-        tags:
-          - odm
-          - cloudpak
-          - gitops
-        versions:
-          - v1.0.1
-          - v1.0.0
-        group: odm
-        displayName: IBM Operational Decision Making
       - cloudProvider: ""
         softwareProvider: opensource
         type: terraform
