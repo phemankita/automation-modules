@@ -91132,11 +91132,29 @@ categories:
                 type: string
                 description: The directory where the clis should be downloaded. If not provided will default to ./bin
                 default: ""
+              - name: clis
+                type: list(string)
+                description: The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, helm, argocd, rosa, gh, glab, and kubeseal. (If not provided the list will default to yq, jq, and igc)
+                default:
+                  - yq
+                  - jq
+                  - igc
+            version: v1.6.1
+            outputs:
+              - name: bin_dir
+                description: Directory where the clis were downloaded
+          - platforms: []
+            dependencies: []
+            variables:
+              - name: bin_dir
+                type: string
+                description: The directory where the clis should be downloaded. If not provided will default to ./bin
+                default: ""
                 optional: true
               - name: clis
                 type: list(string)
                 description: The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, helm, argocd, rosa, gh, glab, and kubeseal. (If not provided the list will default to yq, jq, and igc)
-                default: [yq, jq, igc]
+                default: '[yq, jq, igc]'
                 optional: true
             version: v1.6.0
             outputs:
@@ -91319,20 +91337,6 @@ categories:
               - ocp3
               - ocp4
             dependencies: []
-            #    - id: cluster
-            #      refs:
-            #        - source: github.com/cloud-native-toolkit/terraform-ibm-container-platform
-            #          version: ">= 1.7.0"
-            #        - source: github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster
-            #          version: ">= 2.0.0"
-            #    - id: namespace
-            #      refs:
-            #        - source: github.com/cloud-native-toolkit/terraform-k8s-namespace
-            #          version: ">= 2.1.0"
-            #    - id: dashboard
-            #      refs:
-            #        - source: github.com/cloud-native-toolkit/terraform-k8s-dashboard
-            #          version: ">= 1.6.0"
             variables: []
             version: v0.0.0
         group: clis
