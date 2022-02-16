@@ -1534,6 +1534,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-gitops-cp4s
         group: ""
         displayName: Cloud Pak for Security
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        name: gitops-cp4ba-operator
+        description: Module to populate a gitops repo with the resources to provision cp4ba-operator
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp4ba-operator
+        group: ""
+        displayName: Cloud Pak for Business Automation operator
   - category: middleware
     categoryName: Middleware
     selection: multiple
@@ -1952,6 +1964,7 @@ categories:
           - infrastructure
           - networking
         versions:
+          - v1.13.1
           - v1.13.0
           - v1.12.0
           - v1.11.7
@@ -1992,6 +2005,8 @@ categories:
           - v1.2.0
           - v1.1.1
           - v1.1.0
+        interfaces:
+          - github.com/cloud-native-toolkit/automation-modules#ibm-vpc-resource
         group: vpc
         displayName: IBM VPC
       - cloudProvider: aws
