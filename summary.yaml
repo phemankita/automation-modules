@@ -261,6 +261,7 @@ categories:
           - tools
           - gitops
         versions:
+          - v1.1.2
           - v1.1.1
           - v1.1.0
           - v1.0.1
@@ -1868,6 +1869,18 @@ categories:
           - v0.0.0
         group: app-connect
         displayName: Cloud Pak App Connect Operator
+      - cloudProvider: ""
+        softwareProvider: ibm-cp
+        type: gitops
+        name: gitops-cp-odm
+        description: Module to populate a gitops repo with the resources to provision cp-odm
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp-odm
+        group: odm
+        displayName: IBM Operational Decision Making
       - cloudProvider: ""
         softwareProvider: opensource
         type: terraform
