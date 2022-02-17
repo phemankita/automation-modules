@@ -1078,6 +1078,7 @@ categories:
           - azure
           - resource group
         versions:
+          - v1.0.1
           - v1.0.0
         id: github.com/cloud-native-toolkit/terraform-azure-resource-group
         group: resource-group
