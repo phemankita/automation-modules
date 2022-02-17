@@ -1963,6 +1963,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-maximo
         group: maximo
         displayName: Maximo Application Suite
+      - cloudProvider: ""
+        softwareProvider: ibm-cp
+        type: gitops
+        name: gitops-cp-odm
+        description: Module to populate a gitops repo with the resources to provision cp-odm
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp-odm
+        group: odm
+        displayName: IBM ODM
   - category: network
     categoryName: Network
     selection: multiple
