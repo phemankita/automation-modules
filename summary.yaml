@@ -1069,6 +1069,19 @@ categories:
           - github.com/cloud-native-toolkit/automation-modules#sync
         group: resource-group
         displayName: IBM Resource Group
+      - cloudProvider: azure
+        softwareProvider: ""
+        type: terraform
+        name: azure-resource-group
+        description: Module to provision a resource group on Azure
+        tags:
+          - azure
+          - resource group
+        versions:
+          - v1.0.0
+        id: github.com/cloud-native-toolkit/terraform-azure-resource-group
+        group: resource-group
+        displayName: Azure Resource Group
       - cloudProvider: ibm
         softwareProvider: ""
         type: terraform
