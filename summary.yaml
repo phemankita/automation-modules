@@ -1547,6 +1547,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-gitops-cp4ba-operator
         group: ""
         displayName: Cloud Pak for Business Automation operator
+      - cloudProvider: ""
+        softwareProvider: ibm-cp
+        type: gitops
+        name: gitops-cp-ban-operator
+        description: Module to populate a gitops repo with the resources to provision cp-ban-operator
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp-ban-operator
+        group: ""
+        displayName: IBM Business Automation Navigator and UMS operator
   - category: middleware
     categoryName: Middleware
     selection: multiple
@@ -1989,6 +2001,7 @@ categories:
           - infrastructure
           - networking
         versions:
+          - v1.14.0
           - v1.13.1
           - v1.13.0
           - v1.12.0
