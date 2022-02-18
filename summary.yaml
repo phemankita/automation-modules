@@ -2524,7 +2524,8 @@ categories:
         tags:
           - tools
           - devops
-        versions: []
+        versions:
+          - v1.0.0
         id: github.com/cloud-native-toolkit/terraform-azure-vpc-subnets
         group: vpc-subnets
         displayName: Azure VPC Subnets
