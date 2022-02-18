@@ -1860,27 +1860,6 @@ categories:
       - cloudProvider: ""
         softwareProvider: ibm-cp
         type: terraform
-        id: github.com/cloud-native-toolkit/terraform-gitops-cp-apic
-        name: gitops-cp-apic
-        description: Module to populate a gitops repository with the resources to provision the API Connect operator from IBM Cloud Pak for Integration.
-        tags:
-          - tools
-          - gitops
-          - ibm
-          - cloud pak
-          - operator
-          - ace
-        versions:
-          - v1.2.1
-          - v1.2.0
-          - v1.1.0
-          - v1.0.0
-          - v0.0.0
-        group: api-connect
-        displayName: Cloud Pak API Connect Operator
-      - cloudProvider: ""
-        softwareProvider: ibm-cp
-        type: terraform
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-app-connect
         name: gitops-cp-ace
         description: Module to populate a gitops repository with the resources to provision the ACE operator from IBM Cloud Pak for Integration.
