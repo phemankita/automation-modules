@@ -2095,6 +2095,7 @@ categories:
           - vpc
           - public gateway
         versions:
+          - v1.7.0
           - v1.6.1
           - v1.6.0
           - v1.5.1
@@ -2500,6 +2501,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-aws-vpn-server
         group: vpn
         displayName: AWS VPN Server
+      - cloudProvider: azure
+        softwareProvider: ""
+        type: terraform
+        name: azure-vpc-subnets
+        description: Module to provision vpc-subnets on azure
+        tags:
+          - tools
+          - devops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-azure-vpc-subnets
+        group: vpc-subnets
+        displayName: Azure VPC Subnets
   - category: source-control
     categoryName: Source Control
     selection: single
