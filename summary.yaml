@@ -2121,6 +2121,7 @@ categories:
           - subnets
           - vpc
         versions:
+          - v1.10.0
           - v1.9.7
           - v1.9.6
           - v1.9.5
