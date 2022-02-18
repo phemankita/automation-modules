@@ -221,7 +221,7 @@ categories:
           - v1.0.0
         id: github.com/cloud-native-toolkit/terraform-aws-rosa
         alias: rosa-cluster
-        group: ""
+        group: openshift
         displayName: AWS ROSA
   - category: databases
     categoryName: Databases

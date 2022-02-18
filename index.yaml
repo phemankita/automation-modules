@@ -7906,7 +7906,7 @@ categories:
               - name: ocp_cluster_admin_pwd
         id: github.com/cloud-native-toolkit/terraform-aws-rosa
         alias: rosa-cluster
-        group: ""
+        group: openshift
         displayName: AWS ROSA
   - category: databases
     categoryName: Databases
