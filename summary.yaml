@@ -2538,6 +2538,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-azure-vpc-subnets
         group: vpc-subnets
         displayName: Azure VPC Subnets
+      - cloudProvider: aws
+        softwareProvider: ""
+        type: terraform
+        name: aws-internet-gateway
+        description: Module to provision internet-gateway on aws
+        tags:
+          - tools
+          - devops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-aws-internet-gateway
+        group: vpc-gateways
+        displayName: AWS Internet Gateway
   - category: source-control
     categoryName: Source Control
     selection: single
