@@ -2024,6 +2024,18 @@ categories:
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-apic
         group: api-management
         displayName: Api Connect Instance
+      - cloudProvider: ""
+        softwareProvider: ibm-cp
+        type: gitops
+        name: gitops-cp-ace-designer
+        description: Module to populate a gitops repo with the resources to provision cp-ace-designer
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-cp-ace-designer
+        group: ace-designer
+        displayName: ACE Designer
   - category: network
     categoryName: Network
     selection: multiple
