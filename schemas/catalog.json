@@ -65,6 +65,10 @@
           "type": "string",
           "description": "The identifier of the module"
         },
+        "registryId": {
+          "type": "string",
+          "description": "The identifier of the module in the terraform module registry"
+        },
         "name": {
           "type": "string",
           "description": "The unique name of the module"

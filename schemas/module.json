@@ -9,6 +9,10 @@
       "type": "string",
       "description": "The identifier of the module"
     },
+    "registryId": {
+      "type": "string",
+      "description": "The identifier of the module in the terraform module registry"
+    },
     "kind": {
       "type": "string",
       "description": "The CR kind",
