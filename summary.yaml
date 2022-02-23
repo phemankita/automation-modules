@@ -2051,6 +2051,7 @@ categories:
           - infrastructure
           - networking
         versions:
+          - v1.15.2
           - v1.15.1
           - v1.15.0
           - v1.14.0
@@ -2097,6 +2098,7 @@ categories:
           - v1.1.0
         interfaces:
           - github.com/cloud-native-toolkit/automation-modules#ibm-vpc-resource
+        registryId: cloud-native-toolkit/vpc/ibm
         group: vpc
         displayName: IBM VPC
       - cloudProvider: aws
