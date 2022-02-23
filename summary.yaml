@@ -2052,6 +2052,7 @@ categories:
           - infrastructure
           - networking
         versions:
+          - v1.15.3
           - v1.15.2
           - v1.15.1
           - v1.15.0
