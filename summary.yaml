@@ -2134,6 +2134,7 @@ categories:
           - vpc
           - public gateway
         versions:
+          - v1.8.1
           - v1.8.0
           - v1.7.0
           - v1.6.1
@@ -2148,6 +2149,7 @@ categories:
           - v1.1.0
           - v1.0.0
           - v0.0.0
+        registryId: cloud-native-toolkit/vpc-gateways/ibm
         group: vpc-gateways
         displayName: IBM VPC Gateways
       - cloudProvider: ibm
