@@ -133,6 +133,7 @@ categories:
           - cluster
           - vpc
         versions:
+          - v1.12.1
           - v1.12.0
           - v1.11.0
           - v1.10.3
@@ -163,6 +164,7 @@ categories:
           - v1.0.0
         interfaces:
           - github.com/cloud-native-toolkit/automation-modules#cluster
+        registryId: cloud-native-toolkit/ocp-vpc/ibm
         group: openshift
         displayName: IBM OpenShift VPC cluster
       - cloudProvider: ibm
