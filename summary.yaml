@@ -1046,6 +1046,7 @@ categories:
           - resource group
           - account
         versions:
+          - v3.2.1
           - v3.2.0
           - v3.1.1
           - v3.1.0
@@ -1076,6 +1077,7 @@ categories:
           - v0.0.0
         interfaces:
           - github.com/cloud-native-toolkit/automation-modules#sync
+        registryId: cloud-native-toolkit/resource-group/ibm
         group: resource-group
         displayName: IBM Resource Group
       - cloudProvider: azure
