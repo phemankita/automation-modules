@@ -1979,7 +1979,8 @@ categories:
         tags:
           - tools
           - gitops
-        versions: []
+        versions:
+          - v1.0.0
         id: github.com/cloud-native-toolkit/terraform-gitops-cp-mq-uniform-cluster
         group: ""
         displayName: CP MQ Uniform Cluster
