@@ -1,0 +1,25 @@
+categories:
+  - category: newCluster
+    categoryName: Create New Cluster
+    boms:
+      - name: CP4I on AWS ROSA
+        path: ./boms/cp4i_aws.yaml
+        cloudProvider: AWS
+      - name: CP4I on Azure ARO
+        path: ./boms/cp4i_azure.yaml
+        cloudProvider: Azure
+      - name: CP4D on Azure ARO
+        path: ./boms/cp4d_azure.yaml
+        cloudProvider: Azure
+      - name: CP4D on Azure ARO with demo
+        path: ./boms/cp4d_demo_azure.yaml
+        cloudProvider: Azure
+      - name: CP4I on IBM ROKS
+        path: ./boms/cp4i_ibm.yaml
+        cloudProvider: IBM
+  - category: existingCluster
+    categoryName: Use Existing Cluster
+    boms:
+      - name: CP4I on IBM ROKS
+        path: ./boms/cp4i_ibm_existing_cluster.yaml
+        cloudProvider: IBM

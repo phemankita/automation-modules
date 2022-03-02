@@ -11,12 +11,17 @@ ul li {
   padding: 5px 0px;
 }
 
-// .row-margin {
-//   padding: $spacing-06;
-// }
-//
-// .dimensions {
-//   margin-top: $spacing-06;
-//   margin-bottom: $spacing-06;
-//   margin-left: $spacing-06;
-// }
+.row-margin {
+  padding: 6px;
+}
+
+.dimensions {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 6px;
+}
+
+
+.button{
+  column-width: 0px;
+}

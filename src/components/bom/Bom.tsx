@@ -13,9 +13,19 @@ import {
   ClickableTile,
 } from 'carbon-components-react';
 
-class BomInternal extends React.Component<any, any> {
+import {bomCloudProvider, bomPath, bomName, BomModel} from '../../models';
+
+export interface BomProps {
+  bom: BomModel
+}
+
+class BomInternal extends React.Component<BomProps, any> {
 
   render() {
+    return this.renderTile()
+  }
+
+  renderTile() {
     return (
       <div className="bx--grid">
         <div className="bx--row">
@@ -26,7 +36,7 @@ class BomInternal extends React.Component<any, any> {
                   <Column className="dimensions">
                     <Breadcrumb noTrailingSlash>
                       <BreadcrumbItem>
-                        <a href="/">AWS</a>
+                        <a href="/">{this.bomCloudProvider}</a>
                       </BreadcrumbItem>
                     </Breadcrumb>
                   </Column>
@@ -42,16 +52,16 @@ class BomInternal extends React.Component<any, any> {
                   </Column>
                 </Row>
                 <Row>
-                  <Column>
+                  <Column className="button">
                     <a
-                      href="./boms/cp4i_aws.yaml"
-                      download="cp4i_aws.yaml"
+                      href={this.bomPath}
+                      download={this.bomName}
                       target="_blank">
                       <Button>Download</Button>
                     </a>
                   </Column>
-                  <Column>
-                    <Button>Deploy</Button>
+                  <Column className="button">
+                    <Button disabled>Deploy</Button>
                   </Column>
                 </Row>
               </Grid>
@@ -61,6 +71,20 @@ class BomInternal extends React.Component<any, any> {
       </div>
     )
   }
+
+  get bomCloudProvider(): string {
+   return bomCloudProvider(this.props.bom)
+  }
+
+  get bomPath(): string {
+   return bomPath(this.props.bom)
+  }
+
+  get bomName(): string {
+   let name: string = bomName(this.props.bom)
+   return name + '.yaml'
+  }
+
 }
 
 export const Bom = BomInternal

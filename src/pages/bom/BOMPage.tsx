@@ -1,7 +1,7 @@
 import React from 'react';
 import {Column, Grid, Row} from 'carbon-components-react';
 
-import {Bom} from '../../components';
+import {BomCatalog} from '../../components';
 
 export class BOMPage extends React.Component<any, any> {
 
@@ -15,9 +15,8 @@ export class BOMPage extends React.Component<any, any> {
             </Column>
           </Row>
           <Row>
-            <Column lg={{span: 10}} md={{span: 6}} sm={{span: 4}}>
-              <Bom />
-              {/*<p>BOM Catalog Menu</p>*/}
+            <Column lg={{span: 20}} md={{span: 6}} sm={{span: 4}}>
+              <BomCatalog />
             </Column>
           </Row>
         </Grid>
