@@ -40,6 +40,13 @@ class BomInternal extends React.Component<BomProps, any> {
                       </BreadcrumbItem>
                     </Breadcrumb>
                   </Column>
+                  <Column className="dimensions">
+                    <Breadcrumb noTrailingSlash>
+                      <BreadcrumbItem>
+                        <a href="/">{this.bomName}</a>
+                      </BreadcrumbItem>
+                    </Breadcrumb>
+                  </Column>
                 </Row>
                 <Row>
                   <Column>
@@ -52,7 +59,7 @@ class BomInternal extends React.Component<BomProps, any> {
                   <Column className="button">
                     <a
                       href={this.bomPath}
-                      download={this.bomName}
+                      download={this.bomYamlName}
                       target="_blank">
                       <Button>Download</Button>
                     </a>
@@ -77,9 +84,13 @@ class BomInternal extends React.Component<BomProps, any> {
    return bomPath(this.props.bom)
   }
 
-  get bomName(): string {
+  get bomYamlName(): string {
    let name: string = bomName(this.props.bom)
    return name + '.yaml'
+  }
+
+  get bomName(): string {
+   return bomName(this.props.bom)
   }
 
   get bomModulesList(): string[] {
