@@ -4,10 +4,10 @@ ul {
 }
 
 .custom {
-  min-height: 150px;
+  min-height: 350px;
 }
 
-ul li {
+li {
   padding: 5px 0px;
 }
 
@@ -24,4 +24,11 @@ ul li {
 
 .button{
   column-width: 0px;
+}
+
+.text{
+  width: 175px;
+  margin: auto;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }

@@ -13,7 +13,7 @@ import {
   ClickableTile,
 } from 'carbon-components-react';
 
-import {bomCloudProvider, bomPath, bomName, BomModel} from '../../models';
+import {bomModulesList, bomCloudProvider, bomPath, bomName, BomModel} from '../../models';
 
 export interface BomProps {
   bom: BomModel
@@ -44,10 +44,7 @@ class BomInternal extends React.Component<BomProps, any> {
                 <Row>
                   <Column>
                     <div className="custom">
-                      <ul>
-                        <li>OpenShift Cluster</li>
-                        <li>CloudPak for Integration</li>
-                      </ul>
+                      {this.renderBomModules()}
                     </div>
                   </Column>
                 </Row>
@@ -83,6 +80,24 @@ class BomInternal extends React.Component<BomProps, any> {
   get bomName(): string {
    let name: string = bomName(this.props.bom)
    return name + '.yaml'
+  }
+
+  get bomModulesList(): string[] {
+   return bomModulesList(this.props.bom)
+  }
+
+  renderBomModules() {
+    if (this.props.bom.bomModules.length === 0) {
+      return (<div>No Modules</div>)
+    }
+
+    const bomModules = this.props.bom.bomModules.map((m) => <li>{m}</li>)
+
+    return (
+      <div className="text">
+      {bomModules }
+      </div>
+    )
   }
 
 }
