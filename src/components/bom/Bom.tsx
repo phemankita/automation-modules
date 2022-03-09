@@ -57,7 +57,7 @@ class BomInternal extends React.Component<BomProps, any> {
                       <Button>Download</Button>
                     </a>
                   </Column>
-                  <Column className="button">
+                  <Column>
                     <Button disabled>Deploy</Button>
                   </Column>
                 </Row>
