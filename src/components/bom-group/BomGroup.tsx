@@ -38,7 +38,7 @@ class BomGroupInternal<S extends BomGroupState = any> extends React.Component<Bo
     return (
       <Grid>
         <Row>
-          {bomTiles.map(b => <Column lg={{span: 15}} md={{span: 4}} sm={{span: 4}}>{b}</Column>)}
+          {bomTiles.map(b => <Column lg={{span: 4}} md={{span: 2}} sm={{span: 2}}>{b}</Column>)}
         </Row>
       </Grid>
     )

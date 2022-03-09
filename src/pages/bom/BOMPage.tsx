@@ -15,7 +15,7 @@ export class BOMPage extends React.Component<any, any> {
             </Column>
           </Row>
           <Row>
-            <Column lg={{span: 20}} md={{span: 6}} sm={{span: 4}}>
+            <Column lg={{span: 12}} md={{span: 8}} sm={{span: 4}}>
               <BomCatalog />
             </Column>
           </Row>
