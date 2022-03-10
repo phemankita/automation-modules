@@ -61,11 +61,9 @@ class BomInternal extends React.Component<BomProps, any> {
                       href={this.bomPath}
                       download={this.bomYamlName}
                       target="_blank">
-                      <Button>Download</Button>
+                      <Button className="button">Download</Button>
                     </a>
-                  </Column>
-                  <Column>
-                    <Button disabled>Deploy</Button>
+                    <Button className="button" disabled>Deploy</Button>
                   </Column>
                 </Row>
               </Grid>

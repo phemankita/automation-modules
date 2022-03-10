@@ -2,7 +2,7 @@ categories:
   - category: newCluster
     categoryName: Create New Cluster
     boms:
-      - name: CP4I on ROSA
+      - name: CP4I
         path: ./boms/cp4i_aws.yaml
         cloudProvider: AWS
         bomModules:
@@ -16,7 +16,7 @@ categories:
           - gitops-cp-ace
           - gitops-cp-apic
           - gitops-cp-eventstreams
-      - name: CP4I on ARO
+      - name: CP4I
         path: ./boms/cp4i_azure.yaml
         cloudProvider: Azure
         bomModules:
@@ -28,7 +28,7 @@ categories:
           - gitops-cp-ace
           - gitops-cp-apic
           - gitops-cp-eventstreams
-      - name: CP4D on ARO
+      - name: CP4D
         path: ./boms/cp4d_azure.yaml
         cloudProvider: Azure
         bomModules:
@@ -37,7 +37,7 @@ categories:
           - gitops-console-link-job
           - gitops-namespace
           - cp4d TBD
-      - name: CP4D demo on ARO
+      - name: CP4D Demo
         path: ./boms/cp4d_demo_azure.yaml
         cloudProvider: Azure
         bomModules:
@@ -49,7 +49,7 @@ categories:
           - gitops-namespace
           - cp4d TBD
           - cp4d demo TBD
-      - name: CP4I on ROKS
+      - name: CP4I
         path: ./boms/cp4i_ibm.yaml
         cloudProvider: IBM
         bomModules:
@@ -65,7 +65,7 @@ categories:
   - category: existingCluster
     categoryName: Use Existing Cluster
     boms:
-      - name: CP4I on ROKS
+      - name: CP4I
         path: ./boms/cp4i_ibm_existing_cluster.yaml
         cloudProvider: IBM
         bomModules:
